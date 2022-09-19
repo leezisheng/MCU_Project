@@ -1,5 +1,5 @@
 mcu_project\servomotor_control.o: ..\Hardware\USARTServo_Control\ServoMotor_Control.c
-mcu_project\servomotor_control.o: ..\Hardware\USART_Printf\USART_Printf.h
+mcu_project\servomotor_control.o: ../Hardware/USART_Printf/USART_Printf.h
 mcu_project\servomotor_control.o: ../Core/Inc/main.h
 mcu_project\servomotor_control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 mcu_project\servomotor_control.o: ../Core/Inc/stm32f4xx_hal_conf.h
@@ -32,7 +32,7 @@ mcu_project\servomotor_control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_
 mcu_project\servomotor_control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 mcu_project\servomotor_control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 mcu_project\servomotor_control.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
-mcu_project\servomotor_control.o: ..\Common\numtype.h
+mcu_project\servomotor_control.o: ../Common/numtype.h
 mcu_project\servomotor_control.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\stdio.h
 mcu_project\servomotor_control.o: ..\Hardware\USARTServo_Control\ServoMotor_Control.h
 mcu_project\servomotor_control.o: ../Core/Inc/usart.h

@@ -26,12 +26,12 @@
 "mcu_project\stm32f4xx_hal_tim.o"
 "mcu_project\stm32f4xx_hal_tim_ex.o"
 "mcu_project\stm32f4xx_hal_uart.o"
-"mcu_project\system_stm32f4xx.o"
 "mcu_project\templete.o"
 "mcu_project\adc_operation.o"
 "mcu_project\usart_printf.o"
 "mcu_project\servomotor_control.o"
 "mcu_project\usart_gyroscope .o"
+"mcu_project\system_stm32f4xx.o"
 --library_type=microlib --strict --scatter "MCU_Project\MCU_Project.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

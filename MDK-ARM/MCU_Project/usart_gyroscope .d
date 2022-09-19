@@ -32,8 +32,8 @@ mcu_project\usart_gyroscope .o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ha
 mcu_project\usart_gyroscope .o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 mcu_project\usart_gyroscope .o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 mcu_project\usart_gyroscope .o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
-mcu_project\usart_gyroscope .o: ..\Common\numtype.h
+mcu_project\usart_gyroscope .o: ../Common/numtype.h
 mcu_project\usart_gyroscope .o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\stdio.h
-mcu_project\usart_gyroscope .o: ..\Hardware\USART_Printf\USART_Printf.h
+mcu_project\usart_gyroscope .o: ../Hardware/USART_Printf/USART_Printf.h
 mcu_project\usart_gyroscope .o: ../Core/Inc/usart.h
 mcu_project\usart_gyroscope .o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\string.h

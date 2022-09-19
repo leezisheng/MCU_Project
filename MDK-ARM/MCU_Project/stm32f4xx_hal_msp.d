@@ -31,5 +31,5 @@ mcu_project\stm32f4xx_hal_msp.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_h
 mcu_project\stm32f4xx_hal_msp.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 mcu_project\stm32f4xx_hal_msp.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 mcu_project\stm32f4xx_hal_msp.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
-mcu_project\stm32f4xx_hal_msp.o: ..\Common\numtype.h
+mcu_project\stm32f4xx_hal_msp.o: ../Common/numtype.h
 mcu_project\stm32f4xx_hal_msp.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\stdio.h
