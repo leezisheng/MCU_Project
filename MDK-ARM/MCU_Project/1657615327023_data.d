@@ -1,0 +1,14 @@
+mcu_project\1657615327023_data.o: ../X-CUBE-AI/App/1657615327023_data.c
+mcu_project\1657615327023_data.o: ../X-CUBE-AI/App/1657615327023_data.h
+mcu_project\1657615327023_data.o: ../Middlewares/ST/AI/Inc/ai_platform_interface.h
+mcu_project\1657615327023_data.o: ../Middlewares/ST/AI/Inc/ai_platform.h
+mcu_project\1657615327023_data.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\stdint.h
+mcu_project\1657615327023_data.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\stddef.h
+mcu_project\1657615327023_data.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\inttypes.h
+mcu_project\1657615327023_data.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\stdbool.h
+mcu_project\1657615327023_data.o: ../Middlewares/ST/AI/Inc/datatypes_network.h
+mcu_project\1657615327023_data.o: ../Middlewares/ST/AI/Inc/ai_datatypes.h
+mcu_project\1657615327023_data.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\string.h
+mcu_project\1657615327023_data.o: ../Middlewares/ST/AI/Inc/ai_datatypes_format.h
+mcu_project\1657615327023_data.o: ../Middlewares/ST/AI/Inc/ai_datatypes_defines.h
+mcu_project\1657615327023_data.o: ../Middlewares/ST/AI/Inc/formats_list.h
