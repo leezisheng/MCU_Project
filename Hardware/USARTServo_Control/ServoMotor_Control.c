@@ -295,10 +295,6 @@ t_FuncRet ServoMotor_Read_Ret(int32_t* p_ret)
 	/* command parameter */
 	uint8_t cmd;
 	
-	/* Structure is converted to an array */
-	CmdStruct_To_Array((SendDataFrame*)&RxDataStruct , (uint8_t*)&DataBuf ,sizeof(RxDataStruct));
-	
-	/* Wait for the serial port to complete receiving */ 
 	while(!isRxCompleted())
 	{
 		count--;
@@ -307,6 +303,9 @@ t_FuncRet ServoMotor_Read_Ret(int32_t* p_ret)
 			return (t_FuncRet)Operation_Wait;
 	}
 	
+	/* Structure is converted to an array */
+	CmdStruct_To_Array((SendDataFrame*)&RxDataStruct , (uint8_t*)&DataBuf ,sizeof(RxDataStruct));
+	
 	/* Data is successfully received , Data parsing begins */
 	/* 
 		Communication protocol format£º
@@ -314,20 +313,26 @@ t_FuncRet ServoMotor_Read_Ret(int32_t* p_ret)
 	*/
 	
 	/* Computes the data frame checksum */
-	if((Get_CheckSum((uint8_t*)&DataBuf)) != (DataBuf[DataBuf[3]+2]))
+	if((Get_CheckSum((uint8_t*)&DataBuf)) != RxDataStruct.Checksum)
 	{
 		/* The checksum does not match. The failure flag bit is returned */
 		return (t_FuncRet)Operatin_Fail;
 	}
 	
-	cmd = DataBuf[4];
+	cmd = RxDataStruct.Command;
 	
 	/* Parsing command parameters */ 
 	switch(cmd)
 	{
 		case LOBOT_SERVO_POS_READ:
 			/* Take out return parameters */
-			*p_ret = (int32_t)BYTE_TO_HW(DataBuf[6] , DataBuf[5]);
+			/* 
+			Command name SERVO_POS_READ Command value 28 Data length 5
+				Parameter 1: the lower eight digits of the current Angle position value of the steering gear.
+				Parameter 2: eight digits higher than the current Angle position value of the steering gear, no default value.
+			Note: The Angle position value returned should be converted to a signed short int, because the Angle read may be negative
+			*/
+			*p_ret = (int32_t)BYTE_TO_HW(RxDataStruct.Command_Parameter[1] ,RxDataStruct.Command_Parameter[0]);
 			ret = (t_FuncRet)Operatin_Success;
 			return ret;
 		default:

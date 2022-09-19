@@ -460,7 +460,7 @@ void HAL_UART6_RxCpltCallback(void)
 			/* the data length bits error , skip */
 			if (!IS_DATA_LENGTH(dataLength)) 
 			{
-				dataLength = 3;
+				dataLength = 2;
 				RxDataStruct.DataLength = 0;
 				isGotFrameHeader = (bool)FALSE;
 			}
@@ -480,7 +480,7 @@ void HAL_UART6_RxCpltCallback(void)
 		}
 		
 		/* Parsing command parameters */
-		if((command_parameter_count < (dataLength-3))&&(dataCount > 4))
+		if( (command_parameter_count < (dataLength-3)) && (dataCount > 4) )
 		{
 			RxDataStruct.Command_Parameter[command_parameter_count] = Res;
 			command_parameter_count = command_parameter_count + 1;
