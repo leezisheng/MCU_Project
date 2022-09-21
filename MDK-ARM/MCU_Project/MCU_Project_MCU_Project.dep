@@ -1,7 +1,7 @@
 Dependencies for Project 'MCU_Project', Target 'MCU_Project': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMCC
 F (startup_stm32f411xe.s)(0x632ACDBC)(--cpu Cortex-M4.fp.sp -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\_MCU_Project-ID:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\Lee\MDK5\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include--pd "__UVISION_VERSION SETA 535" --pd "_RTE_ SETA 1" --pd "STM32F411xE SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32f411xe.lst --xref -o mcu_project\startup_stm32f411xe.o --depend mcu_project\startup_stm32f411xe.d)
-F (../Core/Src/main.c)(0x632ACDB9)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Common -I ../Hardware/ADC_Operation -I ../Hardware/USART_Printf -I ../Hardware/USARTServo_Control -I ../Hardware/USART_Gyroscope --gnu-I.\RTE\_MCU_Project-ID:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\Lee\MDK5\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o mcu_project\main.o --omf_browse mcu_project\main.crf --depend mcu_project\main.d)
+F (../Core/Src/main.c)(0x632B6F07)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Common -I ../Hardware/ADC_Operation -I ../Hardware/USART_Printf -I ../Hardware/USARTServo_Control -I ../Hardware/USART_Gyroscope --gnu-I.\RTE\_MCU_Project-ID:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\Lee\MDK5\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o mcu_project\main.o --omf_browse mcu_project\main.crf --depend mcu_project\main.d)
 I (../Core/Inc/main.h)(0x6328F3D3)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6305D3C5)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x632ACDB9)
@@ -39,9 +39,9 @@ I (../Core/Inc/adc.h)(0x6328F3D1)
 I (../Core/Inc/dma.h)(0x6328F3D2)
 I (../Core/Inc/usart.h)(0x6328F3D2)
 I (../Core/Inc/gpio.h)(0x6328F3D1)
-I (../Hardware/ADC_Operation/ADC_Operation.h)(0x62CC787B)
-I (../Hardware/USART_Printf/USART_Printf.h)(0x63272C1F)
-I (../Hardware/USARTServo_Control/ServoMotor_Control.h)(0x6307A5F3)
+I (../Hardware/ADC_Operation/ADC_Operation.h)(0x632AD217)
+I (../Hardware/USART_Printf/USART_Printf.h)(0x632B5FB3)
+I (../Hardware/USARTServo_Control/ServoMotor_Control.h)(0x632B5BC2)
 I (../Hardware/USART_Gyroscope/USART_Gyroscope.h)(0x630BB6A8)
 F (../Core/Src/gpio.c)(0x6328F3D1)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Common -I ../Hardware/ADC_Operation -I ../Hardware/USART_Printf -I ../Hardware/USARTServo_Control -I ../Hardware/USART_Gyroscope --gnu-I.\RTE\_MCU_Project-ID:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\Lee\MDK5\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o mcu_project\gpio.o --omf_browse mcu_project\gpio.crf --depend mcu_project\gpio.d)
 I (../Core/Inc/gpio.h)(0x6328F3D1)
@@ -686,7 +686,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h)(0x6305D3C5
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h)(0x6305D3C5)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x6305D3C5)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x6305D3C5)
-F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c)(0x6305D3C5)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Common -I ../Hardware/ADC_Operation -I ../Hardware/USART_Printf -I ../Hardware/USARTServo_Control -I ../Hardware/USART_Gyroscope --gnu-I.\RTE\_MCU_Project-ID:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\Lee\MDK5\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o mcu_project\stm32f4xx_hal.o --omf_browse mcu_project\stm32f4xx_hal.crf --depend mcu_project\stm32f4xx_hal.d)
+F (../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c)(0x632ACE0E)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Common -I ../Hardware/ADC_Operation -I ../Hardware/USART_Printf -I ../Hardware/USARTServo_Control -I ../Hardware/USART_Gyroscope --gnu-I.\RTE\_MCU_Project-ID:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\Lee\MDK5\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o mcu_project\stm32f4xx_hal.o --omf_browse mcu_project\stm32f4xx_hal.crf --depend mcu_project\stm32f4xx_hal.d)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6305D3C5)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x632ACDB9)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h)(0x6305D3C5)
@@ -876,8 +876,8 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x6305D3C5)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x6305D3C5)
 I (../Common/numtype.h)(0x63061847)
 I (D:\Lee\MDK5\ARM\ARMCC\include\stdio.h)(0x60252374)
-F (..\Hardware\ADC_Operation\ADC_Operation.c)(0x6305FE83)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Common -I ../Hardware/ADC_Operation -I ../Hardware/USART_Printf -I ../Hardware/USARTServo_Control -I ../Hardware/USART_Gyroscope --gnu-I.\RTE\_MCU_Project-ID:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\Lee\MDK5\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o mcu_project\adc_operation.o --omf_browse mcu_project\adc_operation.crf --depend mcu_project\adc_operation.d)
-I (..\Hardware\ADC_Operation\ADC_Operation.h)(0x62CC787B)
+F (..\Hardware\ADC_Operation\ADC_Operation.c)(0x632AD217)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Common -I ../Hardware/ADC_Operation -I ../Hardware/USART_Printf -I ../Hardware/USARTServo_Control -I ../Hardware/USART_Gyroscope --gnu-I.\RTE\_MCU_Project-ID:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\Lee\MDK5\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o mcu_project\adc_operation.o --omf_browse mcu_project\adc_operation.crf --depend mcu_project\adc_operation.d)
+I (..\Hardware\ADC_Operation\ADC_Operation.h)(0x632AD217)
 I (../Core/Inc/main.h)(0x6328F3D3)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6305D3C5)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x632ACDB9)
@@ -913,8 +913,8 @@ I (../Common/numtype.h)(0x63061847)
 I (D:\Lee\MDK5\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (../Core/Inc/adc.h)(0x6328F3D1)
 I (../Core/Inc/dma.h)(0x6328F3D2)
-F (..\Hardware\USART_Printf\USART_Printf.c)(0x6328C4A9)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Common -I ../Hardware/ADC_Operation -I ../Hardware/USART_Printf -I ../Hardware/USARTServo_Control -I ../Hardware/USART_Gyroscope --gnu-I.\RTE\_MCU_Project-ID:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\Lee\MDK5\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o mcu_project\usart_printf.o --omf_browse mcu_project\usart_printf.crf --depend mcu_project\usart_printf.d)
-I (..\Hardware\USART_Printf\USART_Printf.h)(0x63272C1F)
+F (..\Hardware\USART_Printf\USART_Printf.c)(0x632B8011)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Common -I ../Hardware/ADC_Operation -I ../Hardware/USART_Printf -I ../Hardware/USARTServo_Control -I ../Hardware/USART_Gyroscope --gnu-I.\RTE\_MCU_Project-ID:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\Lee\MDK5\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o mcu_project\usart_printf.o --omf_browse mcu_project\usart_printf.crf --depend mcu_project\usart_printf.d)
+I (..\Hardware\USART_Printf\USART_Printf.h)(0x632B5FB3)
 I (../Core/Inc/main.h)(0x6328F3D3)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6305D3C5)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x632ACDB9)
@@ -948,12 +948,12 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x6305D3C5)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x6305D3C5)
 I (../Common/numtype.h)(0x63061847)
 I (D:\Lee\MDK5\ARM\ARMCC\include\stdio.h)(0x60252374)
-I (../Hardware/USARTServo_Control/ServoMotor_Control.h)(0x6307A5F3)
+I (../Hardware/USARTServo_Control/ServoMotor_Control.h)(0x632B5BC2)
 I (../Core/Inc/usart.h)(0x6328F3D2)
 I (D:\Lee\MDK5\ARM\ARMCC\include\stdarg.h)(0x60252376)
 I (D:\Lee\MDK5\ARM\ARMCC\include\string.h)(0x6025237E)
-F (..\Hardware\USARTServo_Control\ServoMotor_Control.c)(0x6328C2C6)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Common -I ../Hardware/ADC_Operation -I ../Hardware/USART_Printf -I ../Hardware/USARTServo_Control -I ../Hardware/USART_Gyroscope --gnu-I.\RTE\_MCU_Project-ID:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\Lee\MDK5\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o mcu_project\servomotor_control.o --omf_browse mcu_project\servomotor_control.crf --depend mcu_project\servomotor_control.d)
-I (../Hardware/USART_Printf/USART_Printf.h)(0x63272C1F)
+F (..\Hardware\USARTServo_Control\ServoMotor_Control.c)(0x632B7C1E)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Common -I ../Hardware/ADC_Operation -I ../Hardware/USART_Printf -I ../Hardware/USARTServo_Control -I ../Hardware/USART_Gyroscope --gnu-I.\RTE\_MCU_Project-ID:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\Lee\MDK5\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o mcu_project\servomotor_control.o --omf_browse mcu_project\servomotor_control.crf --depend mcu_project\servomotor_control.d)
+I (../Hardware/USART_Printf/USART_Printf.h)(0x632B5FB3)
 I (../Core/Inc/main.h)(0x6328F3D3)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6305D3C5)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x632ACDB9)
@@ -987,7 +987,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x6305D3C5)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x6305D3C5)
 I (../Common/numtype.h)(0x63061847)
 I (D:\Lee\MDK5\ARM\ARMCC\include\stdio.h)(0x60252374)
-I (..\Hardware\USARTServo_Control\ServoMotor_Control.h)(0x6307A5F3)
+I (..\Hardware\USARTServo_Control\ServoMotor_Control.h)(0x632B5BC2)
 I (../Core/Inc/usart.h)(0x6328F3D2)
 F (..\Hardware\USART_Gyroscope\USART_Gyroscope .c)(0x630BB739)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Common -I ../Hardware/ADC_Operation -I ../Hardware/USART_Printf -I ../Hardware/USARTServo_Control -I ../Hardware/USART_Gyroscope --gnu-I.\RTE\_MCU_Project-ID:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\Lee\MDK5\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE-o "mcu_project\usart_gyroscope .o" --omf_browse "mcu_project\usart_gyroscope .crf" --depend "mcu_project\usart_gyroscope .d")
 I (..\Hardware\USART_Gyroscope\USART_Gyroscope.h)(0x630BB6A8)
@@ -1024,7 +1024,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h)(0x6305D3C5)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x6305D3C5)
 I (../Common/numtype.h)(0x63061847)
 I (D:\Lee\MDK5\ARM\ARMCC\include\stdio.h)(0x60252374)
-I (../Hardware/USART_Printf/USART_Printf.h)(0x63272C1F)
+I (../Hardware/USART_Printf/USART_Printf.h)(0x632B5FB3)
 I (../Core/Inc/usart.h)(0x6328F3D2)
 I (D:\Lee\MDK5\ARM\ARMCC\include\string.h)(0x6025237E)
 F (..\Doc\readme.txt)(0x62CAB4AD)()

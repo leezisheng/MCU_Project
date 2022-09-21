@@ -236,11 +236,11 @@
 /* The macro function synthesizes the high eight bits into 16 bits */
 #define BYTE_TO_HW(DATA_A , DATA_B) 		((((uint16_t)(DATA_A)) << 8) | (uint8_t)(DATA_B))
 /* Macro function that determines whether it is a command */
-#define IS_SERVOMOTOR_COMMAND(PERIPH)   	((PERIPH >= 1)&&(PERIPH <= 36))
+#define IS_SERVOMOTOR_COMMAND(PERIPH)   	((PERIPH >= 0x01)&&(PERIPH <= 0x36))
 /* Determine whether to serve the motor ID number macro function */
-#define IS_SERVOMOTOR_ID_NUMBER(PERIPH)     ((PERIPH >= 0)&&(PERIPH <= 253))
+#define IS_SERVOMOTOR_ID_NUMBER(PERIPH)     ((PERIPH >= 0x00)&&(PERIPH <= 0x253))
 /* Macro function: Determine the length of data */
-#define IS_DATA_LENGTH(PERIPH)				((PERIPH >= 3)&&(PERIPH <= 7))
+#define IS_DATA_LENGTH(PERIPH)				((PERIPH >= 0x03)&&(PERIPH <= 0x07))
 
 
 /* Data structure declaration-------------------------------------------------*/
@@ -302,6 +302,8 @@ t_FuncRet ServoMotor_Load(uint8_t id);
 t_FuncRet ServoMotor_Read_Position(uint8_t id ,int32_t* p_angle);
 /* Read the steering gear return parameters */
 t_FuncRet ServoMotor_Read_Ret(int32_t* p_ret);
+/* Steering gear control test: Control rotation of No. 0 to 6 steering gear */
+t_FuncRet ServoMotor_Control_Test(void);
 
 
 #ifdef __cplusplus

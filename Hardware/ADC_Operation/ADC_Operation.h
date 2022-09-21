@@ -74,11 +74,11 @@ t_FuncRet ADC_Operation_Init(void);
 /* Obtain the voltage values collected by the 2 channels */
 t_FuncRet ADC_Get_Data(void);
 /* Obtain the voltage of no. 1 EMG sensor */
-t_FuncRet ADC_Get_SensorData_1(float* p_Sensor_V_Data);
+t_FuncRet ADC_Get_SensorData_1(uint16_t* p_Sensor_V_Data);
 /* Obtain the voltage of no. 2 EMG sensor */
-t_FuncRet ADC_Get_SensorData_2(float* p_Sensor_V_Data);
+t_FuncRet ADC_Get_SensorData_2(uint16_t* p_Sensor_V_Data);
 /* Obtain the voltage of Vref */
-t_FuncRet ADC_Get_Vref(float* p_Vref);
+t_FuncRet ADC_Get_Vref(uint16_t* p_Vref);
 
 #ifdef __cplusplus
 }

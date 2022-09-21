@@ -89,9 +89,12 @@ They are not used when the program is running
 t_FuncRet ret = Operatin_Success;
 
 /* Adc-related global variables */
-float Sensor1_V_Data = 0;
-float Sensor2_V_Data = 0;
-float Vref           = 0;
+uint16_t Sensor1_V_Data = 0;
+uint16_t Sensor2_V_Data = 0;
+uint16_t Vref           = 0;
+
+/* Servo Motor Postion(Angle) */
+int32_t Angle = 0;
 
 #endif
 
@@ -104,6 +107,8 @@ void SystemClock_Config(void);
 /* Peripheral initialization function */ 
 t_FuncRet Hardware_Init(void);
 
+/* Serial port 6 The receiver is cleared periodically */
+extern void UART6_Reset(void);
 
 /* USER CODE END PFP */
 
@@ -193,9 +198,14 @@ int main(void)
 		Error_Handler();
 	}
 	
-	printf("%f\r\n",Sensor1_V_Data);
+	ServoMotor_Read_Position(01,&Angle);
+	
+	
+	printf("Sensor1_V_Data : %d\r\n",Sensor1_V_Data);
+	printf("Sensor2_V_Data : %d\r\n",Sensor2_V_Data);
 
-	HAL_Delay(100);
+	/* Serial port 6 The receiver is cleared periodically */
+	UART6_Reset();
 	  
   }
   /* USER CODE END 3 */
@@ -272,6 +282,7 @@ t_FuncRet Hardware_Init(void)
 	if(ret == Operatin_Fail)
 	{
 		printf("Failed to initialize USART6 IT\r\n");
+		Error_Handler();
 	}
 	printf("success to initialize USART6 IT\r\n");
 	
@@ -280,11 +291,20 @@ t_FuncRet Hardware_Init(void)
 	if(ret == Operatin_Fail)
 	{
 		printf("Failed to initialize USART1 IT\r\n");
+		Error_Handler();
 	}
 	printf("success to initialize USART1 IT\r\n");
 	
+	/* Steering gear control test: Control rotation of No. 0 to 6 steering gear */
+	ret= ServoMotor_Control_Test();
+	if(ret == Operatin_Fail)
+	{
+		printf("Failed to initialize ServoMotor\r\n");
+		Error_Handler();
+	}
+	
 	/* After the device is powered on, the device delays */
-	printf("Device power-on delay , please wait\r\n");
+	printf("Device power-on delay 500 ms, please wait\r\n");
 	HAL_Delay(500);
 
 	return ret;

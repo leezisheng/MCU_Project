@@ -161,7 +161,7 @@ t_FuncRet ADC_Get_Data(void)
 * @return {t_FuncRet}           : if success,return Operatin_Success
 * @author: leeqingshui 
 */
-t_FuncRet ADC_Get_SensorData_1(float* p_Sensor_V_Data)
+t_FuncRet ADC_Get_SensorData_1(uint16_t* p_Sensor_V_Data)
 {
 	t_FuncRet ret= (t_FuncRet)Operatin_Success;
 	
@@ -176,7 +176,7 @@ t_FuncRet ADC_Get_SensorData_1(float* p_Sensor_V_Data)
 * @return {t_FuncRet}           : if success,return Operatin_Success
 * @author: leeqingshui 
 */
-t_FuncRet ADC_Get_SensorData_2(float* p_Sensor_V_Data)
+t_FuncRet ADC_Get_SensorData_2(uint16_t* p_Sensor_V_Data)
 {
 	t_FuncRet ret= (t_FuncRet)Operatin_Success;
 	
@@ -191,7 +191,7 @@ t_FuncRet ADC_Get_SensorData_2(float* p_Sensor_V_Data)
 * @return {t_FuncRet}           : if success,return Operatin_Success
 * @author: leeqingshui 
 */
-t_FuncRet ADC_Get_Vref(float* p_Vref)
+t_FuncRet ADC_Get_Vref(uint16_t* p_Vref)
 {
 	t_FuncRet ret= (t_FuncRet)Operatin_Success;
 	

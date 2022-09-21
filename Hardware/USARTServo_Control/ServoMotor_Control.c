@@ -294,6 +294,7 @@ t_FuncRet ServoMotor_Read_Ret(int32_t* p_ret)
 	int count = 50000;
 	/* command parameter */
 	uint8_t cmd;
+	static uint8_t checksum = 0;
 	
 	while(!isRxCompleted())
 	{
@@ -304,7 +305,7 @@ t_FuncRet ServoMotor_Read_Ret(int32_t* p_ret)
 	}
 	
 	/* Structure is converted to an array */
-	CmdStruct_To_Array((SendDataFrame*)&RxDataStruct , (uint8_t*)&DataBuf ,sizeof(RxDataStruct));
+	CmdStruct_To_Array_Checksum((SendDataFrame*)&RxDataStruct , (uint8_t*)&DataBuf);
 	
 	/* Data is successfully received , Data parsing begins */
 	/* 
@@ -313,7 +314,8 @@ t_FuncRet ServoMotor_Read_Ret(int32_t* p_ret)
 	*/
 	
 	/* Computes the data frame checksum */
-	if((Get_CheckSum((uint8_t*)&DataBuf)) != RxDataStruct.Checksum)
+	checksum = Get_CheckSum((uint8_t*)&DataBuf);
+	if(((uint8_t)checksum) != (uint8_t)RxDataStruct.Checksum)
 	{
 		/* The checksum does not match. The failure flag bit is returned */
 		return (t_FuncRet)Operatin_Fail;
@@ -334,6 +336,7 @@ t_FuncRet ServoMotor_Read_Ret(int32_t* p_ret)
 			*/
 			*p_ret = (int32_t)BYTE_TO_HW(RxDataStruct.Command_Parameter[1] ,RxDataStruct.Command_Parameter[0]);
 			ret = (t_FuncRet)Operatin_Success;
+			UART6_Reset();
 			return ret;
 		default:
 			break;
@@ -413,7 +416,7 @@ static uint8_t Get_CheckSum(uint8_t* p_buf)
 	uint8_t  ptr_offset = 0;
 	
 	/* Checksum = ~ (ID + Length + Cmd+ Prm1 + ... Prm N) */
-    for (ptr_offset = 2; ptr_offset < *(p_buf+3) + 2; ptr_offset++) 
+    for (ptr_offset = 2; ptr_offset < (*(p_buf+3) + 2); ptr_offset++) 
 	{
 		checksum = checksum + (uint16_t)*(p_buf+ptr_offset);
     }
@@ -424,5 +427,20 @@ static uint8_t Get_CheckSum(uint8_t* p_buf)
 	return (uint8_t)~checksum;
 }
 
+/* Steering gear control test: Control rotation of No. 0 to 6 steering gear */
+t_FuncRet ServoMotor_Control_Test(void)
+{
+	t_FuncRet ret = (t_FuncRet)Operatin_Success;
+	uint8_t temp_id = 0;
+	
+	for(temp_id=0;temp_id<7;temp_id++)
+	{
+		ret = ServoMotor_Move_Immediately(temp_id,100,30);
+		ret = ret&ret;
+		HAL_Delay(30);
+	}
+	
+	return (t_FuncRet)ret;
+}
 
 

@@ -68,6 +68,8 @@ static uint8_t dataLength = 2;
 static uint8_t dataCount = 0;
 /* Command Parameter Count */
 static uint8_t command_parameter_count = 0;
+/* Res receives return variables for the serial port */
+static uint8_t Res = 0;
 
 /* ++++++++++++Serial port 1 interrupt callback function variable++++++++++++ */
 /* Serial port 1 Receives data */
@@ -396,8 +398,8 @@ void HAL_UART6_RxCpltCallback(void)
 		Only one character can be received per interrupt 
 		The variable Res is the received character
 	*/
-	uint8_t Res;
 	
+	/* Res receives return variables for the serial port */ 
 	Res = USART6_Rx_Data;
 	
 	/* Determine whether data has arrived: according to the frame header flag bit */
@@ -438,6 +440,7 @@ void HAL_UART6_RxCpltCallback(void)
 	*/
 	if(isGotFrameHeader)
 	{
+		
 		/* DataCount is 2 and receives the ID number of the motors that are served */
 		if(dataCount == 2)
 		{
@@ -472,7 +475,7 @@ void HAL_UART6_RxCpltCallback(void)
 			RxDataStruct.Command = Res;
 			
 			/* the command error , skip */
-			if(IS_SERVOMOTOR_COMMAND(RxDataStruct.Command))
+			if(!IS_SERVOMOTOR_COMMAND(RxDataStruct.Command))
 			{
 				RxDataStruct.Command = 0;
 				isGotFrameHeader = (bool)FALSE;
@@ -484,6 +487,12 @@ void HAL_UART6_RxCpltCallback(void)
 		{
 			RxDataStruct.Command_Parameter[command_parameter_count] = Res;
 			command_parameter_count = command_parameter_count + 1;
+			
+			/* All command parameters are received successfully */
+			if(command_parameter_count == dataLength-3)
+			{
+				goto GOTO;
+			}
 		}
 		
 		/* Command parameters are parsed, and the checksum is read */
@@ -491,13 +500,10 @@ void HAL_UART6_RxCpltCallback(void)
 		{
 			RxDataStruct.Checksum = Res;
 		
-		}
-		
-		/* The data bit count variable is incremented by one */
-		dataCount++;
+		}		
 		
 		/* Data reception completed */
-		if(dataCount == dataLength + 3)
+		if(dataCount == (dataLength+2))
 		{
 			if (isUartRxCompleted == (bool)FALSE)
 			{
@@ -508,12 +514,13 @@ void HAL_UART6_RxCpltCallback(void)
 				frameHeaderCount = 0;
 				dataLength = 2;
 				command_parameter_count = 0;
-				
 			}
 			isGotFrameHeader = (bool)FALSE;
 		}
 		
 	}
+	/* The data bit count variable is incremented by one */
+	GOTO:dataCount++;
 	
 	/* Implement multiple data returns */
 	HAL_UART_Receive_IT(&huart6, (uint8_t *)&USART6_Rx_Data, 1);
@@ -584,5 +591,26 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
   /* NOTE : This function should not be modified, when the callback is needed,
             the HAL_UART_ErrorCallback can be implemented in the user file.
    */
+}
+
+/* Serial port 6 The receiver is cleared periodically */
+void UART6_Reset(void)
+{
+	HAL_Delay(200);
+	/* Flag bit: Indicates whether to start receiving data */
+	isGotFrameHeader = (bool)FALSE;
+	/* Data frame header counts */
+	frameHeaderCount = 0;
+	/* The length of the data */
+	dataLength = 2;
+	/* Received data count */
+	dataCount = 0;
+	/* Command Parameter Count */
+	command_parameter_count = 0;
+	/* Res receives return variables for the serial port */
+	Res = 0;
+	
+	RxDataStruct.HeaderFrame_1 = 0;
+	RxDataStruct.HeaderFrame_2 = 0;
 }
 

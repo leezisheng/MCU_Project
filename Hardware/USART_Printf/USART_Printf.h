@@ -50,6 +50,8 @@ bool isRxCompleted(void);
 t_FuncRet USART1_Start_IT(void);
 /* Serial port 1 Data receive callback function */
 void HAL_UART1_RxCpltCallback(void);
+/* Serial port 6 The receiver is cleared periodically */
+void UART6_Reset(void);
 
 #ifdef __cplusplus
 }
