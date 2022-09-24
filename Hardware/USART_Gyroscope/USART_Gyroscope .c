@@ -40,7 +40,7 @@ static unsigned char ucRxCnt = 0;
 
 /* Gyroscope data structure */
 static Struct_Acc 		S_Acc;
-static Struct_Gyro 	S_AngleAcc;
+static Struct_Gyro 	    S_AngleAcc;
 static Struct_Angle 	S_Angle;
 
 /* Gyroscope data */

@@ -1,14 +1,14 @@
 /**
   ******************************************************************************
-  * File Name          : ADC_Function.h
-  * Description        : This file contains the ADC digital filter function 
-  *                      declaration and filter structure definition
+  * File Name          : GyroscopeData_Process.h
+  * Description        : This file includes the declaration of the function for 
+  *                      mean filtering the motion data collected by the gyroscope
   ******************************************************************************
-  */
-
-/* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __ADC_FUNCTION_H
-#define __ADC_FUNCTION_H
+ */
+ 
+ /* Define to prevent recursive inclusion -------------------------------------*/
+#ifndef __GYROSCOPEDATA_PROCESS_H
+#define __GYROSCOPEDATA_PROCESS_H
 #ifdef __cplusplus
  extern "C" {
 #endif
@@ -20,22 +20,38 @@
 
 /* Data structure declaration-------------------------------------------------*/
 
-
 /* Extern variables-----------------------------------------------------------*/
+
 
 /* Function declaration-------------------------------------------------------*/
 
-/* Get the median filter voltage value */
-t_FuncRet Get_TrueAdcValue(uint16_t* p_Sensor1_V_Data , 
-						   uint16_t* p_Sensor2_V_Data ,
-						   uint16_t* p_Sensor3_V_Data ,
-						   uint16_t* p_Sensor4_V_Data ,
-						   uint16_t* p_Vref_V_Data);
 
 
 #ifdef __cplusplus
 }
 #endif
-#endif /*__ADC_FUNCTION_H*/
-
-
+#endif /*__GYROSCOPEDATA_PROCESS_H*/
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

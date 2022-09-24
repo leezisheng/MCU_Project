@@ -339,7 +339,7 @@
               <MiscControls>--gnu</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F411xE</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../Common;../Hardware/ADC_Operation;../Hardware/USART_Printf;../Hardware/USARTServo_Control;../Hardware/USART_Gyroscope;..\Function\ADC_Function</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../Common;../Hardware/ADC_Operation;../Hardware/USART_Printf;../Hardware/USARTServo_Control;../Hardware/USART_Gyroscope;..\Function\ADC_Function;..\Function\DigtalSignal_Process;..\Function\GyroscopeData_Process</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1490,6 +1490,16 @@
               <FileName>ADC_Function.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Function\ADC_Function\ADC_Function.c</FilePath>
+            </File>
+            <File>
+              <FileName>DigtalSignal_Process.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Function\DigtalSignal_Process\DigtalSignal_Process.c</FilePath>
+            </File>
+            <File>
+              <FileName>GyroscopeData_Process.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Function\GyroscopeData_Process\GyroscopeData_Process.c</FilePath>
             </File>
           </Files>
         </Group>

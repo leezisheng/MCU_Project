@@ -56,6 +56,11 @@
 */
 #include "ADC_Function.h"
 
+/*
+	The file includes commonly used digital filtering, 
+    frequency domain transformation and motion control algorithms
+*/
+#include "DigtalSignal_Process.h"
 
 /* USER CODE END Includes */
 
@@ -90,23 +95,33 @@ They are not used when the program is running
 #ifdef CODE_TEST
 
 /* A variable that stores the return value of a function for easy debugging */
-t_FuncRet ret = Operatin_Success;
+static t_FuncRet ret = Operatin_Success;
 
 /* Adc-related global variables */
-uint16_t Sensor1_V_Data = 0;
-uint16_t Sensor2_V_Data = 0;
-uint16_t Sensor3_V_Data = 0;
-uint16_t Sensor4_V_Data = 0;
-uint16_t Vref           = 0;
+static uint16_t Sensor1_V_Data = 0;
+static uint16_t Sensor2_V_Data = 0;
+static uint16_t Sensor3_V_Data = 0;
+static uint16_t Sensor4_V_Data = 0;
+static uint16_t Vref           = 0;
 
 /* Servo Motor Postion(Angle) */
-int32_t Angle = 0;
+volatile static int32_t Angle = 0;
 
 /* Gyroscope related data */
 /* 
 	Gyroscope calibration count variable: when count is 10, acceleration and Z-axis Angle calibration is started 
 */
-uint8_t count = 0;
+volatile static float angle_x = 0;
+volatile static float angle_y = 0;
+volatile static float angle_z = 0;
+
+volatile static float acc_x 	 = 0;
+volatile static float acc_y 	 = 0;
+volatile static float acc_z 	 = 0;
+
+volatile static float gyro_x  = 0;
+volatile static float gyro_y  = 0;
+volatile static float gyro_z  = 0;
 
 #endif
 
@@ -190,7 +205,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	
-
+	ADC_MeanFilter_Value_Test();
 
 	/* Serial port 6 The receiver is cleared periodically */
 	UART6_Reset();
@@ -324,6 +339,7 @@ t_FuncRet Hardware_Init(void)
 	return ret;
 }
 
+
 /* ADC Original voltage output test */
 void ADC_Original_Value_Test(void)
 {
@@ -384,6 +400,22 @@ void ADC_MeanFilter_Value_Test(void)
 	{
 		Error_Handler();
 	}
+}
+
+/* Serial port gyroscope Original movement data output test */
+void USART_Gyroscope_Original_Test(void)
+{
+	angle_x = Get_Xaxis_Angle();
+	angle_y = Get_Yaxis_Angle();
+	angle_z = Get_Zaxis_Angle();
+
+	acc_x 	= Get_Xaxis_Acc();
+	acc_y   = Get_Yaxis_Acc();
+	acc_z   = Get_Zaxis_Acc();
+
+	gyro_x  = Get_Xaxis_Angle_Acc();
+	gyro_y  = Get_Yaxis_Angle_Acc();
+	gyro_z  = Get_Zaxis_Angle_Acc();
 }
 
 

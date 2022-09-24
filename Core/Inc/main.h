@@ -62,6 +62,8 @@ void assert_failed(uint8_t* file, uint32_t line);
 void ADC_Original_Value_Test(void);
 /* ADC MeanFilter voltage output test */
 void ADC_MeanFilter_Value_Test(void);
+/* Serial port gyroscope Original movement data output test */
+void USART_Gyroscope_Original_Test(void);
 
 /* USER CODE END EFP */
 

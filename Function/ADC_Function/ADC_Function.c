@@ -9,7 +9,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "ADC_Function.h"
 #include "ADC_Operation.h"
-#include "USART_Printf.h"
+#include "DigtalSignal_Process.h"
 
 /* External function declaration----------------------------------------------*/
 
@@ -26,6 +26,11 @@ extern t_FuncRet ADC_Get_SensorData_4(uint16_t* p_Sensor_V_Data);
 /* Obtain the voltage of Vref */
 extern t_FuncRet ADC_Get_Vref(uint16_t* p_Vref);
 
+/* Mean filtering function */
+extern uint16_t Data_Mean_Filter(Mean_Filter* p_MeanFilterStruct,uint16_t Temp_Data_Buf[]);
+/* Mean filtering Reset function */
+extern void Mean_Filter_Rest(Mean_Filter* p_MeanFilterStruct);
+
 /* Private macro definitions--------------------------------------------------*/
 
 /* Global variable------------------------------------------------------------*/
@@ -40,11 +45,6 @@ static uint16_t Sensor_Vref_DataBuf[MEAN_FILTER_NUM];
 static uint8_t DataBuf_Index = 0;
 
 /* Static function definition-------------------------------------------------*/
-
-/* Mean filtering function */
-static uint16_t ADC_Data_Mean_Filter(Mean_Filter* p_MeanFilterStruct,uint16_t Temp_Data_Buf[]);
-/* Mean filtering Reset function */
-static void Mean_Filter_Rest(Mean_Filter* p_MeanFilterStruct);
 
 /* Function definition--------------------------------------------------------*/
 
@@ -94,19 +94,19 @@ t_FuncRet Get_TrueAdcValue(uint16_t* p_Sensor1_V_Data ,
 	ADC_Get_Vref(&Sensor_Vref_DataBuf[DataBuf_Index]);
 
 	/* Mean filtering */
-	*p_Sensor1_V_Data = ADC_Data_Mean_Filter((Mean_Filter*)&FilterStruct ,Sensor_No1_DataBuf);
+	*p_Sensor1_V_Data = Data_Mean_Filter((Mean_Filter*)&FilterStruct ,Sensor_No1_DataBuf);
 	Mean_Filter_Rest((Mean_Filter*)&FilterStruct);
 	
-	*p_Sensor2_V_Data = ADC_Data_Mean_Filter((Mean_Filter*)&FilterStruct ,Sensor_No2_DataBuf);
+	*p_Sensor2_V_Data = Data_Mean_Filter((Mean_Filter*)&FilterStruct ,Sensor_No2_DataBuf);
 	Mean_Filter_Rest((Mean_Filter*)&FilterStruct);
 	
-	*p_Sensor3_V_Data = ADC_Data_Mean_Filter((Mean_Filter*)&FilterStruct ,Sensor_No3_DataBuf);
+	*p_Sensor3_V_Data = Data_Mean_Filter((Mean_Filter*)&FilterStruct ,Sensor_No3_DataBuf);
 	Mean_Filter_Rest((Mean_Filter*)&FilterStruct);
 	
-	*p_Sensor4_V_Data = ADC_Data_Mean_Filter((Mean_Filter*)&FilterStruct ,Sensor_No4_DataBuf);
+	*p_Sensor4_V_Data = Data_Mean_Filter((Mean_Filter*)&FilterStruct ,Sensor_No4_DataBuf);
 	Mean_Filter_Rest((Mean_Filter*)&FilterStruct);
 	
-	*p_Vref_V_Data    = ADC_Data_Mean_Filter((Mean_Filter*)&FilterStruct ,Sensor_Vref_DataBuf);
+	*p_Vref_V_Data    = Data_Mean_Filter((Mean_Filter*)&FilterStruct ,Sensor_Vref_DataBuf);
 	Mean_Filter_Rest((Mean_Filter*)&FilterStruct);
 	
 	/* Result back on the array */
@@ -118,48 +118,5 @@ t_FuncRet Get_TrueAdcValue(uint16_t* p_Sensor1_V_Data ,
 
 	return ret;
 }
- 
- 
- /** 
-* @description: Mean filtering function
-* @param  {Mean_Filter*} p_MeanFilterStruct : Filter structure pointer
-* @param  {uint16_t*}    Temp_Data_Buf      : Cache array of ADC voltage acquisition results
-* @param  {uint16_t}     New_Data           : ADC voltage acquisition results
-* @return {uint16_t}                        : Mean filtering result
-* @author: leeqingshui 
-*/
- static uint16_t ADC_Data_Mean_Filter(Mean_Filter* p_MeanFilterStruct,uint16_t Temp_Data_Buf[])
- {
-    p_MeanFilterStruct->sum = 0;
-	 
-	for(int count = 0;count < MEAN_FILTER_NUM;count++)
-	{
-		p_MeanFilterStruct->Data_Buf[count] = Temp_Data_Buf[count];
-		p_MeanFilterStruct->sum = p_MeanFilterStruct->sum + p_MeanFilterStruct->Data_Buf[count];
-	}
-	
-	p_MeanFilterStruct->result = (uint16_t)(p_MeanFilterStruct->sum / MEAN_FILTER_NUM);
-
-	return p_MeanFilterStruct->result;
- }
- 
- /** 
-* @description: Mean filtering Reset function 
-* @param  {Mean_Filter*} p_MeanFilterStruct : Filter structure pointer
-* @return {void}                       
-* @author: leeqingshui 
-*/
-static void Mean_Filter_Rest(Mean_Filter* p_MeanFilterStruct)
- {
-	 for(int count = 0;count < MEAN_FILTER_NUM;count++)
-	 {
-		 p_MeanFilterStruct->Data_Buf[count] = 0;
-	 }
-	 
-	 p_MeanFilterStruct->result = 0;
-	 
-	 p_MeanFilterStruct->sum = 0;
- }
- 
  
  

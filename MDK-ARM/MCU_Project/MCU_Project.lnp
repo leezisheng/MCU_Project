@@ -32,6 +32,8 @@
 "mcu_project\servomotor_control.o"
 "mcu_project\usart_gyroscope .o"
 "mcu_project\adc_function.o"
+"mcu_project\digtalsignal_process.o"
+"mcu_project\gyroscopedata_process.o"
 "mcu_project\system_stm32f4xx.o"
 --library_type=microlib --strict --scatter "MCU_Project\MCU_Project.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
