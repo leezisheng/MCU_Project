@@ -22,22 +22,19 @@ Dialog DLL:      TCM.DLL V1.53.0.0
  
 <h2>Project:</h2>
 F:\SEMG_Mechanical_Arm\code\MCU_Project\MCU_Project\MDK-ARM\MCU_Project.uvprojx
-Project File Date:  09/21/2022
+Project File Date:  09/24/2022
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'D:\Lee\MDK5\ARM\ARMCC\Bin'
 Build target 'MCU_Project'
-compiling USART_Gyroscope .c...
-..\Hardware\USART_Gyroscope\USART_Gyroscope .c(149): warning:  #167-D: argument of type "const uint8_t *" is incompatible with parameter of type "uint8_t *"
-  	ret = Send_Command(ACCCMD);
-..\Hardware\USART_Gyroscope\USART_Gyroscope .c(159): warning:  #167-D: argument of type "const uint8_t *" is incompatible with parameter of type "uint8_t *"
-  	ret = Send_Command(YAWCMD);
-..\Hardware\USART_Gyroscope\USART_Gyroscope .c: 2 warnings, 0 errors
-compiling main.c...
+compiling ADC_Operation.c...
+..\Hardware\ADC_Operation\ADC_Operation.c(261): warning:  #177-D: function "ADC_Calibration"  was declared but never referenced
+  static uint16_t ADC_Calibration(uint16_t V_Channel , uint16_t V_Ref)
+..\Hardware\ADC_Operation\ADC_Operation.c: 1 warning, 0 errors
 linking...
-Program Size: Code=10260 RO-data=556 RW-data=120 ZI-data=1656  
+Program Size: Code=13988 RO-data=564 RW-data=120 ZI-data=1664  
 FromELF: creating hex file...
-"MCU_Project\MCU_Project.axf" - 0 Error(s), 2 Warning(s).
+"MCU_Project\MCU_Project.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -61,7 +58,7 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE:5.5.0
       Include file:  CMSIS\Core\Include\tz_context.h
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

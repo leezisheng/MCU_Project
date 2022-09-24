@@ -448,7 +448,7 @@ void HAL_UART6_RxCpltCallback(void)
 			
 			/* the ID number of the motors error , skip */
 			if(!IS_SERVOMOTOR_ID_NUMBER(RxDataStruct.Servor_ID))
-			{
+			{	
 				RxDataStruct.Servor_ID = 0;
 				isGotFrameHeader = (bool)FALSE;
 			}

@@ -91,10 +91,18 @@ t_FuncRet ret = Operatin_Success;
 /* Adc-related global variables */
 uint16_t Sensor1_V_Data = 0;
 uint16_t Sensor2_V_Data = 0;
+uint16_t Sensor3_V_Data = 0;
+uint16_t Sensor4_V_Data = 0;
 uint16_t Vref           = 0;
 
 /* Servo Motor Postion(Angle) */
 int32_t Angle = 0;
+
+/* Gyroscope related data */
+/* 
+	Gyroscope calibration count variable: when count is 10, acceleration and Z-axis Angle calibration is started 
+*/
+uint8_t count = 0;
 
 #endif
 
@@ -160,6 +168,11 @@ int main(void)
   	printf("Failed to initialize Hardware Procedure\r\n");
 	Error_Handler();
   }
+  
+  #ifdef USE_FULL_ASSERT
+		assert_param(ret != Operatin_Fail);
+  #endif
+  
   printf("success to initialize Hardware Procedure\r\n");
 
 
@@ -179,18 +192,35 @@ int main(void)
 	{
 		Error_Handler();
 	}
+	
     /* Obtain the voltage of no. 1 EMG sensor */
 	ret= ADC_Get_SensorData_1(&Sensor1_V_Data);
 	if(ret == Operatin_Fail)
 	{
 		Error_Handler();
 	}
+	
 	/* Obtain the voltage of no. 2 EMG sensor */
 	ret= ADC_Get_SensorData_2(&Sensor2_V_Data);
 	if(ret == Operatin_Fail)
 	{
 		Error_Handler();
 	}
+	
+	/* Obtain the voltage of no. 2 EMG sensor */
+	ret= ADC_Get_SensorData_3(&Sensor3_V_Data);
+	if(ret == Operatin_Fail)
+	{
+		Error_Handler();
+	}
+	
+	/* Obtain the voltage of no. 2 EMG sensor */
+	ret= ADC_Get_SensorData_4(&Sensor4_V_Data);
+	if(ret == Operatin_Fail)
+	{
+		Error_Handler();
+	}
+	
 	/* Obtain the voltage of Vref */
 	ret= ADC_Get_Vref(&Vref);
 	if(ret == Operatin_Fail)
@@ -198,11 +228,11 @@ int main(void)
 		Error_Handler();
 	}
 	
-	ServoMotor_Read_Position(01,&Angle);
-	
-	
 	printf("Sensor1_V_Data : %d\r\n",Sensor1_V_Data);
 	printf("Sensor2_V_Data : %d\r\n",Sensor2_V_Data);
+	printf("Sensor3_V_Data : %d\r\n",Sensor3_V_Data);
+	printf("Sensor5_V_Data : %d\r\n",Sensor4_V_Data);
+	printf("Vref_V_Data    : %d\r\n",Vref);
 
 	/* Serial port 6 The receiver is cleared periodically */
 	UART6_Reset();
@@ -277,6 +307,10 @@ t_FuncRet Hardware_Init(void)
 	}
 	printf("success to initialize ADC Procedure\r\n");
 	
+	#ifdef USE_FULL_ASSERT
+		assert_param(ret != Operatin_Fail);
+	#endif
+	
 	/* Enable serial port 6 Interrupt receiving (control the action of the manipulator through serial port 6) */
 	ret = USART6_Start_IT();
 	if(ret == Operatin_Fail)
@@ -285,6 +319,10 @@ t_FuncRet Hardware_Init(void)
 		Error_Handler();
 	}
 	printf("success to initialize USART6 IT\r\n");
+	
+	#ifdef USE_FULL_ASSERT
+		assert_param(ret != Operatin_Fail);
+	#endif
 	
 	/* Enable serial port 1 Interrupt receiving (Read and write gyroscope data through serial port 1) */
 	ret = USART1_Start_IT();
@@ -295,13 +333,31 @@ t_FuncRet Hardware_Init(void)
 	}
 	printf("success to initialize USART1 IT\r\n");
 	
+	#ifdef USE_FULL_ASSERT
+		assert_param(ret != Operatin_Fail);
+	#endif
+	
 	/* Steering gear control test: Control rotation of No. 0 to 6 steering gear */
-	ret= ServoMotor_Control_Test();
+	ret = ServoMotor_Control_Test();
 	if(ret == Operatin_Fail)
 	{
 		printf("Failed to initialize ServoMotor\r\n");
 		Error_Handler();
 	}
+	printf("success to initialize ServoMotor\r\n");
+	
+	#ifdef USE_FULL_ASSERT
+		assert_param(ret != Operatin_Fail);
+	#endif
+	
+	/* Gyroscope initialization: acceleration calibration and Z-axis Angle calibration */
+	ret = Gyroscope_Calibration();
+	if(ret == Operatin_Fail)
+	{
+		printf("Failed to initialize Gyroscope\r\n");
+		Error_Handler();
+	}
+	printf("success to initialize ServoMotor\r\n");
 	
 	/* After the device is powered on, the device delays */
 	printf("Device power-on delay 500 ms, please wait\r\n");
@@ -321,7 +377,7 @@ void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
-  
+  /* when error , At this time, LD3, LD4, LD5, and LD6 blink on the development board */
   while (1)
   {
 	HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
@@ -347,6 +403,9 @@ void assert_failed(uint8_t *file, uint32_t line)
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line number,
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+	printf("Wrong parameters value: file %s on line %d\r\n", file, line);
+	while(1);
+	
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */

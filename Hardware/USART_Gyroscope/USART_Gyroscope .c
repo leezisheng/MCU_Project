@@ -152,15 +152,25 @@ t_FuncRet Gyroscope_Calibration(void)
 	{
 		return (t_FuncRet)ret;
 	}
+	
+	#ifdef USE_FULL_ASSERT
+		assert_param(ret != Operatin_Fail);
+	#endif
+	
 	/* Wait until the internal calibration of the module is good. The internal calculation of the module will take some time */
 	HAL_Delay(100);
 	
 	/* Z axis Angle calibration */
-	ret = Send_Command(YAWCMD);
+	ret = (Send_Command(YAWCMD)) & ret;
 	if(ret == Operatin_Fail)
 	{
 		return (t_FuncRet)ret;
 	}
+	
+	#ifdef USE_FULL_ASSERT
+		assert_param(ret != Operatin_Fail);
+	#endif
+	
 	/* Wait until the internal calibration of the module is good. The internal calculation of the module will take some time */
 	HAL_Delay(10);
 

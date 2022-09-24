@@ -47,7 +47,7 @@
 /* Maximum value of variable "UserButtonClickCount" */
 #define RANGE_12BITS                   ((uint32_t) 4095)   
 /* Size of array containing ADC converted values: set to ADC sequencer number of ranks converted, to have a rank in each address */
-#define ADCCONVERTEDVALUES_BUFFER_SIZE ((uint32_t)    3)  
+#define ADCCONVERTEDVALUES_BUFFER_SIZE ((uint32_t)    5)  
 
 /**
   * @brief  Computation of voltage (unit: mV) from ADC measurement digital
@@ -77,6 +77,10 @@ t_FuncRet ADC_Get_Data(void);
 t_FuncRet ADC_Get_SensorData_1(uint16_t* p_Sensor_V_Data);
 /* Obtain the voltage of no. 2 EMG sensor */
 t_FuncRet ADC_Get_SensorData_2(uint16_t* p_Sensor_V_Data);
+/* Obtain the voltage of no. 3 EMG sensor */
+t_FuncRet ADC_Get_SensorData_3(uint16_t* p_Sensor_V_Data);
+/* Obtain the voltage of no. 4 EMG sensor */
+t_FuncRet ADC_Get_SensorData_4(uint16_t* p_Sensor_V_Data);
 /* Obtain the voltage of Vref */
 t_FuncRet ADC_Get_Vref(uint16_t* p_Vref);
 

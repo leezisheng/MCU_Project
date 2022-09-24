@@ -56,6 +56,9 @@ void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
 
+/* Assertion functions */
+void assert_failed(uint8_t* file, uint32_t line);
+
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/

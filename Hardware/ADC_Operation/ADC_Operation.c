@@ -7,8 +7,11 @@
   * 
   * parameter          :
   * 					 ADC1:Preenmption Priority 0
-							 mode: IN1--PA1
-							 mode: IN3--PA3
+							 mode: IN1  -- PA1
+							 mode: IN3  -- PA3
+							 mode: IN5  -- PA5
+							 mode: IN6  -- PA6
+							 mode: Vref -- Vref
 							 
 							 ADCs_Common_Settings:
 							 Mode Independent mode
@@ -31,11 +34,24 @@
 							 
 							 Rank 1
 							 Channel Channel 1
-							 Sampling Time 3 Cycles
+							 Sampling Time 15 Cycles
 							 
 							 Rank 2 *
-							 Channel Channel 3 *
-							 Sampling Time 3 Cycles
+							 Channel Channel 3 
+							 Sampling Time 15 Cycles
+							 
+							 Rank 3
+							 Channel Channel 5
+							 Sampling Time 15 Cycles
+							 
+							 Rank 4 *
+							 Channel Channel 6 
+							 Sampling Time 15 Cycles
+							 
+							 Rank 5 *
+							 Channel Vref 
+							 Sampling Time 15 Cycles
+						 
 						 
 						 DMA2: Preenmption Priority 2
 						 
@@ -70,6 +86,8 @@ static __IO uint16_t   aADCxConvertedValues[ADCCONVERTEDVALUES_BUFFER_SIZE];
 /* Variables for ADC conversions results computation to physical values */
 static uint16_t   uhADCChannel_1_ToDAC_mVolt 	= 0;
 static uint16_t   uhADCChannel_3_ToDAC_mVolt 	= 0;
+static uint16_t   uhADCChannel_5_ToDAC_mVolt 	= 0;
+static uint16_t   uhADCChannel_6_ToDAC_mVolt 	= 0;
 static uint16_t   uhADCChannel_Vref_ToDAC_mVolt = 0;
 /* Variable to report ADC sequencer status */
 uint8_t ubSequenceCompleted = RESET;     /* Set when all ranks of the sequence have been converted */
@@ -146,7 +164,9 @@ t_FuncRet ADC_Get_Data(void)
 		
       uhADCChannel_1_ToDAC_mVolt    = COMPUTATION_DIGITAL_12BITS_TO_VOLTAGE(aADCxConvertedValues[0]);
       uhADCChannel_3_ToDAC_mVolt    = COMPUTATION_DIGITAL_12BITS_TO_VOLTAGE(aADCxConvertedValues[1]);
-	  uhADCChannel_Vref_ToDAC_mVolt = COMPUTATION_DIGITAL_12BITS_TO_VOLTAGE(aADCxConvertedValues[2]);
+	  uhADCChannel_5_ToDAC_mVolt    = COMPUTATION_DIGITAL_12BITS_TO_VOLTAGE(aADCxConvertedValues[2]);
+      uhADCChannel_6_ToDAC_mVolt    = COMPUTATION_DIGITAL_12BITS_TO_VOLTAGE(aADCxConvertedValues[3]);
+	  uhADCChannel_Vref_ToDAC_mVolt = COMPUTATION_DIGITAL_12BITS_TO_VOLTAGE(aADCxConvertedValues[4]);
 		
 	  ubSequenceCompleted = RESET;
       ret= (t_FuncRet)Operatin_Success;
@@ -181,6 +201,36 @@ t_FuncRet ADC_Get_SensorData_2(uint16_t* p_Sensor_V_Data)
 	t_FuncRet ret= (t_FuncRet)Operatin_Success;
 	
 	*p_Sensor_V_Data = uhADCChannel_3_ToDAC_mVolt;
+	
+	return ret;
+}
+
+/** 
+* @description: Obtain the voltage of no. 3 EMG sensor 
+* @param  {float} Sensor_V_Data : the voltage of no. 1 EMG sensor 
+* @return {t_FuncRet}           : if success,return Operatin_Success
+* @author: leeqingshui 
+*/
+t_FuncRet ADC_Get_SensorData_3(uint16_t* p_Sensor_V_Data)
+{
+	t_FuncRet ret= (t_FuncRet)Operatin_Success;
+	
+	*p_Sensor_V_Data =  uhADCChannel_5_ToDAC_mVolt;
+	
+	return ret;
+}
+
+/** 
+* @description: Obtain the voltage of no. 4 EMG sensor 
+* @param  {float} Sensor_V_Data : the voltage of no. 1 EMG sensor 
+* @return {t_FuncRet}           : if success,return Operatin_Success
+* @author: leeqingshui 
+*/
+t_FuncRet ADC_Get_SensorData_4(uint16_t* p_Sensor_V_Data)
+{
+	t_FuncRet ret= (t_FuncRet)Operatin_Success;
+	
+	*p_Sensor_V_Data = uhADCChannel_6_ToDAC_mVolt;
 	
 	return ret;
 }
