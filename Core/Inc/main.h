@@ -58,6 +58,10 @@ void Error_Handler(void);
 
 /* Assertion functions */
 void assert_failed(uint8_t* file, uint32_t line);
+/* ADC Original voltage output test */
+void ADC_Original_Value_Test(void);
+/* ADC MeanFilter voltage output test */
+void ADC_MeanFilter_Value_Test(void);
 
 /* USER CODE END EFP */
 

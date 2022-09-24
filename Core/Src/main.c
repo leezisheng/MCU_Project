@@ -51,6 +51,10 @@
 */
 #include "USART_Gyroscope.h"
 
+/*
+	Mean filtering of channel 1, 3, 4, 5 and reference channel of ADC1
+*/
+#include "ADC_Function.h"
 
 
 /* USER CODE END Includes */
@@ -186,53 +190,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	
-	/* Enable ADC multi-channel DMA acquisition */
-    ret= ADC_Get_Data();
-	if(ret == Operatin_Fail)
-	{
-		Error_Handler();
-	}
-	
-    /* Obtain the voltage of no. 1 EMG sensor */
-	ret= ADC_Get_SensorData_1(&Sensor1_V_Data);
-	if(ret == Operatin_Fail)
-	{
-		Error_Handler();
-	}
-	
-	/* Obtain the voltage of no. 2 EMG sensor */
-	ret= ADC_Get_SensorData_2(&Sensor2_V_Data);
-	if(ret == Operatin_Fail)
-	{
-		Error_Handler();
-	}
-	
-	/* Obtain the voltage of no. 2 EMG sensor */
-	ret= ADC_Get_SensorData_3(&Sensor3_V_Data);
-	if(ret == Operatin_Fail)
-	{
-		Error_Handler();
-	}
-	
-	/* Obtain the voltage of no. 2 EMG sensor */
-	ret= ADC_Get_SensorData_4(&Sensor4_V_Data);
-	if(ret == Operatin_Fail)
-	{
-		Error_Handler();
-	}
-	
-	/* Obtain the voltage of Vref */
-	ret= ADC_Get_Vref(&Vref);
-	if(ret == Operatin_Fail)
-	{
-		Error_Handler();
-	}
-	
-	printf("Sensor1_V_Data : %d\r\n",Sensor1_V_Data);
-	printf("Sensor2_V_Data : %d\r\n",Sensor2_V_Data);
-	printf("Sensor3_V_Data : %d\r\n",Sensor3_V_Data);
-	printf("Sensor5_V_Data : %d\r\n",Sensor4_V_Data);
-	printf("Vref_V_Data    : %d\r\n",Vref);
+
 
 	/* Serial port 6 The receiver is cleared periodically */
 	UART6_Reset();
@@ -364,6 +322,68 @@ t_FuncRet Hardware_Init(void)
 	HAL_Delay(500);
 
 	return ret;
+}
+
+/* ADC Original voltage output test */
+void ADC_Original_Value_Test(void)
+{
+	/* Enable ADC multi-channel DMA acquisition */
+    ret= ADC_Get_Data();
+	if(ret == Operatin_Fail)
+	{
+		Error_Handler();
+	}
+	
+    /* Obtain the voltage of no. 1 EMG sensor */
+	ret= ADC_Get_SensorData_1(&Sensor1_V_Data);
+	if(ret == Operatin_Fail)
+	{
+		Error_Handler();
+	}
+	
+	/* Obtain the voltage of no. 2 EMG sensor */
+	ret= ADC_Get_SensorData_2(&Sensor2_V_Data);
+	if(ret == Operatin_Fail)
+	{
+		Error_Handler();
+	}
+	
+	/* Obtain the voltage of no. 3 EMG sensor */
+	ret= ADC_Get_SensorData_3(&Sensor3_V_Data);
+	if(ret == Operatin_Fail)
+	{
+		Error_Handler();
+	}
+	
+	/* Obtain the voltage of no. 4 EMG sensor */
+	ret= ADC_Get_SensorData_4(&Sensor4_V_Data);
+	if(ret == Operatin_Fail)
+	{
+		Error_Handler();
+	}
+	
+	/* Obtain the voltage of Vref */
+	ret= ADC_Get_Vref(&Vref);
+	if(ret == Operatin_Fail)
+	{
+		Error_Handler();
+	}
+	
+	printf("Sensor1_V_Data : %d\r\n",Sensor1_V_Data);
+	printf("Sensor2_V_Data : %d\r\n",Sensor2_V_Data);
+	printf("Sensor3_V_Data : %d\r\n",Sensor3_V_Data);
+	printf("Sensor5_V_Data : %d\r\n",Sensor4_V_Data);
+	printf("Vref_V_Data    : %d\r\n",Vref);
+}
+
+/* ADC MeanFilter voltage output test */
+void ADC_MeanFilter_Value_Test(void)
+{
+	ret = Get_TrueAdcValue(&Sensor1_V_Data, &Sensor2_V_Data, &Sensor3_V_Data, &Sensor4_V_Data, &Vref);  
+	if(ret == Operatin_Fail)
+	{
+		Error_Handler();
+	}
 }
 
 

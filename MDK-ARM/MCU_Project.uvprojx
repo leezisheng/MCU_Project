@@ -339,7 +339,7 @@
               <MiscControls>--gnu</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F411xE</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../Common;../Hardware/ADC_Operation;../Hardware/USART_Printf;../Hardware/USARTServo_Control;../Hardware/USART_Gyroscope</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../Common;../Hardware/ADC_Operation;../Hardware/USART_Printf;../Hardware/USARTServo_Control;../Hardware/USART_Gyroscope;..\Function\ADC_Function</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1485,6 +1485,13 @@
         </Group>
         <Group>
           <GroupName>Function</GroupName>
+          <Files>
+            <File>
+              <FileName>ADC_Function.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Function\ADC_Function\ADC_Function.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>Task</GroupName>

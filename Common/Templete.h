@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * File Name          : key.h
+  * File Name          : Templete.h
   * Description        : This file uses keystroke detection as an example to show a 
   *						 standard header file template
   ******************************************************************************
