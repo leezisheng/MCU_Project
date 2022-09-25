@@ -6,22 +6,29 @@
   *					     including initialization, reading data, returning data, and so on
   *
   * parameter          : 
-						 PA2     ------> USART2_TX
-						 PD6     ------> USART2_RX
-						 
-						 PC6     ------> USART6_TX
-						 PC7     ------> USART6_RX
-  
-						 Basic Parameters:
-						 Baud Rate 115200
-						 Word Length 8 Bits (including Parity)
-						 Parity None
-						 Stop Bits 1
-						 
-						 Advanced Parameters:
-						 Data Direction Receive and Transmit
-						 Over Sampling 16 Samples
-  * 				
+  *					     PA9     ------> USART1_TX
+  *					 	 PA10    ------> USART1_RX
+  *
+  *						 PA2     ------> USART2_TX
+  *						 PD6     ------> USART2_RX
+  *						 
+  *					     PC6     ------> USART6_TX
+  *						 PC7     ------> USART6_RX
+  *
+  *					     Basic Parameters:
+  *						 Baud Rate 115200
+  *						 Word Length 8 Bits (including Parity)
+  *						 Parity None
+  *						 Stop Bits 1
+  *						 
+  *						 Advanced Parameters:
+  *						 Data Direction Receive and Transmit
+  *						 Over Sampling 16 Samples
+  *
+  * Attention:
+  * 					In this file, SWO is used instead of UART to achieve Printf printing function
+  *	Data reference:
+  *                     https://www.cnblogs.com/wanban/p/11789160.html
   ******************************************************************************
   */
   
@@ -40,6 +47,13 @@
 extern void CopeSerial2Data(unsigned char ucData);
 
 /* Private macro definitions--------------------------------------------------*/
+
+/* St-link ITM debugging outputs related macro definitions */
+#define ITM_Port8(n) (*((volatile unsigned char *)(0xE0000000+4*n)))
+#define ITM_Port16(n) (*((volatile unsigned short*)(0xE0000000+4*n)))
+#define ITM_Port32(n) (*((volatile unsigned long *)(0xE0000000+4*n)))
+#define DEMCR (*((volatile unsigned long *)(0xE000EDFC)))
+#define TRCENA 0x01000000
 
 /* Global variable------------------------------------------------------------*/
 
@@ -83,31 +97,23 @@ static char *itoa( int value, char *string, int radix );
 
 /* Function definition--------------------------------------------------------*/
 
-PUTCHAR_PROTOTYPE
-{
-  /* Place your implementation of fputc here */
-  /* e.g. write a character to the USART1 and Loop until the end of transmission */
-  HAL_UART_Transmit(&huart2, (uint8_t *)&ch, 1, 0xFFFF);
-
-  return ch;
-}
-
-
-/* Ignoring errors: error:redefinition of 'fputc' */
+/* SWO is used instead of UART to realize Printf printing function */
+struct __FILE 
+{ 
+	int handle; 
+	/* Add whatever you need here */ 
+};
+FILE __stdout;
+FILE __stdin;
+    
 int fputc(int ch, FILE *f)
 {
-  HAL_UART_Transmit(&huart2, (uint8_t *)&ch, 1, 0xffff);
-  
-  return ch;
-}
-
-
-int fgetc(FILE *f)
-{
-  uint8_t ch;
-  
-  HAL_UART_Receive(&huart2, &ch, 1 ,0xffff);
-  return ch;
+    if (DEMCR & TRCENA)
+    {
+        while (ITM_Port32(0) == 0);
+        ITM_Port8(0) = ch;
+    }
+    return(ch);
 }
 
 

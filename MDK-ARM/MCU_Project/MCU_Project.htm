@@ -3,7 +3,7 @@
 <title>Static Call Graph - [MCU_Project\MCU_Project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image MCU_Project\MCU_Project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Sun Sep 25 04:55:17 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Sun Sep 25 14:55:39 2022
 <BR><P>
 <H3>Maximum Stack Usage =        176 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -838,7 +838,6 @@ Global Symbols
 <LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_WaitOnFlagUntilTimeout
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_Command
-<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fputc
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART6_SendBuf
 </UL>
 
@@ -1102,11 +1101,7 @@ Global Symbols
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_SetPriorityGrouping
 </UL>
 
-<P><STRONG><a name="[4a]"></a>fputc</STRONG> (Thumb, 20 bytes, Stack size 16 bytes, usart_printf.o(i.fputc))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = fputc &rArr; HAL_UART_Transmit &rArr; UART_WaitOnFlagUntilTimeout
-</UL>
-<BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Transmit
-</UL>
+<P><STRONG><a name="[4a]"></a>fputc</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, usart_printf.o(i.fputc))
 <BR>[Address Reference Count : 1]<UL><LI> printf3.o(i.__0printf$3)
 </UL>
 <P><STRONG><a name="[43]"></a>main</STRONG> (Thumb, 68 bytes, Stack size 0 bytes, main.o(i.main))

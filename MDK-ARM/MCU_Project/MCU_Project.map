@@ -452,12 +452,6 @@ Section Cross References
     usart_printf.o(i.USART6_Start_IT) refers to usart.o(.bss) for huart6
     usart_printf.o(i.USART6_printf) refers to stm32f4xx_hal_uart.o(i.HAL_UART_Transmit) for HAL_UART_Transmit
     usart_printf.o(i.USART6_printf) refers to usart.o(.bss) for huart6
-    usart_printf.o(i.__io_putchar) refers to stm32f4xx_hal_uart.o(i.HAL_UART_Transmit) for HAL_UART_Transmit
-    usart_printf.o(i.__io_putchar) refers to usart.o(.bss) for huart2
-    usart_printf.o(i.fgetc) refers to stm32f4xx_hal_uart.o(i.HAL_UART_Receive) for HAL_UART_Receive
-    usart_printf.o(i.fgetc) refers to usart.o(.bss) for huart2
-    usart_printf.o(i.fputc) refers to stm32f4xx_hal_uart.o(i.HAL_UART_Transmit) for HAL_UART_Transmit
-    usart_printf.o(i.fputc) refers to usart.o(.bss) for huart2
     usart_printf.o(i.isRxCompleted) refers to usart_printf.o(.data) for .data
     servomotor_control.o(i.ServoMotor_Control_Test) refers to servomotor_control.o(i.ServoMotor_Move_Immediately) for ServoMotor_Move_Immediately
     servomotor_control.o(i.ServoMotor_Control_Test) refers to stm32f4xx_hal.o(i.HAL_Delay) for HAL_Delay
@@ -532,7 +526,7 @@ Section Cross References
     printfb.o(i.__0fprintf$bare) refers to usart_printf.o(i.fputc) for fputc
     printfb.o(i.__0printf$bare) refers to printfb.o(i._printf_core) for _printf_core
     printfb.o(i.__0printf$bare) refers to usart_printf.o(i.fputc) for fputc
-    printfb.o(i.__0printf$bare) refers to stdout.o(.data) for __stdout
+    printfb.o(i.__0printf$bare) refers to usart_printf.o(.data) for __stdout
     printfb.o(i.__0snprintf$bare) refers to printfb.o(i._printf_core) for _printf_core
     printfb.o(i.__0snprintf$bare) refers to printfb.o(i._snputc) for _snputc
     printfb.o(i.__0sprintf$bare) refers to printfb.o(i._printf_core) for _printf_core
@@ -541,7 +535,7 @@ Section Cross References
     printfb.o(i.__0vfprintf$bare) refers to usart_printf.o(i.fputc) for fputc
     printfb.o(i.__0vprintf$bare) refers to printfb.o(i._printf_core) for _printf_core
     printfb.o(i.__0vprintf$bare) refers to usart_printf.o(i.fputc) for fputc
-    printfb.o(i.__0vprintf$bare) refers to stdout.o(.data) for __stdout
+    printfb.o(i.__0vprintf$bare) refers to usart_printf.o(.data) for __stdout
     printfb.o(i.__0vsnprintf$bare) refers to printfb.o(i._printf_core) for _printf_core
     printfb.o(i.__0vsnprintf$bare) refers to printfb.o(i._snputc) for _snputc
     printfb.o(i.__0vsprintf$bare) refers to printfb.o(i._printf_core) for _printf_core
@@ -550,7 +544,7 @@ Section Cross References
     printf0.o(i.__0fprintf$0) refers to usart_printf.o(i.fputc) for fputc
     printf0.o(i.__0printf$0) refers to printf0.o(i._printf_core) for _printf_core
     printf0.o(i.__0printf$0) refers to usart_printf.o(i.fputc) for fputc
-    printf0.o(i.__0printf$0) refers to stdout.o(.data) for __stdout
+    printf0.o(i.__0printf$0) refers to usart_printf.o(.data) for __stdout
     printf0.o(i.__0snprintf$0) refers to printf0.o(i._printf_core) for _printf_core
     printf0.o(i.__0snprintf$0) refers to printf0.o(i._snputc) for _snputc
     printf0.o(i.__0sprintf$0) refers to printf0.o(i._printf_core) for _printf_core
@@ -559,7 +553,7 @@ Section Cross References
     printf0.o(i.__0vfprintf$0) refers to usart_printf.o(i.fputc) for fputc
     printf0.o(i.__0vprintf$0) refers to printf0.o(i._printf_core) for _printf_core
     printf0.o(i.__0vprintf$0) refers to usart_printf.o(i.fputc) for fputc
-    printf0.o(i.__0vprintf$0) refers to stdout.o(.data) for __stdout
+    printf0.o(i.__0vprintf$0) refers to usart_printf.o(.data) for __stdout
     printf0.o(i.__0vsnprintf$0) refers to printf0.o(i._printf_core) for _printf_core
     printf0.o(i.__0vsnprintf$0) refers to printf0.o(i._snputc) for _snputc
     printf0.o(i.__0vsprintf$0) refers to printf0.o(i._printf_core) for _printf_core
@@ -568,7 +562,7 @@ Section Cross References
     printf1.o(i.__0fprintf$1) refers to usart_printf.o(i.fputc) for fputc
     printf1.o(i.__0printf$1) refers to printf1.o(i._printf_core) for _printf_core
     printf1.o(i.__0printf$1) refers to usart_printf.o(i.fputc) for fputc
-    printf1.o(i.__0printf$1) refers to stdout.o(.data) for __stdout
+    printf1.o(i.__0printf$1) refers to usart_printf.o(.data) for __stdout
     printf1.o(i.__0snprintf$1) refers to printf1.o(i._printf_core) for _printf_core
     printf1.o(i.__0snprintf$1) refers to printf1.o(i._snputc) for _snputc
     printf1.o(i.__0sprintf$1) refers to printf1.o(i._printf_core) for _printf_core
@@ -577,7 +571,7 @@ Section Cross References
     printf1.o(i.__0vfprintf$1) refers to usart_printf.o(i.fputc) for fputc
     printf1.o(i.__0vprintf$1) refers to printf1.o(i._printf_core) for _printf_core
     printf1.o(i.__0vprintf$1) refers to usart_printf.o(i.fputc) for fputc
-    printf1.o(i.__0vprintf$1) refers to stdout.o(.data) for __stdout
+    printf1.o(i.__0vprintf$1) refers to usart_printf.o(.data) for __stdout
     printf1.o(i.__0vsnprintf$1) refers to printf1.o(i._printf_core) for _printf_core
     printf1.o(i.__0vsnprintf$1) refers to printf1.o(i._snputc) for _snputc
     printf1.o(i.__0vsprintf$1) refers to printf1.o(i._printf_core) for _printf_core
@@ -587,7 +581,7 @@ Section Cross References
     printf2.o(i.__0fprintf$2) refers to usart_printf.o(i.fputc) for fputc
     printf2.o(i.__0printf$2) refers to printf2.o(i._printf_core) for _printf_core
     printf2.o(i.__0printf$2) refers to usart_printf.o(i.fputc) for fputc
-    printf2.o(i.__0printf$2) refers to stdout.o(.data) for __stdout
+    printf2.o(i.__0printf$2) refers to usart_printf.o(.data) for __stdout
     printf2.o(i.__0snprintf$2) refers to printf2.o(i._printf_core) for _printf_core
     printf2.o(i.__0snprintf$2) refers to printf2.o(i._snputc) for _snputc
     printf2.o(i.__0sprintf$2) refers to printf2.o(i._printf_core) for _printf_core
@@ -596,7 +590,7 @@ Section Cross References
     printf2.o(i.__0vfprintf$2) refers to usart_printf.o(i.fputc) for fputc
     printf2.o(i.__0vprintf$2) refers to printf2.o(i._printf_core) for _printf_core
     printf2.o(i.__0vprintf$2) refers to usart_printf.o(i.fputc) for fputc
-    printf2.o(i.__0vprintf$2) refers to stdout.o(.data) for __stdout
+    printf2.o(i.__0vprintf$2) refers to usart_printf.o(.data) for __stdout
     printf2.o(i.__0vsnprintf$2) refers to printf2.o(i._printf_core) for _printf_core
     printf2.o(i.__0vsnprintf$2) refers to printf2.o(i._snputc) for _snputc
     printf2.o(i.__0vsprintf$2) refers to printf2.o(i._printf_core) for _printf_core
@@ -605,7 +599,7 @@ Section Cross References
     printf3.o(i.__0fprintf$3) refers to usart_printf.o(i.fputc) for fputc
     printf3.o(i.__0printf$3) refers to printf3.o(i._printf_core) for _printf_core
     printf3.o(i.__0printf$3) refers to usart_printf.o(i.fputc) for fputc
-    printf3.o(i.__0printf$3) refers to stdout.o(.data) for __stdout
+    printf3.o(i.__0printf$3) refers to usart_printf.o(.data) for __stdout
     printf3.o(i.__0snprintf$3) refers to printf3.o(i._printf_core) for _printf_core
     printf3.o(i.__0snprintf$3) refers to printf3.o(i._snputc) for _snputc
     printf3.o(i.__0sprintf$3) refers to printf3.o(i._printf_core) for _printf_core
@@ -614,7 +608,7 @@ Section Cross References
     printf3.o(i.__0vfprintf$3) refers to usart_printf.o(i.fputc) for fputc
     printf3.o(i.__0vprintf$3) refers to printf3.o(i._printf_core) for _printf_core
     printf3.o(i.__0vprintf$3) refers to usart_printf.o(i.fputc) for fputc
-    printf3.o(i.__0vprintf$3) refers to stdout.o(.data) for __stdout
+    printf3.o(i.__0vprintf$3) refers to usart_printf.o(.data) for __stdout
     printf3.o(i.__0vsnprintf$3) refers to printf3.o(i._printf_core) for _printf_core
     printf3.o(i.__0vsnprintf$3) refers to printf3.o(i._snputc) for _snputc
     printf3.o(i.__0vsprintf$3) refers to printf3.o(i._printf_core) for _printf_core
@@ -624,7 +618,7 @@ Section Cross References
     printf4.o(i.__0fprintf$4) refers to usart_printf.o(i.fputc) for fputc
     printf4.o(i.__0printf$4) refers to printf4.o(i._printf_core) for _printf_core
     printf4.o(i.__0printf$4) refers to usart_printf.o(i.fputc) for fputc
-    printf4.o(i.__0printf$4) refers to stdout.o(.data) for __stdout
+    printf4.o(i.__0printf$4) refers to usart_printf.o(.data) for __stdout
     printf4.o(i.__0snprintf$4) refers to printf4.o(i._printf_core) for _printf_core
     printf4.o(i.__0snprintf$4) refers to printf4.o(i._snputc) for _snputc
     printf4.o(i.__0sprintf$4) refers to printf4.o(i._printf_core) for _printf_core
@@ -633,7 +627,7 @@ Section Cross References
     printf4.o(i.__0vfprintf$4) refers to usart_printf.o(i.fputc) for fputc
     printf4.o(i.__0vprintf$4) refers to printf4.o(i._printf_core) for _printf_core
     printf4.o(i.__0vprintf$4) refers to usart_printf.o(i.fputc) for fputc
-    printf4.o(i.__0vprintf$4) refers to stdout.o(.data) for __stdout
+    printf4.o(i.__0vprintf$4) refers to usart_printf.o(.data) for __stdout
     printf4.o(i.__0vsnprintf$4) refers to printf4.o(i._printf_core) for _printf_core
     printf4.o(i.__0vsnprintf$4) refers to printf4.o(i._snputc) for _snputc
     printf4.o(i.__0vsprintf$4) refers to printf4.o(i._printf_core) for _printf_core
@@ -643,7 +637,7 @@ Section Cross References
     printf5.o(i.__0fprintf$5) refers to usart_printf.o(i.fputc) for fputc
     printf5.o(i.__0printf$5) refers to printf5.o(i._printf_core) for _printf_core
     printf5.o(i.__0printf$5) refers to usart_printf.o(i.fputc) for fputc
-    printf5.o(i.__0printf$5) refers to stdout.o(.data) for __stdout
+    printf5.o(i.__0printf$5) refers to usart_printf.o(.data) for __stdout
     printf5.o(i.__0snprintf$5) refers to printf5.o(i._printf_core) for _printf_core
     printf5.o(i.__0snprintf$5) refers to printf5.o(i._snputc) for _snputc
     printf5.o(i.__0sprintf$5) refers to printf5.o(i._printf_core) for _printf_core
@@ -652,7 +646,7 @@ Section Cross References
     printf5.o(i.__0vfprintf$5) refers to usart_printf.o(i.fputc) for fputc
     printf5.o(i.__0vprintf$5) refers to printf5.o(i._printf_core) for _printf_core
     printf5.o(i.__0vprintf$5) refers to usart_printf.o(i.fputc) for fputc
-    printf5.o(i.__0vprintf$5) refers to stdout.o(.data) for __stdout
+    printf5.o(i.__0vprintf$5) refers to usart_printf.o(.data) for __stdout
     printf5.o(i.__0vsnprintf$5) refers to printf5.o(i._printf_core) for _printf_core
     printf5.o(i.__0vsnprintf$5) refers to printf5.o(i._snputc) for _snputc
     printf5.o(i.__0vsprintf$5) refers to printf5.o(i._printf_core) for _printf_core
@@ -662,7 +656,7 @@ Section Cross References
     printf6.o(i.__0fprintf$6) refers to usart_printf.o(i.fputc) for fputc
     printf6.o(i.__0printf$6) refers to printf6.o(i._printf_core) for _printf_core
     printf6.o(i.__0printf$6) refers to usart_printf.o(i.fputc) for fputc
-    printf6.o(i.__0printf$6) refers to stdout.o(.data) for __stdout
+    printf6.o(i.__0printf$6) refers to usart_printf.o(.data) for __stdout
     printf6.o(i.__0snprintf$6) refers to printf6.o(i._printf_core) for _printf_core
     printf6.o(i.__0snprintf$6) refers to printf6.o(i._snputc) for _snputc
     printf6.o(i.__0sprintf$6) refers to printf6.o(i._printf_core) for _printf_core
@@ -671,7 +665,7 @@ Section Cross References
     printf6.o(i.__0vfprintf$6) refers to usart_printf.o(i.fputc) for fputc
     printf6.o(i.__0vprintf$6) refers to printf6.o(i._printf_core) for _printf_core
     printf6.o(i.__0vprintf$6) refers to usart_printf.o(i.fputc) for fputc
-    printf6.o(i.__0vprintf$6) refers to stdout.o(.data) for __stdout
+    printf6.o(i.__0vprintf$6) refers to usart_printf.o(.data) for __stdout
     printf6.o(i.__0vsnprintf$6) refers to printf6.o(i._printf_core) for _printf_core
     printf6.o(i.__0vsnprintf$6) refers to printf6.o(i._snputc) for _snputc
     printf6.o(i.__0vsprintf$6) refers to printf6.o(i._printf_core) for _printf_core
@@ -683,7 +677,7 @@ Section Cross References
     printf7.o(i.__0fprintf$7) refers to usart_printf.o(i.fputc) for fputc
     printf7.o(i.__0printf$7) refers to printf7.o(i._printf_core) for _printf_core
     printf7.o(i.__0printf$7) refers to usart_printf.o(i.fputc) for fputc
-    printf7.o(i.__0printf$7) refers to stdout.o(.data) for __stdout
+    printf7.o(i.__0printf$7) refers to usart_printf.o(.data) for __stdout
     printf7.o(i.__0snprintf$7) refers to printf7.o(i._printf_core) for _printf_core
     printf7.o(i.__0snprintf$7) refers to printf7.o(i._snputc) for _snputc
     printf7.o(i.__0sprintf$7) refers to printf7.o(i._printf_core) for _printf_core
@@ -692,7 +686,7 @@ Section Cross References
     printf7.o(i.__0vfprintf$7) refers to usart_printf.o(i.fputc) for fputc
     printf7.o(i.__0vprintf$7) refers to printf7.o(i._printf_core) for _printf_core
     printf7.o(i.__0vprintf$7) refers to usart_printf.o(i.fputc) for fputc
-    printf7.o(i.__0vprintf$7) refers to stdout.o(.data) for __stdout
+    printf7.o(i.__0vprintf$7) refers to usart_printf.o(.data) for __stdout
     printf7.o(i.__0vsnprintf$7) refers to printf7.o(i._printf_core) for _printf_core
     printf7.o(i.__0vsnprintf$7) refers to printf7.o(i._snputc) for _snputc
     printf7.o(i.__0vsprintf$7) refers to printf7.o(i._printf_core) for _printf_core
@@ -704,7 +698,7 @@ Section Cross References
     printf8.o(i.__0fprintf$8) refers to usart_printf.o(i.fputc) for fputc
     printf8.o(i.__0printf$8) refers to printf8.o(i._printf_core) for _printf_core
     printf8.o(i.__0printf$8) refers to usart_printf.o(i.fputc) for fputc
-    printf8.o(i.__0printf$8) refers to stdout.o(.data) for __stdout
+    printf8.o(i.__0printf$8) refers to usart_printf.o(.data) for __stdout
     printf8.o(i.__0snprintf$8) refers to printf8.o(i._printf_core) for _printf_core
     printf8.o(i.__0snprintf$8) refers to printf8.o(i._snputc) for _snputc
     printf8.o(i.__0sprintf$8) refers to printf8.o(i._printf_core) for _printf_core
@@ -713,7 +707,7 @@ Section Cross References
     printf8.o(i.__0vfprintf$8) refers to usart_printf.o(i.fputc) for fputc
     printf8.o(i.__0vprintf$8) refers to printf8.o(i._printf_core) for _printf_core
     printf8.o(i.__0vprintf$8) refers to usart_printf.o(i.fputc) for fputc
-    printf8.o(i.__0vprintf$8) refers to stdout.o(.data) for __stdout
+    printf8.o(i.__0vprintf$8) refers to usart_printf.o(.data) for __stdout
     printf8.o(i.__0vsnprintf$8) refers to printf8.o(i._printf_core) for _printf_core
     printf8.o(i.__0vsnprintf$8) refers to printf8.o(i._snputc) for _snputc
     printf8.o(i.__0vsprintf$8) refers to printf8.o(i._printf_core) for _printf_core
@@ -727,7 +721,7 @@ Section Cross References
     printfa.o(i.__0printf) refers (Special) to iusefp.o(.text) for __I$use$fp
     printfa.o(i.__0printf) refers to printfa.o(i._printf_core) for _printf_core
     printfa.o(i.__0printf) refers to usart_printf.o(i.fputc) for fputc
-    printfa.o(i.__0printf) refers to stdout.o(.data) for __stdout
+    printfa.o(i.__0printf) refers to usart_printf.o(.data) for __stdout
     printfa.o(i.__0snprintf) refers (Special) to iusefp.o(.text) for __I$use$fp
     printfa.o(i.__0snprintf) refers to printfa.o(i._printf_core) for _printf_core
     printfa.o(i.__0snprintf) refers to printfa.o(i._snputc) for _snputc
@@ -740,7 +734,7 @@ Section Cross References
     printfa.o(i.__0vprintf) refers (Special) to iusefp.o(.text) for __I$use$fp
     printfa.o(i.__0vprintf) refers to printfa.o(i._printf_core) for _printf_core
     printfa.o(i.__0vprintf) refers to usart_printf.o(i.fputc) for fputc
-    printfa.o(i.__0vprintf) refers to stdout.o(.data) for __stdout
+    printfa.o(i.__0vprintf) refers to usart_printf.o(.data) for __stdout
     printfa.o(i.__0vsnprintf) refers (Special) to iusefp.o(.text) for __I$use$fp
     printfa.o(i.__0vsnprintf) refers to printfa.o(i._printf_core) for _printf_core
     printfa.o(i.__0vsnprintf) refers to printfa.o(i._snputc) for _snputc
@@ -1092,9 +1086,8 @@ Removing Unused input sections from the image.
     Removing usart_printf.o(.revsh_text), (4 bytes).
     Removing usart_printf.o(.rrx_text), (6 bytes).
     Removing usart_printf.o(i.USART6_printf), (296 bytes).
-    Removing usart_printf.o(i.__io_putchar), (24 bytes).
-    Removing usart_printf.o(i.fgetc), (28 bytes).
     Removing usart_printf.o(i.isRxCompleted), (24 bytes).
+    Removing usart_printf.o(.data), (4 bytes).
     Removing servomotor_control.o(.rev16_text), (4 bytes).
     Removing servomotor_control.o(.revsh_text), (4 bytes).
     Removing servomotor_control.o(.rrx_text), (6 bytes).
@@ -1142,7 +1135,7 @@ Removing Unused input sections from the image.
     Removing cdrcmple.o(.text), (48 bytes).
     Removing depilogue.o(.text), (186 bytes).
 
-354 unused section(s) (total 27132 bytes) removed from the image.
+353 unused section(s) (total 27084 bytes) removed from the image.
 
 ==============================================================================
 
@@ -1179,39 +1172,38 @@ Image Symbol Table
     ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c 0x00000000   Number         0  stm32f4xx_hal_tim.o ABSOLUTE
     ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c 0x00000000   Number         0  stm32f4xx_hal_tim_ex.o ABSOLUTE
     ../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c 0x00000000   Number         0  stm32f4xx_hal_uart.o ABSOLUTE
-    ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
+    ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
-    ../clib/microlib/longlong.c              0x00000000   Number         0  llsshr.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
+    ../clib/microlib/longlong.c              0x00000000   Number         0  llsshr.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf2.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf0.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
     ../clib/microlib/printf/stubs.s          0x00000000   Number         0  stubs.o ABSOLUTE
-    ../clib/microlib/stdio/streams.c         0x00000000   Number         0  stdout.o ABSOLUTE
     ../clib/microlib/string/memset.c         0x00000000   Number         0  memseta.o ABSOLUTE
     ../clib/microlib/stubs.s                 0x00000000   Number         0  iusefp.o ABSOLUTE
     ../fplib/microlib/fpadd.c                0x00000000   Number         0  dadd.o ABSOLUTE
@@ -1417,13 +1409,13 @@ Image Symbol Table
     _printf_core                             0x08003629   Thumb Code   436  printf3.o(i._printf_core)
     i.assert_failed                          0x080037e0   Section        0  main.o(i.assert_failed)
     i.fputc                                  0x0800381c   Section        0  usart_printf.o(i.fputc)
-    i.main                                   0x08003834   Section        0  main.o(i.main)
-    .constdata                               0x080038d4   Section        8  stm32f4xx_hal_dma.o(.constdata)
-    flagBitshiftOffset                       0x080038d4   Data           8  stm32f4xx_hal_dma.o(.constdata)
-    .constdata                               0x080038dc   Section        6  usart_gyroscope .o(.constdata)
-    .constdata                               0x080038e2   Section       16  system_stm32f4xx.o(.constdata)
-    .constdata                               0x080038f2   Section        8  system_stm32f4xx.o(.constdata)
-    .conststring                             0x080038fc   Section       84  main.o(.conststring)
+    i.main                                   0x08003838   Section        0  main.o(i.main)
+    .constdata                               0x080038d8   Section        8  stm32f4xx_hal_dma.o(.constdata)
+    flagBitshiftOffset                       0x080038d8   Data           8  stm32f4xx_hal_dma.o(.constdata)
+    .constdata                               0x080038e0   Section        6  usart_gyroscope .o(.constdata)
+    .constdata                               0x080038e6   Section       16  system_stm32f4xx.o(.constdata)
+    .constdata                               0x080038f6   Section        8  system_stm32f4xx.o(.constdata)
+    .conststring                             0x08003900   Section       84  main.o(.conststring)
     .data                                    0x20000000   Section       48  main.o(.data)
     ret                                      0x20000000   Data           1  main.o(.data)
     Sensor1_V_Data                           0x20000002   Data           2  main.o(.data)
@@ -1457,30 +1449,30 @@ Image Symbol Table
     command_parameter_count                  0x2000004e   Data           1  usart_printf.o(.data)
     Res                                      0x2000004f   Data           1  usart_printf.o(.data)
     USART1_Rx_Data                           0x20000050   Data           1  usart_printf.o(.data)
-    .data                                    0x20000054   Section       64  usart_gyroscope .o(.data)
-    ucRxCnt                                  0x20000054   Data           1  usart_gyroscope .o(.data)
-    tx_buff                                  0x20000055   Data           1  usart_gyroscope .o(.data)
-    angle_x                                  0x20000058   Data           4  usart_gyroscope .o(.data)
-    angle_y                                  0x2000005c   Data           4  usart_gyroscope .o(.data)
-    angle_z                                  0x20000060   Data           4  usart_gyroscope .o(.data)
-    acc_x                                    0x20000064   Data           4  usart_gyroscope .o(.data)
-    acc_y                                    0x20000068   Data           4  usart_gyroscope .o(.data)
-    acc_z                                    0x2000006c   Data           4  usart_gyroscope .o(.data)
-    gyro_x                                   0x20000070   Data           4  usart_gyroscope .o(.data)
-    gyro_y                                   0x20000074   Data           4  usart_gyroscope .o(.data)
-    gyro_z                                   0x20000078   Data           4  usart_gyroscope .o(.data)
-    S_Acc                                    0x2000007c   Data           8  usart_gyroscope .o(.data)
-    S_AngleAcc                               0x20000084   Data           8  usart_gyroscope .o(.data)
-    S_Angle                                  0x2000008c   Data           8  usart_gyroscope .o(.data)
-    .data                                    0x20000094   Section       32  adc_function.o(.data)
-    DataBuf_Index                            0x20000094   Data           1  adc_function.o(.data)
-    Sensor_No1_DataBuf                       0x20000096   Data           6  adc_function.o(.data)
-    Sensor_No2_DataBuf                       0x2000009c   Data           6  adc_function.o(.data)
-    Sensor_No3_DataBuf                       0x200000a2   Data           6  adc_function.o(.data)
-    Sensor_No4_DataBuf                       0x200000a8   Data           6  adc_function.o(.data)
-    Sensor_Vref_DataBuf                      0x200000ae   Data           6  adc_function.o(.data)
-    .data                                    0x200000b4   Section        4  system_stm32f4xx.o(.data)
-    .data                                    0x200000b8   Section        4  stdout.o(.data)
+    .data                                    0x20000054   Section        4  usart_printf.o(.data)
+    .data                                    0x20000058   Section       64  usart_gyroscope .o(.data)
+    ucRxCnt                                  0x20000058   Data           1  usart_gyroscope .o(.data)
+    tx_buff                                  0x20000059   Data           1  usart_gyroscope .o(.data)
+    angle_x                                  0x2000005c   Data           4  usart_gyroscope .o(.data)
+    angle_y                                  0x20000060   Data           4  usart_gyroscope .o(.data)
+    angle_z                                  0x20000064   Data           4  usart_gyroscope .o(.data)
+    acc_x                                    0x20000068   Data           4  usart_gyroscope .o(.data)
+    acc_y                                    0x2000006c   Data           4  usart_gyroscope .o(.data)
+    acc_z                                    0x20000070   Data           4  usart_gyroscope .o(.data)
+    gyro_x                                   0x20000074   Data           4  usart_gyroscope .o(.data)
+    gyro_y                                   0x20000078   Data           4  usart_gyroscope .o(.data)
+    gyro_z                                   0x2000007c   Data           4  usart_gyroscope .o(.data)
+    S_Acc                                    0x20000080   Data           8  usart_gyroscope .o(.data)
+    S_AngleAcc                               0x20000088   Data           8  usart_gyroscope .o(.data)
+    S_Angle                                  0x20000090   Data           8  usart_gyroscope .o(.data)
+    .data                                    0x20000098   Section       32  adc_function.o(.data)
+    DataBuf_Index                            0x20000098   Data           1  adc_function.o(.data)
+    Sensor_No1_DataBuf                       0x2000009a   Data           6  adc_function.o(.data)
+    Sensor_No2_DataBuf                       0x200000a0   Data           6  adc_function.o(.data)
+    Sensor_No3_DataBuf                       0x200000a6   Data           6  adc_function.o(.data)
+    Sensor_No4_DataBuf                       0x200000ac   Data           6  adc_function.o(.data)
+    Sensor_Vref_DataBuf                      0x200000b2   Data           6  adc_function.o(.data)
+    .data                                    0x200000b8   Section        4  system_stm32f4xx.o(.data)
     .bss                                     0x200000bc   Section      168  adc.o(.bss)
     .bss                                     0x20000164   Section      192  usart.o(.bss)
     .bss                                     0x20000224   Section       10  adc_operation.o(.bss)
@@ -1720,20 +1712,20 @@ Image Symbol Table
     __scatterload_null                       0x08003617   Thumb Code     2  handlers.o(i.__scatterload_null)
     __scatterload_zeroinit                   0x08003619   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
     assert_failed                            0x080037e1   Thumb Code    12  main.o(i.assert_failed)
-    fputc                                    0x0800381d   Thumb Code    20  usart_printf.o(i.fputc)
-    main                                     0x08003835   Thumb Code    68  main.o(i.main)
-    YAWCMD                                   0x080038dc   Data           3  usart_gyroscope .o(.constdata)
-    ACCCMD                                   0x080038df   Data           3  usart_gyroscope .o(.constdata)
-    AHBPrescTable                            0x080038e2   Data          16  system_stm32f4xx.o(.constdata)
-    APBPrescTable                            0x080038f2   Data           8  system_stm32f4xx.o(.constdata)
-    Region$$Table$$Base                      0x08003950   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08003970   Number         0  anon$$obj.o(Region$$Table)
+    fputc                                    0x0800381d   Thumb Code    22  usart_printf.o(i.fputc)
+    main                                     0x08003839   Thumb Code    68  main.o(i.main)
+    YAWCMD                                   0x080038e0   Data           3  usart_gyroscope .o(.constdata)
+    ACCCMD                                   0x080038e3   Data           3  usart_gyroscope .o(.constdata)
+    AHBPrescTable                            0x080038e6   Data          16  system_stm32f4xx.o(.constdata)
+    APBPrescTable                            0x080038f6   Data           8  system_stm32f4xx.o(.constdata)
+    Region$$Table$$Base                      0x08003954   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08003974   Number         0  anon$$obj.o(Region$$Table)
     uwTickFreq                               0x20000030   Data           1  stm32f4xx_hal.o(.data)
     uwTickPrio                               0x20000034   Data           4  stm32f4xx_hal.o(.data)
     uwTick                                   0x20000038   Data           4  stm32f4xx_hal.o(.data)
     ubSequenceCompleted                      0x2000003c   Data           1  adc_operation.o(.data)
-    SystemCoreClock                          0x200000b4   Data           4  system_stm32f4xx.o(.data)
-    __stdout                                 0x200000b8   Data           4  stdout.o(.data)
+    __stdout                                 0x20000054   Data           4  usart_printf.o(.data)
+    SystemCoreClock                          0x200000b8   Data           4  system_stm32f4xx.o(.data)
     hadc1                                    0x200000bc   Data          72  adc.o(.bss)
     hdma_adc1                                0x20000104   Data          96  adc.o(.bss)
     huart1                                   0x20000164   Data          64  usart.o(.bss)
@@ -1750,30 +1742,30 @@ Memory Map of the image
 
   Image Entry point : 0x08000199
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00003a2c, Max: 0x00080000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00003a30, Max: 0x00080000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00003970, Max: 0x00080000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00003974, Max: 0x00080000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x08000000   0x08000000   0x00000198   Data   RO            3    RESET               startup_stm32f411xe.o
-    0x08000198   0x08000198   0x00000000   Code   RO         2944  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x08000198   0x08000198   0x00000004   Code   RO         3212    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x0800019c   0x0800019c   0x00000004   Code   RO         3215    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x080001a0   0x080001a0   0x00000000   Code   RO         3217    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x080001a0   0x080001a0   0x00000000   Code   RO         3219    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x080001a0   0x080001a0   0x00000008   Code   RO         3220    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x080001a8   0x080001a8   0x00000004   Code   RO         3227    .ARM.Collect$$$$0000000E  mc_w.l(entry12b.o)
-    0x080001ac   0x080001ac   0x00000000   Code   RO         3222    .ARM.Collect$$$$0000000F  mc_w.l(entry10a.o)
-    0x080001ac   0x080001ac   0x00000000   Code   RO         3224    .ARM.Collect$$$$00000011  mc_w.l(entry11a.o)
-    0x080001ac   0x080001ac   0x00000004   Code   RO         3213    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x08000198   0x08000198   0x00000000   Code   RO         2935  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x08000198   0x08000198   0x00000004   Code   RO         3203    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x0800019c   0x0800019c   0x00000004   Code   RO         3206    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x080001a0   0x080001a0   0x00000000   Code   RO         3208    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x080001a0   0x080001a0   0x00000000   Code   RO         3210    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x080001a0   0x080001a0   0x00000008   Code   RO         3211    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x080001a8   0x080001a8   0x00000004   Code   RO         3218    .ARM.Collect$$$$0000000E  mc_w.l(entry12b.o)
+    0x080001ac   0x080001ac   0x00000000   Code   RO         3213    .ARM.Collect$$$$0000000F  mc_w.l(entry10a.o)
+    0x080001ac   0x080001ac   0x00000000   Code   RO         3215    .ARM.Collect$$$$00000011  mc_w.l(entry11a.o)
+    0x080001ac   0x080001ac   0x00000004   Code   RO         3204    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
     0x080001b0   0x080001b0   0x00000024   Code   RO            4    .text               startup_stm32f411xe.o
-    0x080001d4   0x080001d4   0x00000062   Code   RO         2947    .text               mc_w.l(uldiv.o)
-    0x08000236   0x08000236   0x00000024   Code   RO         2949    .text               mc_w.l(memseta.o)
-    0x0800025a   0x0800025a   0x0000002c   Code   RO         3229    .text               mc_w.l(uidiv.o)
-    0x08000286   0x08000286   0x0000001e   Code   RO         3231    .text               mc_w.l(llshl.o)
-    0x080002a4   0x080002a4   0x00000020   Code   RO         3233    .text               mc_w.l(llushr.o)
-    0x080002c4   0x080002c4   0x00000024   Code   RO         3246    .text               mc_w.l(init.o)
+    0x080001d4   0x080001d4   0x00000062   Code   RO         2938    .text               mc_w.l(uldiv.o)
+    0x08000236   0x08000236   0x00000024   Code   RO         2940    .text               mc_w.l(memseta.o)
+    0x0800025a   0x0800025a   0x0000002c   Code   RO         3219    .text               mc_w.l(uidiv.o)
+    0x08000286   0x08000286   0x0000001e   Code   RO         3221    .text               mc_w.l(llshl.o)
+    0x080002a4   0x080002a4   0x00000020   Code   RO         3223    .text               mc_w.l(llushr.o)
+    0x080002c4   0x080002c4   0x00000024   Code   RO         3236    .text               mc_w.l(init.o)
     0x080002e8   0x080002e8   0x0000006e   Code   RO          535    i.ADC_DMAConvCplt   stm32f4xx_hal_adc.o
     0x08000356   0x08000356   0x00000016   Code   RO          536    i.ADC_DMAError      stm32f4xx_hal_adc.o
     0x0800036c   0x0800036c   0x0000000a   Code   RO          537    i.ADC_DMAHalfConvCplt  stm32f4xx_hal_adc.o
@@ -1789,20 +1781,20 @@ Memory Map of the image
     0x080005d0   0x080005d0   0x00000028   Code   RO           13    i.ADC_MeanFilter_Value_Test  main.o
     0x080005f8   0x080005f8   0x0000002c   Code   RO         2434    i.ADC_Operation_Init  adc_operation.o
     0x08000624   0x08000624   0x00000002   Code   RO          380    i.BusFault_Handler  stm32f4xx_it.o
-    0x08000626   0x08000626   0x00000016   Code   RO         2616    i.CmdStruct_To_Array  servomotor_control.o
-    0x0800063c   0x0800063c   0x0000002a   Code   RO         2617    i.CmdStruct_To_Array_Checksum  servomotor_control.o
+    0x08000626   0x08000626   0x00000016   Code   RO         2607    i.CmdStruct_To_Array  servomotor_control.o
+    0x0800063c   0x0800063c   0x0000002a   Code   RO         2608    i.CmdStruct_To_Array_Checksum  servomotor_control.o
     0x08000666   0x08000666   0x00000002   PAD
-    0x08000668   0x08000668   0x0000005c   Code   RO         2703    i.CopeSerial2Data   usart_gyroscope .o
+    0x08000668   0x08000668   0x0000005c   Code   RO         2694    i.CopeSerial2Data   usart_gyroscope .o
     0x080006c4   0x080006c4   0x0000000c   Code   RO          381    i.DMA2_Stream0_IRQHandler  stm32f4xx_it.o
     0x080006d0   0x080006d0   0x00000028   Code   RO         1338    i.DMA_CalcBaseAndBitshift  stm32f4xx_hal_dma.o
     0x080006f8   0x080006f8   0x00000054   Code   RO         1339    i.DMA_CheckFifoParam  stm32f4xx_hal_dma.o
     0x0800074c   0x0800074c   0x00000028   Code   RO         1340    i.DMA_SetConfig     stm32f4xx_hal_dma.o
-    0x08000774   0x08000774   0x0000002a   Code   RO         2838    i.Data_Mean_Filter  digtalsignal_process.o
+    0x08000774   0x08000774   0x0000002a   Code   RO         2829    i.Data_Mean_Filter  digtalsignal_process.o
     0x0800079e   0x0800079e   0x00000002   Code   RO          382    i.DebugMon_Handler  stm32f4xx_it.o
     0x080007a0   0x080007a0   0x0000003c   Code   RO           15    i.Error_Handler     main.o
-    0x080007dc   0x080007dc   0x00000020   Code   RO         2618    i.Get_CheckSum      servomotor_control.o
-    0x080007fc   0x080007fc   0x00000124   Code   RO         2808    i.Get_TrueAdcValue  adc_function.o
-    0x08000920   0x08000920   0x00000030   Code   RO         2713    i.Gyroscope_Calibration  usart_gyroscope .o
+    0x080007dc   0x080007dc   0x00000020   Code   RO         2609    i.Get_CheckSum      servomotor_control.o
+    0x080007fc   0x080007fc   0x00000124   Code   RO         2799    i.Get_TrueAdcValue  adc_function.o
+    0x08000920   0x08000920   0x00000030   Code   RO         2704    i.Gyroscope_Calibration  usart_gyroscope .o
     0x08000950   0x08000950   0x00000002   Code   RO          709    i.HAL_ADCEx_InjectedConvCpltCallback  stm32f4xx_hal_adc_ex.o
     0x08000952   0x08000952   0x00000002   PAD
     0x08000954   0x08000954   0x000001ec   Code   RO          540    i.HAL_ADC_ConfigChannel  stm32f4xx_hal_adc.o
@@ -1860,17 +1852,17 @@ Memory Map of the image
     0x08002fa8   0x08002fa8   0x00000038   Code   RO          323    i.MX_USART1_UART_Init  usart.o
     0x08002fe0   0x08002fe0   0x00000038   Code   RO          324    i.MX_USART2_UART_Init  usart.o
     0x08003018   0x08003018   0x00000038   Code   RO          325    i.MX_USART6_UART_Init  usart.o
-    0x08003050   0x08003050   0x00000014   Code   RO         2841    i.Mean_Filter_Rest  digtalsignal_process.o
+    0x08003050   0x08003050   0x00000014   Code   RO         2832    i.Mean_Filter_Rest  digtalsignal_process.o
     0x08003064   0x08003064   0x00000002   Code   RO          384    i.MemManage_Handler  stm32f4xx_it.o
     0x08003066   0x08003066   0x00000002   Code   RO          385    i.NMI_Handler       stm32f4xx_it.o
     0x08003068   0x08003068   0x00000002   Code   RO          386    i.PendSV_Handler    stm32f4xx_it.o
     0x0800306a   0x0800306a   0x00000002   Code   RO          387    i.SVC_Handler       stm32f4xx_it.o
-    0x0800306c   0x0800306c   0x00000038   Code   RO         2714    i.Send_Command      usart_gyroscope .o
-    0x080030a4   0x080030a4   0x00000022   Code   RO         2619    i.ServoMotor_Control_Test  servomotor_control.o
-    0x080030c6   0x080030c6   0x0000005a   Code   RO         2621    i.ServoMotor_Move_Immediately  servomotor_control.o
+    0x0800306c   0x0800306c   0x00000038   Code   RO         2705    i.Send_Command      usart_gyroscope .o
+    0x080030a4   0x080030a4   0x00000022   Code   RO         2610    i.ServoMotor_Control_Test  servomotor_control.o
+    0x080030c6   0x080030c6   0x0000005a   Code   RO         2612    i.ServoMotor_Move_Immediately  servomotor_control.o
     0x08003120   0x08003120   0x00000004   Code   RO          388    i.SysTick_Handler   stm32f4xx_it.o
     0x08003124   0x08003124   0x0000008c   Code   RO           17    i.SystemClock_Config  main.o
-    0x080031b0   0x080031b0   0x0000001c   Code   RO         2910    i.SystemInit        system_stm32f4xx.o
+    0x080031b0   0x080031b0   0x0000001c   Code   RO         2901    i.SystemInit        system_stm32f4xx.o
     0x080031cc   0x080031cc   0x0000002c   Code   RO         2509    i.UART6_Reset       usart_printf.o
     0x080031f8   0x080031f8   0x00000010   Code   RO         2109    i.UART_DMAAbortOnError  stm32f4xx_hal_uart.o
     0x08003208   0x08003208   0x0000001c   Code   RO         2119    i.UART_EndRxTransfer  stm32f4xx_hal_uart.o
@@ -1888,44 +1880,44 @@ Memory Map of the image
     0x080035a4   0x080035a4   0x00000020   Code   RO         2512    i.USART6_Start_IT   usart_printf.o
     0x080035c4   0x080035c4   0x00000002   Code   RO          392    i.UsageFault_Handler  stm32f4xx_it.o
     0x080035c6   0x080035c6   0x00000002   PAD
-    0x080035c8   0x080035c8   0x00000020   Code   RO         3040    i.__0printf$3       mc_w.l(printf3.o)
+    0x080035c8   0x080035c8   0x00000020   Code   RO         3031    i.__0printf$3       mc_w.l(printf3.o)
     0x080035e8   0x080035e8   0x00000020   Code   RO         1660    i.__NVIC_SetPriority  stm32f4xx_hal_cortex.o
-    0x08003608   0x08003608   0x0000000e   Code   RO         3254    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x08003616   0x08003616   0x00000002   Code   RO         3255    i.__scatterload_null  mc_w.l(handlers.o)
-    0x08003618   0x08003618   0x0000000e   Code   RO         3256    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x08003608   0x08003608   0x0000000e   Code   RO         3244    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x08003616   0x08003616   0x00000002   Code   RO         3245    i.__scatterload_null  mc_w.l(handlers.o)
+    0x08003618   0x08003618   0x0000000e   Code   RO         3246    i.__scatterload_zeroinit  mc_w.l(handlers.o)
     0x08003626   0x08003626   0x00000002   PAD
-    0x08003628   0x08003628   0x000001b8   Code   RO         3047    i._printf_core      mc_w.l(printf3.o)
+    0x08003628   0x08003628   0x000001b8   Code   RO         3038    i._printf_core      mc_w.l(printf3.o)
     0x080037e0   0x080037e0   0x0000003c   Code   RO           19    i.assert_failed     main.o
-    0x0800381c   0x0800381c   0x00000018   Code   RO         2516    i.fputc             usart_printf.o
-    0x08003834   0x08003834   0x000000a0   Code   RO           20    i.main              main.o
-    0x080038d4   0x080038d4   0x00000008   Data   RO         1353    .constdata          stm32f4xx_hal_dma.o
-    0x080038dc   0x080038dc   0x00000006   Data   RO         2716    .constdata          usart_gyroscope .o
-    0x080038e2   0x080038e2   0x00000010   Data   RO         2911    .constdata          system_stm32f4xx.o
-    0x080038f2   0x080038f2   0x00000008   Data   RO         2912    .constdata          system_stm32f4xx.o
-    0x080038fa   0x080038fa   0x00000002   PAD
-    0x080038fc   0x080038fc   0x00000054   Data   RO           21    .conststring        main.o
-    0x08003950   0x08003950   0x00000020   Data   RO         3252    Region$$Table       anon$$obj.o
+    0x0800381c   0x0800381c   0x0000001c   Code   RO         2514    i.fputc             usart_printf.o
+    0x08003838   0x08003838   0x000000a0   Code   RO           20    i.main              main.o
+    0x080038d8   0x080038d8   0x00000008   Data   RO         1353    .constdata          stm32f4xx_hal_dma.o
+    0x080038e0   0x080038e0   0x00000006   Data   RO         2707    .constdata          usart_gyroscope .o
+    0x080038e6   0x080038e6   0x00000010   Data   RO         2902    .constdata          system_stm32f4xx.o
+    0x080038f6   0x080038f6   0x00000008   Data   RO         2903    .constdata          system_stm32f4xx.o
+    0x080038fe   0x080038fe   0x00000002   PAD
+    0x08003900   0x08003900   0x00000054   Data   RO           21    .conststring        main.o
+    0x08003954   0x08003954   0x00000020   Data   RO         3242    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08003970, Size: 0x00000740, Max: 0x00020000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08003974, Size: 0x00000740, Max: 0x00020000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x08003970   0x00000030   Data   RW           22    .data               main.o
-    0x20000030   0x080039a0   0x0000000c   Data   RW         1804    .data               stm32f4xx_hal.o
-    0x2000003c   0x080039ac   0x0000000c   Data   RW         2437    .data               adc_operation.o
-    0x20000048   0x080039b8   0x00000009   Data   RW         2518    .data               usart_printf.o
-    0x20000051   0x080039c1   0x00000003   PAD
-    0x20000054   0x080039c4   0x00000040   Data   RW         2720    .data               usart_gyroscope .o
-    0x20000094   0x08003a04   0x00000020   Data   RW         2809    .data               adc_function.o
-    0x200000b4   0x08003a24   0x00000004   Data   RW         2913    .data               system_stm32f4xx.o
-    0x200000b8   0x08003a28   0x00000004   Data   RW         3228    .data               mc_w.l(stdout.o)
+    0x20000000   0x08003974   0x00000030   Data   RW           22    .data               main.o
+    0x20000030   0x080039a4   0x0000000c   Data   RW         1804    .data               stm32f4xx_hal.o
+    0x2000003c   0x080039b0   0x0000000c   Data   RW         2437    .data               adc_operation.o
+    0x20000048   0x080039bc   0x00000009   Data   RW         2516    .data               usart_printf.o
+    0x20000051   0x080039c5   0x00000003   PAD
+    0x20000054   0x080039c8   0x00000004   Data   RW         2517    .data               usart_printf.o
+    0x20000058   0x080039cc   0x00000040   Data   RW         2711    .data               usart_gyroscope .o
+    0x20000098   0x08003a0c   0x00000020   Data   RW         2800    .data               adc_function.o
+    0x200000b8   0x08003a2c   0x00000004   Data   RW         2904    .data               system_stm32f4xx.o
     0x200000bc        -       0x000000a8   Zero   RW          250    .bss                adc.o
     0x20000164        -       0x000000c0   Zero   RW          326    .bss                usart.o
     0x20000224        -       0x0000000a   Zero   RW         2436    .bss                adc_operation.o
-    0x2000022e        -       0x00000012   Zero   RW         2626    .bss                servomotor_control.o
-    0x20000240        -       0x000000fa   Zero   RW         2715    .bss                usart_gyroscope .o
-    0x2000033a   0x08003a2c   0x00000006   PAD
+    0x2000022e        -       0x00000012   Zero   RW         2617    .bss                servomotor_control.o
+    0x20000240        -       0x000000fa   Zero   RW         2706    .bss                usart_gyroscope .o
+    0x2000033a   0x08003a30   0x00000006   PAD
     0x20000340        -       0x00000400   Zero   RW            1    STACK               startup_stm32f411xe.o
 
 
@@ -1958,10 +1950,10 @@ Image component sizes
         28          6         24          4          0       1327   system_stm32f4xx.o
        492         52          0          0        192       3384   usart.o
        196         26          6         64        250       4033   usart_gyroscope .o
-       512         76          0          9          0       8812   usart_printf.o
+       516         78          0         13          0       9138   usart_printf.o
 
     ----------------------------------------------------------------------
-     13336       2242        564        184       1668     540118   Object Totals
+     13340       2244        564        188       1668     540444   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         20          0          2          3          6          0   (incl. Padding)
 
@@ -1984,22 +1976,21 @@ Image component sizes
         32          0          0          0          0         68   llushr.o
         36          0          0          0          0        108   memseta.o
        472         14          0          0          0        184   printf3.o
-         0          0          0          4          0          0   stdout.o
         44          0          0          0          0         80   uidiv.o
         98          0          0          0          0         92   uldiv.o
 
     ----------------------------------------------------------------------
-       804         30          0          4          0        668   Library Totals
+       804         30          0          0          0        668   Library Totals
          2          0          0          0          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
 
-       802         30          0          4          0        668   mc_w.l
+       802         30          0          0          0        668   mc_w.l
 
     ----------------------------------------------------------------------
-       804         30          0          4          0        668   Library Totals
+       804         30          0          0          0        668   Library Totals
 
     ----------------------------------------------------------------------
 
@@ -2008,15 +1999,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     14140       2272        564        188       1668     530530   Grand Totals
-     14140       2272        564        188       1668     530530   ELF Image Totals
-     14140       2272        564        188          0          0   ROM Totals
+     14144       2274        564        188       1668     530856   Grand Totals
+     14144       2274        564        188       1668     530856   ELF Image Totals
+     14144       2274        564        188          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                14704 (  14.36kB)
+    Total RO  Size (Code + RO Data)                14708 (  14.36kB)
     Total RW  Size (RW Data + ZI Data)              1856 (   1.81kB)
-    Total ROM Size (Code + RO Data + RW Data)      14892 (  14.54kB)
+    Total ROM Size (Code + RO Data + RW Data)      14896 (  14.55kB)
 
 ==============================================================================
 
