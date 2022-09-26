@@ -47,7 +47,7 @@ typedef struct
 /* Gyroscope calibration */
 t_FuncRet Gyroscope_Calibration(void);
 /* The parameters of the gyroscope data are analyzed */
-void CopeSerial2Data(unsigned char ucData);
+t_FuncRet CopeSerial2Data(unsigned char ucData);
 /* Serial port send command function */
 t_FuncRet Send_Command(uint8_t data[3]);
 
@@ -71,7 +71,6 @@ float Get_Xaxis_Angle_Acc(void);
 float Get_Yaxis_Angle_Acc(void);
 /* Return the Z-axis Angle_Acc */
 float Get_Zaxis_Angle_Acc(void);
-
 
 #ifdef __cplusplus
 }

@@ -48,7 +48,7 @@ static uint8_t DataBuf_Index = 0;
 
 /* Function definition--------------------------------------------------------*/
 
- /** 
+/** 
 * @description: Get the median filter voltage value
 * @param  {uint16_t*}  p_Sensor1_V_Data : Voltage after filtering
 * @param  {uint16_t*}  p_Sensor2_V_Data : Voltage after filtering
@@ -58,7 +58,7 @@ static uint8_t DataBuf_Index = 0;
 * @return {t_FuncRet } : if success,return Operatin_Success
 * @author: leeqingshui 
 */
-t_FuncRet Get_TrueAdcValue(uint16_t* p_Sensor1_V_Data , 
+t_FuncRet Get_ADC_MeanFilter_Value(uint16_t* p_Sensor1_V_Data , 
                            uint16_t* p_Sensor2_V_Data ,
 						   uint16_t* p_Sensor3_V_Data ,
 						   uint16_t* p_Sensor4_V_Data ,

@@ -34,8 +34,8 @@
 /* Function declaration-------------------------------------------------------*/
 
 /* 
-	Serial port 6 emulates the printf function
-	Serial port redirection: Serial port 2 only!! 
+	Serial port 6 sends instructions to control the manipulator,
+	The receiving manipulator returns a state variable
 */
 t_FuncRet USART6_printf(const char* Data, ...);
 /* Send the array using serial port 6 */
@@ -44,14 +44,19 @@ t_FuncRet USART6_SendBuf(uint8_t* DataBuf , uint8_t Length_DataBuf);
 t_FuncRet USART6_Start_IT(void);
 /* Serial port 6 Data receive callback function */
 void HAL_UART6_RxCpltCallback(void);
-/* Use this function to determine whether the serial port reception is complete */
+/* Use this function to determine whether the serial port6 reception is complete */
 bool isRxCompleted(void);
+void UART6_Reset(void);
+
+/*
+	Serial port 1 receives gyroscope data correlation function
+*/
 /* Enable the serial port. 1 Receive an interrupt */
 t_FuncRet USART1_Start_IT(void);
 /* Serial port 1 Data receive callback function */
 void HAL_UART1_RxCpltCallback(void);
 /* Serial port 6 The receiver is cleared periodically */
-void UART6_Reset(void);
+t_FuncRet UART1_isRxComplete(void);
 
 #ifdef __cplusplus
 }

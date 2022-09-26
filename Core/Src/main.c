@@ -62,6 +62,13 @@
 */
 #include "DigtalSignal_Process.h"
 
+/*
+	This file includes the declaration of the function for 
+    mean filtering the motion data collected by the gyroscope
+*/
+#include "GyroscopeData_Process.h"
+
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -76,12 +83,6 @@
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
 
-/* 
-Note: global variables are used here only to see the value of the variable. 
-They are not used when the program is running 
-*/
-#define CODE_TEST
-
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -93,6 +94,10 @@ Note: global variables are used here only to see the value of the variable.
 They are not used when the program is running 
 */
 #ifdef CODE_TEST
+/* 
+	The following functions are only used for software development and debugging, 
+	and are not required for official launch
+*/
 
 /* A variable that stores the return value of a function for easy debugging */
 static t_FuncRet ret = Operatin_Success;
@@ -339,6 +344,11 @@ t_FuncRet Hardware_Init(void)
 	return ret;
 }
 
+#ifdef CODE_TEST
+/* 
+	The following functions are only used for software development and debugging, 
+	and are not required for official launch
+*/
 
 /* ADC Original voltage output test */
 void ADC_Original_Value_Test(void)
@@ -395,7 +405,7 @@ void ADC_Original_Value_Test(void)
 /* ADC MeanFilter voltage output test */
 void ADC_MeanFilter_Value_Test(void)
 {
-	ret = Get_TrueAdcValue(&Sensor1_V_Data, &Sensor2_V_Data, &Sensor3_V_Data, &Sensor4_V_Data, &Vref);  
+	ret = Get_ADC_MeanFilter_Value(&Sensor1_V_Data, &Sensor2_V_Data, &Sensor3_V_Data, &Sensor4_V_Data, &Vref);  
 	if(ret == Operatin_Fail)
 	{
 		Error_Handler();
@@ -418,7 +428,23 @@ void USART_Gyroscope_Original_Test(void)
 	gyro_z  = Get_Zaxis_Angle_Acc();
 }
 
+/* Serial port gyroscope Original movement data output test */
+void USART_Gyroscope_MeanFilter_Test(void)
+{
+	ret = Get_MotionData_MeanFilter_Value((uint16_t*)&angle_x , 
+										  (uint16_t*)&angle_y ,
+						                  (uint16_t*)&angle_z ,
+						                  (uint16_t*)&gyro_x  ,
+								          (uint16_t*)&gyro_y  ,
+						                  (uint16_t*)&gyro_z );
+	if(ret == Operatin_Fail)
+	{
+		Error_Handler();
+	}
+}
 
+
+#endif
 /* USER CODE END 4 */
 
 /**

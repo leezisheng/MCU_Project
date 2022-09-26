@@ -49,12 +49,24 @@ extern "C" {
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
 
+/* 
+	Note: global variables are used here only to see the value of the variable. 
+	They are not used when the program is running 
+*/
+#define CODE_TEST
+
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
+
+/* 
+	The following functions are only used for software development and debugging, 
+	and are not required for official launch
+*/
+#ifdef CODE_TEST
 
 /* Assertion functions */
 void assert_failed(uint8_t* file, uint32_t line);
@@ -64,6 +76,10 @@ void ADC_Original_Value_Test(void);
 void ADC_MeanFilter_Value_Test(void);
 /* Serial port gyroscope Original movement data output test */
 void USART_Gyroscope_Original_Test(void);
+/* Serial port gyroscope Original movement data output test */
+void USART_Gyroscope_MeanFilter_Test(void);
+
+#endif
 
 /* USER CODE END EFP */
 

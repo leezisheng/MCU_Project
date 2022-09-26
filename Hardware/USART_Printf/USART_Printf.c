@@ -44,7 +44,7 @@
 /* External function declaration----------------------------------------------*/
 
 /* The parameters of the gyroscope data are analyzed */
-extern void CopeSerial2Data(unsigned char ucData);
+extern t_FuncRet CopeSerial2Data(unsigned char ucData);
 
 /* Private macro definitions--------------------------------------------------*/
 
@@ -73,7 +73,7 @@ static uint8_t USART6_Rx_Data = 0;
 
 /* ++++++++++++Serial port 6 interrupt callback function variable++++++++++++ */
 /* Flag bit: Indicates whether to start receiving data */
-static bool isGotFrameHeader = (bool)FALSE;
+volatile static bool isGotFrameHeader = (bool)FALSE;
 /* Data frame header counts */
 static uint8_t frameHeaderCount = 0;
 /* The length of the data */
@@ -88,6 +88,8 @@ static uint8_t Res = 0;
 /* ++++++++++++Serial port 1 interrupt callback function variable++++++++++++ */
 /* Serial port 1 Receives data */
 static uint8_t USART1_Rx_Data = 0;
+/* Static variable that determines whether data parsing is complete for serial port 1 */
+volatile static t_FuncRet Gyroscope_Ret = Operatin_Success;
 
 /* Static function definition-------------------------------------------------*/
 
@@ -97,7 +99,7 @@ static char *itoa( int value, char *string, int radix );
 
 /* Function definition--------------------------------------------------------*/
 
-/* SWO is used instead of UART to realize Printf printing function */
+/* SWO is used instead of UART2 to realize Printf printing function */
 struct __FILE 
 { 
 	int handle; 
@@ -533,9 +535,9 @@ void HAL_UART6_RxCpltCallback(void)
 }
 
 /** 
-* @description: Use this function to determine whether the serial port reception is complete
+* @description: Use this function to determine whether the serial port 6 reception is complete
 * @param  {void} 
-* @return {bool When the serial port data is received, set the flag bit, the function returns TRUE; Otherwise return FALSE     
+* @return {bool When the serial port 6 data is received, set the flag bit, the function returns TRUE; Otherwise return FALSE     
 * @author: leeqingshui 
 */
 bool isRxCompleted(void)
@@ -578,7 +580,7 @@ t_FuncRet USART1_Start_IT(void)
 */
 void HAL_UART1_RxCpltCallback(void)
 {
-	CopeSerial2Data(USART1_Rx_Data);
+	Gyroscope_Ret = CopeSerial2Data(USART1_Rx_Data);
 	HAL_UART_Receive_IT(&huart1, (uint8_t *)&USART1_Rx_Data, 1);
 }
 
@@ -618,5 +620,11 @@ void UART6_Reset(void)
 	
 	RxDataStruct.HeaderFrame_1 = 0;
 	RxDataStruct.HeaderFrame_2 = 0;
+}
+
+/* Serial port 6 The receiver is cleared periodically */
+t_FuncRet UART1_isRxComplete(void)
+{
+	return Gyroscope_Ret;
 }
 

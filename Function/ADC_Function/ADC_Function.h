@@ -26,7 +26,7 @@
 /* Function declaration-------------------------------------------------------*/
 
 /* Get the median filter voltage value */
-t_FuncRet Get_TrueAdcValue(uint16_t* p_Sensor1_V_Data , 
+t_FuncRet Get_ADC_MeanFilter_Value(uint16_t* p_Sensor1_V_Data , 
 						   uint16_t* p_Sensor2_V_Data ,
 						   uint16_t* p_Sensor3_V_Data ,
 						   uint16_t* p_Sensor4_V_Data ,

@@ -3,7 +3,7 @@
 <title>Static Call Graph - [MCU_Project\MCU_Project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image MCU_Project\MCU_Project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Sun Sep 25 14:55:39 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Mon Sep 26 19:34:05 2022
 <BR><P>
 <H3>Maximum Stack Usage =        176 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -359,27 +359,27 @@ Global Symbols
 <LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_Start
 <LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_PollForConversion
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_TrueAdcValue
+<BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_ADC_MeanFilter_Value
 </UL>
 
 <P><STRONG><a name="[66]"></a>ADC_Get_SensorData_1</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, adc_operation.o(i.ADC_Get_SensorData_1))
-<BR><BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_TrueAdcValue
+<BR><BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_ADC_MeanFilter_Value
 </UL>
 
 <P><STRONG><a name="[67]"></a>ADC_Get_SensorData_2</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, adc_operation.o(i.ADC_Get_SensorData_2))
-<BR><BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_TrueAdcValue
+<BR><BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_ADC_MeanFilter_Value
 </UL>
 
 <P><STRONG><a name="[68]"></a>ADC_Get_SensorData_3</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, adc_operation.o(i.ADC_Get_SensorData_3))
-<BR><BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_TrueAdcValue
+<BR><BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_ADC_MeanFilter_Value
 </UL>
 
 <P><STRONG><a name="[69]"></a>ADC_Get_SensorData_4</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, adc_operation.o(i.ADC_Get_SensorData_4))
-<BR><BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_TrueAdcValue
+<BR><BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_ADC_MeanFilter_Value
 </UL>
 
 <P><STRONG><a name="[6a]"></a>ADC_Get_Vref</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, adc_operation.o(i.ADC_Get_Vref))
-<BR><BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_TrueAdcValue
+<BR><BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_ADC_MeanFilter_Value
 </UL>
 
 <P><STRONG><a name="[1c]"></a>ADC_IRQHandler</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f4xx_it.o(i.ADC_IRQHandler))
@@ -390,9 +390,9 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f411xe.o(RESET)
 </UL>
 <P><STRONG><a name="[5e]"></a>ADC_MeanFilter_Value_Test</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, main.o(i.ADC_MeanFilter_Value_Test))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = ADC_MeanFilter_Value_Test &rArr; Get_TrueAdcValue &rArr; ADC_Get_Data &rArr; HAL_GPIO_WritePin &rArr; assert_failed &rArr; __2printf
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = ADC_MeanFilter_Value_Test &rArr; Get_ADC_MeanFilter_Value &rArr; ADC_Get_Data &rArr; HAL_GPIO_WritePin &rArr; assert_failed &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_TrueAdcValue
+<BR>[Calls]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_ADC_MeanFilter_Value
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Error_Handler
 </UL>
 <BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -413,8 +413,8 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f411xe.o(RESET)
 </UL>
-<P><STRONG><a name="[88]"></a>CopeSerial2Data</STRONG> (Thumb, 82 bytes, Stack size 8 bytes, usart_gyroscope .o(i.CopeSerial2Data))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = CopeSerial2Data
+<P><STRONG><a name="[88]"></a>CopeSerial2Data</STRONG> (Thumb, 96 bytes, Stack size 12 bytes, usart_gyroscope .o(i.CopeSerial2Data))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = CopeSerial2Data
 </UL>
 <BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART1_RxCpltCallback
 </UL>
@@ -429,7 +429,7 @@ Global Symbols
 <P><STRONG><a name="[6b]"></a>Data_Mean_Filter</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, digtalsignal_process.o(i.Data_Mean_Filter))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Data_Mean_Filter
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_TrueAdcValue
+<BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_ADC_MeanFilter_Value
 </UL>
 
 <P><STRONG><a name="[7]"></a>DebugMon_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f4xx_it.o(i.DebugMon_Handler))
@@ -452,8 +452,8 @@ Global Symbols
 <LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_MeanFilter_Value_Test
 </UL>
 
-<P><STRONG><a name="[5f]"></a>Get_TrueAdcValue</STRONG> (Thumb, 288 bytes, Stack size 56 bytes, adc_function.o(i.Get_TrueAdcValue))
-<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = Get_TrueAdcValue &rArr; ADC_Get_Data &rArr; HAL_GPIO_WritePin &rArr; assert_failed &rArr; __2printf
+<P><STRONG><a name="[5f]"></a>Get_ADC_MeanFilter_Value</STRONG> (Thumb, 288 bytes, Stack size 56 bytes, adc_function.o(i.Get_ADC_MeanFilter_Value))
+<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = Get_ADC_MeanFilter_Value &rArr; ADC_Get_Data &rArr; HAL_GPIO_WritePin &rArr; assert_failed &rArr; __2printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_Get_Vref
 <LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_Get_SensorData_4
@@ -750,8 +750,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_InitTick
 </UL>
 
-<P><STRONG><a name="[87]"></a>HAL_UART1_RxCpltCallback</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, usart_printf.o(i.HAL_UART1_RxCpltCallback))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = HAL_UART1_RxCpltCallback &rArr; CopeSerial2Data
+<P><STRONG><a name="[87]"></a>HAL_UART1_RxCpltCallback</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, usart_printf.o(i.HAL_UART1_RxCpltCallback))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = HAL_UART1_RxCpltCallback &rArr; CopeSerial2Data
 </UL>
 <BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CopeSerial2Data
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Receive_IT
@@ -759,7 +759,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_RxCpltCallback
 </UL>
 
-<P><STRONG><a name="[8a]"></a>HAL_UART6_RxCpltCallback</STRONG> (Thumb, 216 bytes, Stack size 24 bytes, usart_printf.o(i.HAL_UART6_RxCpltCallback))
+<P><STRONG><a name="[8a]"></a>HAL_UART6_RxCpltCallback</STRONG> (Thumb, 220 bytes, Stack size 24 bytes, usart_printf.o(i.HAL_UART6_RxCpltCallback))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = HAL_UART6_RxCpltCallback
 </UL>
 <BR>[Calls]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Receive_IT
@@ -925,7 +925,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[6c]"></a>Mean_Filter_Rest</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, digtalsignal_process.o(i.Mean_Filter_Rest))
-<BR><BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_TrueAdcValue
+<BR><BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_ADC_MeanFilter_Value
 </UL>
 
 <P><STRONG><a name="[3]"></a>MemManage_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f4xx_it.o(i.MemManage_Handler))

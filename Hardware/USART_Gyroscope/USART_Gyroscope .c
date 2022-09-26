@@ -58,17 +58,20 @@ volatile static float gyro_z;
 
 /* Static function definition-------------------------------------------------*/
 
-
 /* Function definition--------------------------------------------------------*/
 
 /** 
 * @description: The data returned by gyroscope is analyzed
 * @param  {unsigned char}  ucData  :  data that Serial port 1 interrupts receiving to be parsed
-* @return {void}
+* @return {t_FuncRet}      ret     :  Operatin_Fail    - Data frame received error, receive again
+*                                     Operatin_Success - Complete a data reception
+*                                     Operation_Wait   - This data reception is still in progress
 * @author: leeqingshui 
 */
-void CopeSerial2Data(unsigned char ucData)
+t_FuncRet CopeSerial2Data(unsigned char ucData)
 {
+	t_FuncRet ret = (t_FuncRet)Operatin_Success;
+	
 	// Store the received data into a buffer
 	ucRxBuffer[ucRxCnt++]=ucData;
 	
@@ -76,13 +79,15 @@ void CopeSerial2Data(unsigned char ucData)
 	if (ucRxBuffer[0]!=0x55) 
 	{
 		ucRxCnt=0;
-		return;
+		ret = (t_FuncRet)Operatin_Fail;
+		return ret;
 	}
 	
 	// If the number of data is less than 11, return
 	if (ucRxCnt<11) 
 	{
-		return;
+		ret = (t_FuncRet)Operation_Wait;
+		return ret;
 	}
 	else
 	{
@@ -105,7 +110,11 @@ void CopeSerial2Data(unsigned char ucData)
 		
 		/* Data parsing is complete. Clear the cache */
 		ucRxCnt=0;
+		
+		ret = (t_FuncRet)Operatin_Success;
 	}
+	
+	return (t_FuncRet)ret ;
 }
 
 
