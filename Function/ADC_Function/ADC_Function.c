@@ -27,9 +27,9 @@ extern t_FuncRet ADC_Get_SensorData_4(uint16_t* p_Sensor_V_Data);
 extern t_FuncRet ADC_Get_Vref(uint16_t* p_Vref);
 
 /* Mean filtering function */
-extern uint16_t Data_Mean_Filter(Mean_Filter* p_MeanFilterStruct,uint16_t Temp_Data_Buf[]);
+extern uint16_t Data_Mean_Filter_U16(Mean_Filter_U16* p_MeanFilterStruct,uint16_t Temp_Data_Buf[]);
 /* Mean filtering Reset function */
-extern void Mean_Filter_Rest(Mean_Filter* p_MeanFilterStruct);
+extern void Mean_Filter_Rest_U16(Mean_Filter_U16* p_MeanFilterStruct);
 
 /* Private macro definitions--------------------------------------------------*/
 
@@ -67,7 +67,7 @@ t_FuncRet Get_ADC_MeanFilter_Value(uint16_t* p_Sensor1_V_Data ,
 	t_FuncRet ret= (t_FuncRet)Operatin_Success;
 	
 	/* Initializes the filter structure */
-	Mean_Filter FilterStruct = {0};
+	Mean_Filter_U16 FilterStruct = {0};
 	
 	/* Turn on ADC voltage acquisition once */
 	ret = ADC_Get_Data();
@@ -94,20 +94,20 @@ t_FuncRet Get_ADC_MeanFilter_Value(uint16_t* p_Sensor1_V_Data ,
 	ADC_Get_Vref(&Sensor_Vref_DataBuf[DataBuf_Index]);
 
 	/* Mean filtering */
-	*p_Sensor1_V_Data = Data_Mean_Filter((Mean_Filter*)&FilterStruct ,Sensor_No1_DataBuf);
-	Mean_Filter_Rest((Mean_Filter*)&FilterStruct);
+	*p_Sensor1_V_Data = Data_Mean_Filter_U16((Mean_Filter_U16*)&FilterStruct ,(uint16_t*)Sensor_No1_DataBuf);
+	Mean_Filter_Rest_U16((Mean_Filter_U16*)&FilterStruct);
 	
-	*p_Sensor2_V_Data = Data_Mean_Filter((Mean_Filter*)&FilterStruct ,Sensor_No2_DataBuf);
-	Mean_Filter_Rest((Mean_Filter*)&FilterStruct);
+	*p_Sensor2_V_Data = Data_Mean_Filter_U16((Mean_Filter_U16*)&FilterStruct ,(uint16_t*)Sensor_No2_DataBuf);
+	Mean_Filter_Rest_U16((Mean_Filter_U16*)&FilterStruct);
 	
-	*p_Sensor3_V_Data = Data_Mean_Filter((Mean_Filter*)&FilterStruct ,Sensor_No3_DataBuf);
-	Mean_Filter_Rest((Mean_Filter*)&FilterStruct);
+	*p_Sensor3_V_Data = Data_Mean_Filter_U16((Mean_Filter_U16*)&FilterStruct ,(uint16_t*)Sensor_No3_DataBuf);
+	Mean_Filter_Rest_U16((Mean_Filter_U16*)&FilterStruct);
 	
-	*p_Sensor4_V_Data = Data_Mean_Filter((Mean_Filter*)&FilterStruct ,Sensor_No4_DataBuf);
-	Mean_Filter_Rest((Mean_Filter*)&FilterStruct);
+	*p_Sensor4_V_Data = Data_Mean_Filter_U16((Mean_Filter_U16*)&FilterStruct ,(uint16_t*)Sensor_No4_DataBuf);
+	Mean_Filter_Rest_U16((Mean_Filter_U16*)&FilterStruct);
 	
-	*p_Vref_V_Data    = Data_Mean_Filter((Mean_Filter*)&FilterStruct ,Sensor_Vref_DataBuf);
-	Mean_Filter_Rest((Mean_Filter*)&FilterStruct);
+	*p_Vref_V_Data    = Data_Mean_Filter_U16((Mean_Filter_U16*)&FilterStruct ,(uint16_t*)Sensor_Vref_DataBuf);
+	Mean_Filter_Rest_U16((Mean_Filter_U16*)&FilterStruct);
 	
 	/* Result back on the array */
 	Sensor_No1_DataBuf[DataBuf_Index]  = *p_Sensor1_V_Data;

@@ -210,7 +210,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	
-	ADC_MeanFilter_Value_Test();
+	USART_Gyroscope_MeanFilter_Test();
 
 	/* Serial port 6 The receiver is cleared periodically */
 	UART6_Reset();
@@ -431,16 +431,12 @@ void USART_Gyroscope_Original_Test(void)
 /* Serial port gyroscope Original movement data output test */
 void USART_Gyroscope_MeanFilter_Test(void)
 {
-	ret = Get_MotionData_MeanFilter_Value((uint16_t*)&angle_x , 
-										  (uint16_t*)&angle_y ,
-						                  (uint16_t*)&angle_z ,
-						                  (uint16_t*)&gyro_x  ,
-								          (uint16_t*)&gyro_y  ,
-						                  (uint16_t*)&gyro_z );
-	if(ret == Operatin_Fail)
-	{
-		Error_Handler();
-	}
+	ret = Get_MotionData_MeanFilter_Value((float*)&angle_x , 
+										  (float*)&angle_y ,
+						                  (float*)&angle_z ,
+						                  (float*)&gyro_x  ,
+								          (float*)&gyro_y  ,
+						                  (float*)&gyro_z );
 }
 
 

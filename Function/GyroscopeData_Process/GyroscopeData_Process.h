@@ -25,12 +25,12 @@
 /* Function declaration-------------------------------------------------------*/
 
 /* Get the median filter the motion data value */
-t_FuncRet Get_MotionData_MeanFilter_Value(uint16_t* p_angle_x , 
-								   uint16_t* p_angle_y ,
-						           uint16_t* p_angle_z ,
-						           uint16_t* p_gyro_x  ,
-								   uint16_t* p_gyro_y  ,
-						           uint16_t* p_gyro_z );
+t_FuncRet Get_MotionData_MeanFilter_Value(float* p_angle_x , 
+								   float* p_angle_y ,
+						           float* p_angle_z ,
+						           float* p_gyro_x  ,
+								   float* p_gyro_y  ,
+						           float* p_gyro_z );
 
 #ifdef __cplusplus
 }

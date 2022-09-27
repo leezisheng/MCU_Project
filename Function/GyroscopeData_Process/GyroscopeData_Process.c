@@ -29,9 +29,9 @@ extern float Get_Yaxis_Angle_Acc(void);
 extern float Get_Zaxis_Angle_Acc(void);
 
 /* Mean filtering function */
-extern uint16_t Data_Mean_Filter(Mean_Filter* p_MeanFilterStruct,uint16_t Temp_Data_Buf[]);
+extern float Data_Mean_Filter_F(Mean_Filter_F* p_MeanFilterStruct,float Temp_Data_Buf[]);
 /* Mean filtering Reset function */
-extern void Mean_Filter_Rest(Mean_Filter* p_MeanFilterStruct);
+extern void Mean_Filter_Rest_F(Mean_Filter_F* p_MeanFilterStruct);
 
 /* Serial port 6 The receiver is cleared periodically */
 extern t_FuncRet UART1_isRxComplete(void);
@@ -71,25 +71,18 @@ static uint8_t DataBuf_Index = 0;
 * @return {t_FuncRet } : if success,return Operatin_Success
 * @author: leeqingshui 
 */
-t_FuncRet Get_MotionData_MeanFilter_Value(uint16_t* p_angle_x , 
-										  uint16_t* p_angle_y ,
-						                  uint16_t* p_angle_z ,
-						                  uint16_t* p_gyro_x  ,
-								          uint16_t* p_gyro_y  ,
-						                  uint16_t* p_gyro_z )
+t_FuncRet Get_MotionData_MeanFilter_Value(float* p_angle_x , 
+										  float* p_angle_y ,
+						                  float* p_angle_z ,
+						                  float* p_gyro_x  ,
+								          float* p_gyro_y  ,
+						                  float* p_gyro_z )
 {
 	t_FuncRet ret= (t_FuncRet)Operatin_Success;
 	
 	/* Initializes the filter structure */
-	Mean_Filter FilterStruct = {0};
-	
-	/* Determine whether a reception is complete */
-	ret = UART1_isRxComplete();
-	if(ret != (t_FuncRet)Operatin_Success)
-	{
-		return ret;
-	}
-	
+	Mean_Filter_F FilterStruct = {0};
+		
 	/* Index Value Judgment */
 	if(DataBuf_Index > (MEAN_FILTER_NUM-1))
 	{
@@ -110,23 +103,23 @@ t_FuncRet Get_MotionData_MeanFilter_Value(uint16_t* p_angle_x ,
 	Gyro_Z_Buff[DataBuf_Index]  = Get_Zaxis_Angle_Acc();
 	
 	/* Mean filtering */
-	*p_angle_x = Data_Mean_Filter((Mean_Filter*)&FilterStruct ,(uint16_t*)Angle_X_Buff);
-	Mean_Filter_Rest((Mean_Filter*)&FilterStruct);
+	*p_angle_x = Data_Mean_Filter_F((Mean_Filter_F*)&FilterStruct ,Angle_X_Buff);
+	Mean_Filter_Rest_F((Mean_Filter_F*)&FilterStruct);
 	
-	*p_angle_y = Data_Mean_Filter((Mean_Filter*)&FilterStruct ,(uint16_t*)Angle_Y_Buff);
-	Mean_Filter_Rest((Mean_Filter*)&FilterStruct);
+	*p_angle_y = Data_Mean_Filter_F((Mean_Filter_F*)&FilterStruct ,Angle_Y_Buff);
+	Mean_Filter_Rest_F((Mean_Filter_F*)&FilterStruct);
 	
-	*p_angle_z = Data_Mean_Filter((Mean_Filter*)&FilterStruct ,(uint16_t*)Angle_Z_Buff);
-	Mean_Filter_Rest((Mean_Filter*)&FilterStruct);
+	*p_angle_z = Data_Mean_Filter_F((Mean_Filter_F*)&FilterStruct ,Angle_Z_Buff);
+	Mean_Filter_Rest_F((Mean_Filter_F*)&FilterStruct);
 	
-	*p_gyro_x  = Data_Mean_Filter((Mean_Filter*)&FilterStruct ,(uint16_t*)Gyro_X_Buff);
-	Mean_Filter_Rest((Mean_Filter*)&FilterStruct);
+	*p_gyro_x  = Data_Mean_Filter_F((Mean_Filter_F*)&FilterStruct ,Gyro_X_Buff);
+	Mean_Filter_Rest_F((Mean_Filter_F*)&FilterStruct);
 	
-	*p_gyro_y  = Data_Mean_Filter((Mean_Filter*)&FilterStruct ,(uint16_t*)Gyro_Y_Buff);
-	Mean_Filter_Rest((Mean_Filter*)&FilterStruct);
+	*p_gyro_y  = Data_Mean_Filter_F((Mean_Filter_F*)&FilterStruct ,Gyro_Y_Buff);
+	Mean_Filter_Rest_F((Mean_Filter_F*)&FilterStruct);
 	
-	*p_gyro_z  = Data_Mean_Filter((Mean_Filter*)&FilterStruct ,(uint16_t*)Gyro_Z_Buff);
-	Mean_Filter_Rest((Mean_Filter*)&FilterStruct);
+	*p_gyro_z  = Data_Mean_Filter_F((Mean_Filter_F*)&FilterStruct ,Gyro_Z_Buff);
+	Mean_Filter_Rest_F((Mean_Filter_F*)&FilterStruct);
 	
 	/* Result back on the array */
 	Angle_X_Buff[DataBuf_Index] =  *p_angle_x;

@@ -26,13 +26,52 @@
 /** 
 * @description: Mean filtering function
 * @param  {Mean_Filter*} p_MeanFilterStruct : Filter structure pointer
-* @param  {uint16_t*}    Temp_Data_Buf      : Cache array of ADC voltage acquisition results
-* @param  {uint16_t}     New_Data           : ADC voltage acquisition results
-* @return {uint16_t}                        : Mean filtering result
+* @param  {float*}    Temp_Data_Buf      : Cache array acquisition results
+* @return {float}                        : Mean filtering result
 * @author: leeqingshui 
 */
-uint16_t Data_Mean_Filter(Mean_Filter* p_MeanFilterStruct,uint16_t Temp_Data_Buf[])
- {
+float Data_Mean_Filter_F(Mean_Filter_F* p_MeanFilterStruct,float Temp_Data_Buf[])
+{
+    p_MeanFilterStruct->sum = 0;
+	 
+	for(int count = 0;count < MEAN_FILTER_NUM;count++)
+	{
+		p_MeanFilterStruct->Data_Buf[count] = Temp_Data_Buf[count];
+		p_MeanFilterStruct->sum = p_MeanFilterStruct->sum + p_MeanFilterStruct->Data_Buf[count];
+	}
+	
+	p_MeanFilterStruct->result = (float)(p_MeanFilterStruct->sum / MEAN_FILTER_NUM);
+
+	return p_MeanFilterStruct->result;
+}
+ 
+/** 
+* @description: Mean filtering Reset function 
+* @param  {Mean_Filter*} p_MeanFilterStruct : Filter structure pointer
+* @return {void}                       
+* @author: leeqingshui 
+*/
+void Mean_Filter_Rest_F(Mean_Filter_F* p_MeanFilterStruct)
+{
+	 for(int count = 0;count < MEAN_FILTER_NUM;count++)
+	 {
+		 p_MeanFilterStruct->Data_Buf[count] = 0;
+	 }
+	 
+	 p_MeanFilterStruct->result = 0;
+	 
+	 p_MeanFilterStruct->sum = 0;
+}
+
+/** 
+* @description: Mean filtering function
+* @param  {Mean_Filter*} p_MeanFilterStruct : Filter structure pointer
+* @param  {uint16_t*}    Temp_Data_Buf      : Cache array acquisition results
+* @return {float}                           : Mean filtering result
+* @author: leeqingshui 
+*/
+uint16_t Data_Mean_Filter_U16(Mean_Filter_U16* p_MeanFilterStruct,uint16_t Temp_Data_Buf[])
+{
     p_MeanFilterStruct->sum = 0;
 	 
 	for(int count = 0;count < MEAN_FILTER_NUM;count++)
@@ -44,16 +83,16 @@ uint16_t Data_Mean_Filter(Mean_Filter* p_MeanFilterStruct,uint16_t Temp_Data_Buf
 	p_MeanFilterStruct->result = (uint16_t)(p_MeanFilterStruct->sum / MEAN_FILTER_NUM);
 
 	return p_MeanFilterStruct->result;
- }
- 
+}
+
 /** 
 * @description: Mean filtering Reset function 
 * @param  {Mean_Filter*} p_MeanFilterStruct : Filter structure pointer
 * @return {void}                       
 * @author: leeqingshui 
 */
-void Mean_Filter_Rest(Mean_Filter* p_MeanFilterStruct)
- {
+void Mean_Filter_Rest_U16(Mean_Filter_U16* p_MeanFilterStruct)
+{
 	 for(int count = 0;count < MEAN_FILTER_NUM;count++)
 	 {
 		 p_MeanFilterStruct->Data_Buf[count] = 0;
@@ -62,7 +101,7 @@ void Mean_Filter_Rest(Mean_Filter* p_MeanFilterStruct)
 	 p_MeanFilterStruct->result = 0;
 	 
 	 p_MeanFilterStruct->sum = 0;
- }
+}
 
 /** 
 * @description: Initialize the Kalman filter

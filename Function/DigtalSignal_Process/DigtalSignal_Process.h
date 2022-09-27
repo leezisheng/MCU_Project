@@ -27,15 +27,29 @@
 typedef struct 
 {
 	/* Cache three historical data, the size can be modified */
+	float Data_Buf[MEAN_FILTER_NUM];
+	
+	/* The sum of the data */
+	float sum;
+
+	/* output result */
+	float result; 
+	
+}Mean_Filter_F;
+
+/* mean filter structure */
+typedef struct 
+{
+	/* Cache three historical data, the size can be modified */
 	uint16_t Data_Buf[MEAN_FILTER_NUM];
 	
 	/* The sum of the data */
-	uint32_t sum;
+	uint16_t sum;
 
 	/* output result */
 	uint16_t result; 
 	
-}Mean_Filter;
+}Mean_Filter_U16;
 
 /* Kalman Filter Structure */
 typedef struct 
@@ -70,9 +84,15 @@ typedef struct
 /* Function declaration-------------------------------------------------------*/
 
 /* Mean filtering function */
-uint16_t Data_Mean_Filter(Mean_Filter* p_MeanFilterStruct,uint16_t Temp_Data_Buf[]);
+float Data_Mean_Filter_F(Mean_Filter_F* p_MeanFilterStruct,float Temp_Data_Buf[]);
 /* Mean filtering Reset function */
-void Mean_Filter_Rest(Mean_Filter* p_MeanFilterStruct);
+void Mean_Filter_Rest_F(Mean_Filter_F* p_MeanFilterStruct);
+
+/* Mean filtering function */
+uint16_t Data_Mean_Filter_U16(Mean_Filter_U16* p_MeanFilterStruct,uint16_t Temp_Data_Buf[]);
+/* Mean filtering Reset function */
+void Mean_Filter_Rest_U16(Mean_Filter_U16* p_MeanFilterStruct);
+
 /* Initialize the Kalman filter */
 void KalmanFilter_Init(Kalman_Filter* p_Kalman_Filter);
 /* Data were filtered by Kalman filter */
