@@ -291,7 +291,7 @@ t_FuncRet ServoMotor_Read_Ret(int32_t* p_ret)
 	/* Structure is converted to an array */
 	uint8_t DataBuf[MAX_DATA_LENGTH + 6];
 	/* Delay counting variable */
-	int count = 50000;
+	int count = 500;
 	/* command parameter */
 	uint8_t cmd;
 	static uint8_t checksum = 0;
@@ -431,14 +431,12 @@ static uint8_t Get_CheckSum(uint8_t* p_buf)
 t_FuncRet ServoMotor_Control_Test(void)
 {
 	t_FuncRet ret = (t_FuncRet)Operatin_Success;
-	uint8_t temp_id = 0;
+	uint8_t temp_id = 6;
+	int32_t angle = 0;
 	
-	for(temp_id=0;temp_id<7;temp_id++)
-	{
-		ret = ServoMotor_Move_Immediately(temp_id,100,30);
-		ret = ret&ret;
-		HAL_Delay(30);
-	}
+	ServoMotor_Move_Immediately(temp_id, +10, 300);
+	ret = ServoMotor_Read_Position(temp_id,&angle);
+	HAL_Delay(500);
 	
 	return (t_FuncRet)ret;
 }

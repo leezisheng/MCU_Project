@@ -99,6 +99,9 @@ They are not used when the program is running
 	and are not required for official launch
 */
 
+/* Steering gear control test: Control rotation of No. 0 to 6 steering gear */
+t_FuncRet ServoMotor_Control_Test(void);
+
 /* A variable that stores the return value of a function for easy debugging */
 static t_FuncRet ret = Operatin_Success;
 
@@ -127,6 +130,13 @@ volatile static float acc_z 	 = 0;
 volatile static float gyro_x  = 0;
 volatile static float gyro_y  = 0;
 volatile static float gyro_z  = 0;
+
+/* Manipulator control related variables */
+
+volatile static uint8_t temp_id		= 6;
+volatile static int32_t angle 		= 0;
+volatile static int16_t position	= 900;
+volatile static int32_t wait_time 	= 500;
 
 #endif
 
@@ -198,8 +208,7 @@ int main(void)
   #endif
   
   printf("success to initialize Hardware Procedure\r\n");
-
-
+  
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -209,8 +218,6 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	
-	USART_Gyroscope_MeanFilter_Test();
 
 	/* Serial port 6 The receiver is cleared periodically */
 	UART6_Reset();
