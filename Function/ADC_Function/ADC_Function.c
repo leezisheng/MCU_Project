@@ -77,7 +77,7 @@ t_FuncRet Get_ADC_MeanFilter_Value(uint16_t* p_Sensor1_V_Data ,
 	}
 	
 	/* Index Value Judgment */
-	if(DataBuf_Index > (MEAN_FILTER_NUM-1))
+	if(DataBuf_Index >= (MEAN_FILTER_NUM-1))
 	{
 		DataBuf_Index = 0;
 	}

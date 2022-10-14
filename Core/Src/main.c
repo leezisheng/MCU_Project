@@ -218,9 +218,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
-	/* Serial port 6 The receiver is cleared periodically */
-	UART6_Reset();
+	ADC_MeanFilter_Value_Test();
 	  
   }
   /* USER CODE END 3 */

@@ -84,7 +84,7 @@ t_FuncRet Get_MotionData_MeanFilter_Value(float* p_angle_x ,
 	Mean_Filter_F FilterStruct = {0};
 		
 	/* Index Value Judgment */
-	if(DataBuf_Index > (MEAN_FILTER_NUM-1))
+	if(DataBuf_Index >= (MEAN_FILTER_NUM-1))
 	{
 		DataBuf_Index = 0;
 	}

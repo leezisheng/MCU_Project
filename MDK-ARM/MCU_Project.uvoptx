@@ -159,7 +159,7 @@
           <Type>0</Type>
           <LineNumber>429</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134226550</Address>
+          <Address>134227590</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -411,6 +411,26 @@
           <count>47</count>
           <WinNumber>1</WinNumber>
           <ItemText>angle</ItemText>
+        </Ww>
+        <Ww>
+          <count>48</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>Sensor_No1_DataBuf[0]</ItemText>
+        </Ww>
+        <Ww>
+          <count>49</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>Sensor_No1_DataBuf[1]</ItemText>
+        </Ww>
+        <Ww>
+          <count>50</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>Sensor_No1_DataBuf[2]</ItemText>
+        </Ww>
+        <Ww>
+          <count>51</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>Sensor_No1_DataBuf[3],0x0A</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>

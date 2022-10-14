@@ -339,7 +339,7 @@
               <MiscControls>--gnu</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F411xE</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../Common;../Hardware/ADC_Operation;../Hardware/USART_Printf;../Hardware/USARTServo_Control;../Hardware/USART_Gyroscope;..\Function\ADC_Function;..\Function\DigtalSignal_Process;..\Function\GyroscopeData_Process</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../Common;../Hardware/ADC_Operation;../Hardware/USART_Printf;../Hardware/USARTServo_Control;../Hardware/USART_Gyroscope;../Function/ADC_Function;../Function/DigtalSignal_Process;../Function/GyroscopeData_Process</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>

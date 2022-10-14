@@ -12,12 +12,17 @@
 							 mode: IN5  -- PA5
 							 mode: IN6  -- PA6
 							 mode: Vref -- Vref
-							 
+					     
+						 ADC sampling rate £º
+							 Sampling period = conversion time + Read time
+							 Conversion time = Sampling time£¨28 clock cycles£© +12 clock cycles (STM32F4)
+							 Conversion frequency = ADC clock frequency/£¨Conversion time£©= 25 Mhz /40 cycle = 0.625Mhz
+						 
 							 ADCs_Common_Settings:
 							 Mode Independent mode
 							 
 							 ADC_Settings:
-							 Clock Prescaler PCLK2 divided by 4
+							 Clock Prescaler PCLK2 divided by 4 = 25MHz
 							 Resolution 12 bits (15 ADC Clock cycles)
 							 Data Alignment Right alignment
 							 Scan Conversion Mode Enabled

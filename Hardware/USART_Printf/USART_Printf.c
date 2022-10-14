@@ -604,7 +604,6 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 /* Serial port 6 The receiver is cleared periodically */
 void UART6_Reset(void)
 {
-	HAL_Delay(200);
 	/* Flag bit: Indicates whether to start receiving data */
 	isGotFrameHeader = (bool)FALSE;
 	/* Data frame header counts */
