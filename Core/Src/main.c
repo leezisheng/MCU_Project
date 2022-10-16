@@ -21,6 +21,7 @@
 #include "main.h"
 #include "adc.h"
 #include "dma.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -111,6 +112,7 @@ static uint16_t Sensor2_V_Data = 0;
 static uint16_t Sensor3_V_Data = 0;
 static uint16_t Sensor4_V_Data = 0;
 static uint16_t Vref           = 0;
+static uint32_t sample_count   = 0;
 
 /* Servo Motor Postion(Angle) */
 volatile static int32_t Angle = 0;
@@ -192,6 +194,7 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
   MX_USART6_UART_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   
   /* Peripheral initialization function */
@@ -218,8 +221,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	ADC_MeanFilter_Value_Test();
-	  
+	ADC_MeanFilter_Value_Test();	  
   }
   /* USER CODE END 3 */
 }
@@ -399,12 +401,6 @@ void ADC_Original_Value_Test(void)
 	{
 		Error_Handler();
 	}
-	
-	printf("Sensor1_V_Data : %d\r\n",Sensor1_V_Data);
-	printf("Sensor2_V_Data : %d\r\n",Sensor2_V_Data);
-	printf("Sensor3_V_Data : %d\r\n",Sensor3_V_Data);
-	printf("Sensor5_V_Data : %d\r\n",Sensor4_V_Data);
-	printf("Vref_V_Data    : %d\r\n",Vref);
 }
 
 /* ADC MeanFilter voltage output test */

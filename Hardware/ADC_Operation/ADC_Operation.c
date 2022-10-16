@@ -77,6 +77,7 @@
 #include "ADC_Operation.h"
 #include "adc.h"
 #include "dma.h"
+#include "tim.h"
 
 /* External function declaration----------------------------------------------*/
 
@@ -86,6 +87,9 @@
 
 /* External variable: handle of ADC1 */
 extern ADC_HandleTypeDef hadc1;
+/* External variable: handle of TIM2 */
+extern TIM_HandleTypeDef htim2;
+
 /* Variable containing ADC conversions results */
 static __IO uint16_t   aADCxConvertedValues[ADCCONVERTEDVALUES_BUFFER_SIZE];
 /* Variables for ADC conversions results computation to physical values */
@@ -124,6 +128,12 @@ t_FuncRet  ADC_Operation_Init(void)
 	Note that there should be a calibration procedure before turning on the ADC, 
 	but the F4 chip does not support ADC calibration
 	*/
+	
+	/* Start timer 2 first and then DMA transfer */
+	if(HAL_TIM_Base_Start(&htim2)!=HAL_OK)
+	{
+		return ret= (t_FuncRet)Operatin_Fail;
+	}
 	
 	/* Start the conversion process and enable interrupt */
     if (HAL_ADC_Start_DMA(&hadc1,

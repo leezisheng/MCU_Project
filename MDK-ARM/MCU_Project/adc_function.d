@@ -31,6 +31,8 @@ mcu_project\adc_function.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_fl
 mcu_project\adc_function.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
 mcu_project\adc_function.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 mcu_project\adc_function.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
+mcu_project\adc_function.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
+mcu_project\adc_function.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 mcu_project\adc_function.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 mcu_project\adc_function.o: ../Common/numtype.h
 mcu_project\adc_function.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\stdio.h

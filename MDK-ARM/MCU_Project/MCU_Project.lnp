@@ -4,6 +4,7 @@
 "mcu_project\gpio.o"
 "mcu_project\adc.o"
 "mcu_project\dma.o"
+"mcu_project\tim.o"
 "mcu_project\usart.o"
 "mcu_project\stm32f4xx_it.o"
 "mcu_project\stm32f4xx_hal_msp.o"
