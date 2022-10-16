@@ -4,7 +4,8 @@
   *
   * Description        : This file contains basic operations on the ADC, including 
   *						 initialization, reading data, returning data, and so on
-  * 
+  *
+  *						 Change the ADC to trigger timer 2, and set the sampling rate to 100/1000/5 = 20K
   * parameter          :
   * 					 ADC1:Preenmption Priority 0
 							 mode: IN1  -- PA1
