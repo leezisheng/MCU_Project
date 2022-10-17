@@ -112,7 +112,7 @@ static uint16_t Sensor2_V_Data = 0;
 static uint16_t Sensor3_V_Data = 0;
 static uint16_t Sensor4_V_Data = 0;
 static uint16_t Vref           = 0;
-static uint32_t sample_count   = 0;
+volatile static uint32_t sample_count   = 0;
 
 /* Servo Motor Postion(Angle) */
 volatile static int32_t Angle = 0;
@@ -195,6 +195,7 @@ int main(void)
   MX_USART2_UART_Init();
   MX_USART6_UART_Init();
   MX_TIM2_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
   
   /* Peripheral initialization function */
@@ -221,7 +222,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	ADC_MeanFilter_Value_Test();	  
+	
   }
   /* USER CODE END 3 */
 }
@@ -323,7 +324,7 @@ t_FuncRet Hardware_Init(void)
 	#endif
 	
 	/* Steering gear control test: Control rotation of No. 0 to 6 steering gear */
-	ret = ServoMotor_Control_Test();
+	ret = ServoMotor_Control_Init();
 	if(ret == Operatin_Fail)
 	{
 		printf("Failed to initialize ServoMotor\r\n");

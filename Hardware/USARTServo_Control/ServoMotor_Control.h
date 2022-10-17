@@ -303,7 +303,7 @@ t_FuncRet ServoMotor_Read_Position(uint8_t id ,int32_t* p_angle);
 /* Read the steering gear return parameters */
 t_FuncRet ServoMotor_Read_Ret(int32_t* p_ret);
 /* Steering gear control test: Control rotation of No. 0 to 6 steering gear */
-t_FuncRet ServoMotor_Control_Test(void);
+t_FuncRet ServoMotor_Control_Init(void);
 
 
 #ifdef __cplusplus

@@ -37,6 +37,7 @@
 #include "USART_Printf.h"
 #include "ServoMotor_Control.h"
 #include "usart.h"
+#include "tim.h"
 
 #include <stdarg.h>
 #include <stdio.h>
@@ -61,6 +62,11 @@ extern t_FuncRet CopeSerial2Data(unsigned char ucData);
 extern UART_HandleTypeDef huart1;
 extern UART_HandleTypeDef huart2;
 extern UART_HandleTypeDef huart6;
+
+/* Timer 3 handle pointer */
+extern TIM_HandleTypeDef htim3;
+/* Test the count variable for the 10Hz interrupt in timer 3 */
+static uint32_t tim3_count = 0;
 
 /* Variable that determines whether the serial port reception is complete */
 static bool isUartRxCompleted = FALSE;
@@ -619,6 +625,28 @@ void UART6_Reset(void)
 	
 	RxDataStruct.HeaderFrame_1 = 0;
 	RxDataStruct.HeaderFrame_2 = 0;
+}
+
+/**
+  * @brief  Period elapsed callback in non blocking mode
+  * @param  htim : TIM handle
+  * @retval None
+  */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+	/* 
+		Timer 3 is interrupted periodically(10Hz), 
+		and the receive clearance function of serial port 6 is invoked 
+	*/
+	if (htim == (&htim3))
+	{
+		UART6_Reset();
+		tim3_count++;
+		if(tim3_count == 1000000)
+		{
+			tim3_count = 0;
+		}
+	}
 }
 
 /* Serial port 6 The receiver is cleared periodically */

@@ -38,3 +38,4 @@ mcu_project\servomotor_control.o: ../Common/numtype.h
 mcu_project\servomotor_control.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\stdio.h
 mcu_project\servomotor_control.o: ..\Hardware\USARTServo_Control\ServoMotor_Control.h
 mcu_project\servomotor_control.o: ../Core/Inc/usart.h
+mcu_project\servomotor_control.o: ../Core/Inc/tim.h

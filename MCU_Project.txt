@@ -1,6 +1,6 @@
 Configuration	MCU_Project
 STM32CubeMX 	6.6.1
-Date	10/16/2022
+Date	10/17/2022
 MCU	STM32F411VETx
 
 
@@ -19,6 +19,7 @@ SYS	Serial Wire	SYS_JTCK-SWCLK	PA14
 SYS	Serial Wire	SYS_JTMS-SWDIO	PA13
 SYS	SysTick	SYS_VS_Systick	VP_SYS_VS_Systick
 TIM2	Internal Clock	TIM2_VS_ClockSourceINT	VP_TIM2_VS_ClockSourceINT
+TIM3	Internal Clock	TIM3_VS_ClockSourceINT	VP_TIM3_VS_ClockSourceINT
 USART1	Asynchronous	USART1_RX	PA10
 USART1	Asynchronous	USART1_TX	PA9
 USART2	Asynchronous	USART2_RX	PD6
@@ -63,6 +64,7 @@ SYS	Serial Wire	SYS_JTCK-SWCLK	PA14
 SYS	Serial Wire	SYS_JTMS-SWDIO	PA13
 SYS	SysTick	SYS_VS_Systick	VP_SYS_VS_Systick
 TIM2	Internal Clock	TIM2_VS_ClockSourceINT	VP_TIM2_VS_ClockSourceINT
+TIM3	Internal Clock	TIM3_VS_ClockSourceINT	VP_TIM3_VS_ClockSourceINT
 USART1	Asynchronous	USART1_RX	PA10
 USART1	Asynchronous	USART1_TX	PA9
 USART2	Asynchronous	USART2_RX	PD6

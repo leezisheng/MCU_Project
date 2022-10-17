@@ -38,5 +38,6 @@ mcu_project\usart_printf.o: ../Common/numtype.h
 mcu_project\usart_printf.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\stdio.h
 mcu_project\usart_printf.o: ../Hardware/USARTServo_Control/ServoMotor_Control.h
 mcu_project\usart_printf.o: ../Core/Inc/usart.h
+mcu_project\usart_printf.o: ../Core/Inc/tim.h
 mcu_project\usart_printf.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\stdarg.h
 mcu_project\usart_printf.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\string.h

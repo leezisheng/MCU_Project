@@ -13,6 +13,7 @@
 #include "USART_Printf.h"
 #include "ServoMotor_Control.h"
 #include "usart.h"
+#include "tim.h"
 
 /* External function declaration----------------------------------------------*/
 
@@ -27,6 +28,9 @@ extern bool isRxCompleted(void);
 #define ServoMotorWrite  USART6_SendBuf
 
 /* Global variable------------------------------------------------------------*/
+
+/* Timer 3 handle pointer */
+extern TIM_HandleTypeDef htim3;
 
 /* Global variable: The serial port receives the data struct */
 SendDataFrame RxDataStruct= {0};
@@ -428,15 +432,31 @@ static uint8_t Get_CheckSum(uint8_t* p_buf)
 }
 
 /* Steering gear control test: Control rotation of No. 0 to 6 steering gear */
-t_FuncRet ServoMotor_Control_Test(void)
+t_FuncRet ServoMotor_Control_Init(void)
 {
 	t_FuncRet ret = (t_FuncRet)Operatin_Success;
-	uint8_t temp_id = 6;
-	int32_t angle = 0;
+	uint8_t temp_id = 0;
 	
-	ServoMotor_Move_Immediately(temp_id, +10, 300);
-	ret = ServoMotor_Read_Position(temp_id,&angle);
-	HAL_Delay(500);
+	for(temp_id = 0;temp_id<=6;temp_id++)
+	{
+		ServoMotor_Move_Immediately(temp_id, 0, 300);
+		HAL_Delay(50);
+	}
+	
+	/* 
+		Timer 3 is interrupted periodically(10Hz), 
+		and the receive clearance function of serial port 6 is invoked 
+	*/
+	
+	/* Clear the IT flag bit */
+	__HAL_TIM_CLEAR_IT(&htim3,TIM_IT_UPDATE ); 
+	
+	/* Enable timer 3 Interrupt */
+	if(HAL_TIM_Base_Start_IT(&htim3) != HAL_OK)
+	{
+		ret = Operatin_Fail;
+		return (t_FuncRet)ret;
+	}
 	
 	return (t_FuncRet)ret;
 }

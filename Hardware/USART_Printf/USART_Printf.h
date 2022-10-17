@@ -46,6 +46,7 @@ t_FuncRet USART6_Start_IT(void);
 void HAL_UART6_RxCpltCallback(void);
 /* Use this function to determine whether the serial port6 reception is complete */
 bool isRxCompleted(void);
+/* Clear the serial port periodically. 6 Receive data to prevent a jam */
 void UART6_Reset(void);
 
 /*

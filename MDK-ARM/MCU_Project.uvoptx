@@ -157,9 +157,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>429</LineNumber>
+          <LineNumber>435</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134229294</Address>
+          <Address>134228898</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -168,7 +168,39 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>..\Hardware\USART_Printf\USART_Printf.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\MCU_Project\../Hardware/USART_Printf/USART_Printf.c\429</Expression>
+          <Expression>\\MCU_Project\../Hardware/USART_Printf/USART_Printf.c\435</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>431</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134228826</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>..\Hardware\USART_Printf\USART_Printf.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\MCU_Project\../Hardware/USART_Printf/USART_Printf.c\431</Expression>
+        </Bp>
+        <Bp>
+          <Number>2</Number>
+          <Type>0</Type>
+          <LineNumber>643</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134228736</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>..\Hardware\USART_Printf\USART_Printf.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\MCU_Project\../Hardware/USART_Printf/USART_Printf.c\643</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -436,6 +468,11 @@
           <count>52</count>
           <WinNumber>1</WinNumber>
           <ItemText>sample_count</ItemText>
+        </Ww>
+        <Ww>
+          <count>53</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>tim3_count</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>
