@@ -63,11 +63,6 @@ extern UART_HandleTypeDef huart1;
 extern UART_HandleTypeDef huart2;
 extern UART_HandleTypeDef huart6;
 
-/* Timer 3 handle pointer */
-extern TIM_HandleTypeDef htim3;
-/* Test the count variable for the 10Hz interrupt in timer 3 */
-static uint32_t tim3_count = 0;
-
 /* Variable that determines whether the serial port reception is complete */
 static bool isUartRxCompleted = FALSE;
 /* Extern variable: The serial port receives the data array */
@@ -90,6 +85,11 @@ static uint8_t dataCount = 0;
 static uint8_t command_parameter_count = 0;
 /* Res receives return variables for the serial port */
 static uint8_t Res = 0;
+
+/* Timer 3 handle pointer */
+extern TIM_HandleTypeDef htim3;
+/* Test the count variable for the 10Hz interrupt in timer 3 */
+static uint32_t tim3_count = 0;
 
 /* ++++++++++++Serial port 1 interrupt callback function variable++++++++++++ */
 /* Serial port 1 Receives data */
@@ -559,7 +559,6 @@ bool isRxCompleted(void)
 	}
 }
 
-
 /** 
 * @description: Enable the serial port. 1 Receive an interrupt
 * @param  {void} 
@@ -580,7 +579,6 @@ t_FuncRet USART1_Start_IT(void)
 	return (t_FuncRet)ret ;
 }
 
-
 /**
 * @brief  Serial port 1 Data receive callback function
 */
@@ -589,7 +587,6 @@ void HAL_UART1_RxCpltCallback(void)
 	Gyroscope_Ret = CopeSerial2Data(USART1_Rx_Data);
 	HAL_UART_Receive_IT(&huart1, (uint8_t *)&USART1_Rx_Data, 1);
 }
-
 
 /**
 * @brief  Serial port receive interrupt error callback function
@@ -641,8 +638,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	if (htim == (&htim3))
 	{
 		UART6_Reset();
+		
 		tim3_count++;
-		if(tim3_count == 1000000)
+		if(tim3_count == 100)
 		{
 			tim3_count = 0;
 		}

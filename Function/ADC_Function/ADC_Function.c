@@ -31,6 +31,11 @@ extern uint16_t Data_Mean_Filter_U16(Mean_Filter_U16* p_MeanFilterStruct,uint16_
 /* Mean filtering Reset function */
 extern void Mean_Filter_Rest_U16(Mean_Filter_U16* p_MeanFilterStruct);
 
+/* Initialize the Kalman filter */
+extern void KalmanFilter_Init(Kalman_Filter* p_Kalman_Filter);
+/* Data were filtered by Kalman filter */
+extern float KalmanFilter_Calculate(Kalman_Filter* p_Kalman_Filter , float InData);
+
 /* Private macro definitions--------------------------------------------------*/
 
 /* Global variable------------------------------------------------------------*/
@@ -43,6 +48,15 @@ static uint16_t Sensor_No4_DataBuf[MEAN_FILTER_NUM];
 static uint16_t Sensor_Vref_DataBuf[MEAN_FILTER_NUM];
 /* Array index */
 static uint8_t DataBuf_Index = 0;
+
+/* Voltage value Kalman filter structure */
+static Kalman_Filter KalmanFilterStruct_Sensor_No1 = {0};
+static Kalman_Filter KalmanFilterStruct_Sensor_No2 = {0};
+static Kalman_Filter KalmanFilterStruct_Sensor_No3 = {0};
+static Kalman_Filter KalmanFilterStruct_Sensor_No4 = {0};
+static Kalman_Filter KalmanFilterStruct_Sensor_Vref= {0};
+/* Determines whether the Kalman filter structure is initialized */
+static bool KalmanFilterInitFlag = (bool)FALSE;
 
 /* Static function definition-------------------------------------------------*/
 
@@ -59,10 +73,10 @@ static uint8_t DataBuf_Index = 0;
 * @author: leeqingshui 
 */
 t_FuncRet Get_ADC_MeanFilter_Value(uint16_t* p_Sensor1_V_Data , 
-                           uint16_t* p_Sensor2_V_Data ,
-						   uint16_t* p_Sensor3_V_Data ,
-						   uint16_t* p_Sensor4_V_Data ,
-						   uint16_t* p_Vref_V_Data)
+								   uint16_t* p_Sensor2_V_Data ,
+						           uint16_t* p_Sensor3_V_Data ,
+						           uint16_t* p_Sensor4_V_Data ,
+						           uint16_t* p_Vref_V_Data)
 {
 	t_FuncRet ret= (t_FuncRet)Operatin_Success;
 	
@@ -118,5 +132,63 @@ t_FuncRet Get_ADC_MeanFilter_Value(uint16_t* p_Sensor1_V_Data ,
 
 	return ret;
 }
+
+/** 
+* @description: Obtain the result after Kalman filter
+* @param  {float*}  p_Sensor1_V_Data : Voltage after filtering
+* @param  {float*}  p_Sensor2_V_Data : Voltage after filtering
+* @param  {float*}  p_Sensor3_V_Data : Voltage after filtering
+* @param  {float*}  p_Sensor4_V_Data : Voltage after filtering
+* @param  {float*}  p_Vref_V_Data    : Voltage after filtering
+* @return {t_FuncRet } : if success,return Operatin_Success
+* @author: leeqingshui 
+*/
+t_FuncRet Get_ADC_KalmanFilter_Value(float* p_Sensor1_V_Data , 
+						             float* p_Sensor2_V_Data ,
+						             float* p_Sensor3_V_Data ,
+						             float* p_Sensor4_V_Data ,
+						             float* p_Vref_V_Data)
+{
+	t_FuncRet ret= (t_FuncRet)Operatin_Success;
+	
+	uint16_t temp_Sensor1_V_Data = 0;
+    uint16_t temp_Sensor2_V_Data = 0;
+	uint16_t temp_Sensor3_V_Data = 0;
+	uint16_t temp_Sensor4_V_Data = 0;
+	uint16_t temp_Vref_V_Data    = 0;
+	
+	/* First time set the Kalman filter parameters */
+	if(KalmanFilterInitFlag == (bool)FALSE)
+	{
+		KalmanFilter_Init((Kalman_Filter*)&KalmanFilterStruct_Sensor_No1);
+		KalmanFilter_Init((Kalman_Filter*)&KalmanFilterStruct_Sensor_No2);
+		KalmanFilter_Init((Kalman_Filter*)&KalmanFilterStruct_Sensor_No3);
+		KalmanFilter_Init((Kalman_Filter*)&KalmanFilterStruct_Sensor_No4);
+		KalmanFilter_Init((Kalman_Filter*)&KalmanFilterStruct_Sensor_Vref);
+		
+		KalmanFilterInitFlag = (bool)TRUE;
+	}
+
+	/* Get the median filter voltage value */
+	ret = Get_ADC_MeanFilter_Value((uint16_t*)&temp_Sensor1_V_Data , 
+								   (uint16_t*)&temp_Sensor2_V_Data ,
+						           (uint16_t*)&temp_Sensor3_V_Data ,
+						           (uint16_t*)&temp_Sensor4_V_Data ,
+						           (uint16_t*)&temp_Vref_V_Data);
+	if(ret != (t_FuncRet)Operatin_Success)
+	{
+		return ret;
+	}
+	
+	/* The voltage data after Kalman filter is obtained */
+	*p_Sensor1_V_Data = ROUND_TO_UINT16(1000*KalmanFilter_Calculate((Kalman_Filter*)&KalmanFilterStruct_Sensor_No1 , (float)temp_Sensor1_V_Data/1000));
+	*p_Sensor2_V_Data = ROUND_TO_UINT16(1000*KalmanFilter_Calculate((Kalman_Filter*)&KalmanFilterStruct_Sensor_No2 , (float)temp_Sensor2_V_Data/1000));
+	*p_Sensor3_V_Data = ROUND_TO_UINT16(1000*KalmanFilter_Calculate((Kalman_Filter*)&KalmanFilterStruct_Sensor_No3 , (float)temp_Sensor3_V_Data/1000));
+	*p_Sensor4_V_Data = ROUND_TO_UINT16(1000*KalmanFilter_Calculate((Kalman_Filter*)&KalmanFilterStruct_Sensor_No4 , (float)temp_Sensor4_V_Data/1000));
+	*p_Vref_V_Data    = ROUND_TO_UINT16(1000*KalmanFilter_Calculate((Kalman_Filter*)&KalmanFilterStruct_Sensor_Vref, (float)temp_Vref_V_Data/1000));
+
+	return ret;
+}
  
- 
+
+

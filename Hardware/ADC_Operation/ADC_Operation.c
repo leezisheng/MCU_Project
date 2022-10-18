@@ -16,8 +16,8 @@
 					     
 						 ADC sampling rate £º
 							 Sampling period = conversion time + Read time
-							 Conversion time = Sampling time£¨28 clock cycles£© +12 clock cycles (STM32F4)
-							 Conversion frequency = ADC clock frequency/£¨Conversion time£©= 25 Mhz /40 cycle = 0.625Mhz
+							 Conversion time = Sampling time£¨56 clock cycles£© +12 clock cycles (STM32F4)
+							 Conversion frequency = ADC clock frequency/£¨Conversion time£©= 25 Mhz /68 cycle = 367Khz
 						 
 							 ADCs_Common_Settings:
 							 Mode Independent mode

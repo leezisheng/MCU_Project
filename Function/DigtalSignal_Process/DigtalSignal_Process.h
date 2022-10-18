@@ -15,11 +15,22 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
+/*
+	Digital signal processing related library
+*/
+#include "arm_math.h"  
 /* Common macro definitions---------------------------------------------------*/
 
 /* Mean filter times, the more times, the slower the sensor data transformation */
 #define MEAN_FILTER_NUM	3
+/* Number of fast Fourier transform points */
+#define FFT_LENGTH 256
+
+/* Whether to use functions from the ARM-DSP library or use inefficient digital processing libraries */
+#define _DSP_ABS_USED 			0U
+#define _DSP_OFFSET_USED 		0U
+#define _DSP_MAX_USED 			1U
+#define _DSP_SCALE_USED 		0U
 
 /* Data structure declaration-------------------------------------------------*/
 
@@ -80,6 +91,8 @@ typedef struct
 	float kGain;
 }Kalman_Filter;
 
+/* Round the floating point number x to uint16_t */
+#define ROUND_TO_UINT16(x)   ((uint16_t)(x)+0.5)>(x)? ((uint16_t)(x)):((uint16_t)(x)+1)
 
 /* Function declaration-------------------------------------------------------*/
 
@@ -98,6 +111,29 @@ void KalmanFilter_Init(Kalman_Filter* p_Kalman_Filter);
 /* Data were filtered by Kalman filter */
 float KalmanFilter_Calculate(Kalman_Filter* p_Kalman_Filter , float InData);
 
+/* Get the absolute value of an array */
+void Get_DataBuff_Abs(float32_t* p_SrcBuff,float32_t* p_DstpBuff,uint32_t Buff_Size);
+/* !! 
+	This function causes Hardfault for an unknown reason and does not perform properly !!
+	Notice here that if you use sizeof on an array to find its length, it will cause Hardfault
+*/
+/* Get the offset additioned value of an array */
+void Get_DataBuff_Offeset(float32_t* p_SrcBuff, float32_t offset,float32_t* p_DstpBuff,uint32_t Buff_Size);
+/* !! 
+	This function causes Hardfault for an unknown reason and does not perform properly !!
+	Notice here that if you use sizeof on an array to find its length, it will cause Hardfault
+*/
+/* The target array is multiplied by the proportionality constant */
+void Get_DataBuff_Scale(float32_t* p_SrcBuff, float32_t ratio,float32_t* p_DstpBuff,uint32_t Buff_Size);
+/* !! 
+	This function causes Hardfault for an unknown reason and does not perform properly !!
+	Notice here that if you use sizeof on an array to find its length, it will cause Hardfault
+*/
+/* Computes the maximum value of the data array. This function returns the maximum value and its position in the array. */
+void Get_DataBuff_Max(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Result, uint32_t* p_Index);
+
+/* Functions for testing digital signals */
+void DigtalSignal_Process_Test(void);
 
 #ifdef __cplusplus
 }

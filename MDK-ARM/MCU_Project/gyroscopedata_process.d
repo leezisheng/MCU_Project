@@ -37,4 +37,8 @@ mcu_project\gyroscopedata_process.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4
 mcu_project\gyroscopedata_process.o: ../Common/numtype.h
 mcu_project\gyroscopedata_process.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\stdio.h
 mcu_project\gyroscopedata_process.o: ../Function/DigtalSignal_Process/DigtalSignal_Process.h
+mcu_project\gyroscopedata_process.o: ../Middlewares/ST/ARM/DSP/Inc/arm_math.h
+mcu_project\gyroscopedata_process.o: ../Drivers/CMSIS/Include/core_cm4.h
+mcu_project\gyroscopedata_process.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\string.h
+mcu_project\gyroscopedata_process.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\math.h
 mcu_project\gyroscopedata_process.o: ../Hardware/USART_Gyroscope/USART_Gyroscope.h

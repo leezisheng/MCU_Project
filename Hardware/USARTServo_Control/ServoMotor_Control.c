@@ -13,8 +13,8 @@
 #include "USART_Printf.h"
 #include "ServoMotor_Control.h"
 #include "usart.h"
-#include "tim.h"
 
+#include "tim.h"
 /* External function declaration----------------------------------------------*/
 
 /* extern function : Serial port sending function */
@@ -447,7 +447,7 @@ t_FuncRet ServoMotor_Control_Init(void)
 		Timer 3 is interrupted periodically(10Hz), 
 		and the receive clearance function of serial port 6 is invoked 
 	*/
-	
+	HAL_Delay(50);
 	/* Clear the IT flag bit */
 	__HAL_TIM_CLEAR_IT(&htim3,TIM_IT_UPDATE ); 
 	

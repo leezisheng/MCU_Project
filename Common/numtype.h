@@ -27,6 +27,10 @@ typedef unsigned char		    uint8_t;
 typedef unsigned short int	    uint16_t;
 typedef unsigned int		    uint32_t;
 
+/* Float */
+typedef float 					float32_t;
+typedef double 					float64_t;
+
 /* Signed pointer */
 typedef signed char	*	        p_int8_t;
 typedef short int*	            p_int16_t;
@@ -37,8 +41,13 @@ typedef unsigned char*		    p_uint8_t;
 typedef unsigned short int* 	p_uint16_t;
 typedef unsigned int*		    p_uint32_t;
 
-/* void pointer */
+/* Void pointer */
 typedef void*                   p_void;
+
+/* Float pointer */
+typedef float* 					p_float32_t;
+typedef double* 			    p_float64_t;
+
 
 /* ======================================= Compound data type ===========================================*/
 

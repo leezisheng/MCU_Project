@@ -69,7 +69,6 @@
 */
 #include "GyroscopeData_Process.h"
 
-
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -113,6 +112,12 @@ static uint16_t Sensor3_V_Data = 0;
 static uint16_t Sensor4_V_Data = 0;
 static uint16_t Vref           = 0;
 volatile static uint32_t sample_count   = 0;
+
+static float Sensor1_V_Data_F = 0;
+static float Sensor2_V_Data_F = 0;
+static float Sensor3_V_Data_F = 0;
+static float Sensor4_V_Data_F = 0;
+static float Vref_F           = 0;
 
 /* Servo Motor Postion(Angle) */
 volatile static int32_t Angle = 0;
@@ -217,12 +222,13 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	
+	DigtalSignal_Process_Test();
   }
   /* USER CODE END 3 */
 }
@@ -282,9 +288,11 @@ void SystemClock_Config(void)
 */
 t_FuncRet Hardware_Init(void)
 {
-	printf("============The system starts to initialize hardware=============================\r\n");
+	HAL_Delay(50);
+	printf("====The system starts to initialize hardware====\r\n");
 	
 	/* Initialize ADC related peripherals: ADC GPIO port and DMA channel*/
+	HAL_Delay(50);
 	ret= ADC_Operation_Init();
 	if(ret == Operatin_Fail)
 	{
@@ -298,6 +306,7 @@ t_FuncRet Hardware_Init(void)
 	#endif
 	
 	/* Enable serial port 6 Interrupt receiving (control the action of the manipulator through serial port 6) */
+	HAL_Delay(50);
 	ret = USART6_Start_IT();
 	if(ret == Operatin_Fail)
 	{
@@ -311,6 +320,7 @@ t_FuncRet Hardware_Init(void)
 	#endif
 	
 	/* Enable serial port 1 Interrupt receiving (Read and write gyroscope data through serial port 1) */
+	HAL_Delay(50);
 	ret = USART1_Start_IT();
 	if(ret == Operatin_Fail)
 	{
@@ -324,6 +334,7 @@ t_FuncRet Hardware_Init(void)
 	#endif
 	
 	/* Steering gear control test: Control rotation of No. 0 to 6 steering gear */
+	HAL_Delay(50);
 	ret = ServoMotor_Control_Init();
 	if(ret == Operatin_Fail)
 	{
@@ -337,13 +348,14 @@ t_FuncRet Hardware_Init(void)
 	#endif
 	
 	/* Gyroscope initialization: acceleration calibration and Z-axis Angle calibration */
+	HAL_Delay(50);
 	ret = Gyroscope_Calibration();
 	if(ret == Operatin_Fail)
 	{
 		printf("Failed to initialize Gyroscope\r\n");
 		Error_Handler();
 	}
-	printf("success to initialize ServoMotor\r\n");
+	printf("success to initialize Gyroscope\r\n");
 	
 	/* After the device is powered on, the device delays */
 	printf("Device power-on delay 500 ms, please wait\r\n");
@@ -408,6 +420,16 @@ void ADC_Original_Value_Test(void)
 void ADC_MeanFilter_Value_Test(void)
 {
 	ret = Get_ADC_MeanFilter_Value(&Sensor1_V_Data, &Sensor2_V_Data, &Sensor3_V_Data, &Sensor4_V_Data, &Vref);  
+	if(ret == Operatin_Fail)
+	{
+		Error_Handler();
+	}
+}
+
+/* ADC KalmanFilter voltage output test */
+void ADC_KalmanFilter_Value_Test(void)
+{
+	ret = Get_ADC_KalmanFilter_Value(&Sensor1_V_Data_F, &Sensor2_V_Data_F, &Sensor3_V_Data_F, &Sensor4_V_Data_F, &Vref_F);
 	if(ret == Operatin_Fail)
 	{
 		Error_Handler();

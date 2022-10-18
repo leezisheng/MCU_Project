@@ -90,7 +90,16 @@ void NMI_Handler(void)
 void HardFault_Handler(void)
 {
   /* USER CODE BEGIN HardFault_IRQn 0 */
-
+	
+  /*
+	1. Read the values of PSP and MSP and compare them with the SP values to determine whether the current point is to PSP or MSP
+	2. Open the storage location in Memory and find the address starting with 08
+	3. Enter the address starting with 08 in Disassembly to locate the fault
+  */
+  uint32_t r_psp, r_msp;
+  r_psp = __get_PSP();
+  r_msp = __get_MSP();
+	
   /* USER CODE END HardFault_IRQn 0 */
   while (1)
   {

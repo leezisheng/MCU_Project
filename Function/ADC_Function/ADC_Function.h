@@ -27,11 +27,17 @@
 
 /* Get the median filter voltage value */
 t_FuncRet Get_ADC_MeanFilter_Value(uint16_t* p_Sensor1_V_Data , 
-						   uint16_t* p_Sensor2_V_Data ,
-						   uint16_t* p_Sensor3_V_Data ,
-						   uint16_t* p_Sensor4_V_Data ,
-						   uint16_t* p_Vref_V_Data);
+								   uint16_t* p_Sensor2_V_Data ,
+								   uint16_t* p_Sensor3_V_Data ,
+						           uint16_t* p_Sensor4_V_Data ,
+								   uint16_t* p_Vref_V_Data);
 
+/* Obtain the result after Kalman filter */
+t_FuncRet Get_ADC_KalmanFilter_Value(float* p_Sensor1_V_Data , 
+						             float* p_Sensor2_V_Data ,
+						             float* p_Sensor3_V_Data ,
+						             float* p_Sensor4_V_Data ,
+						             float* p_Vref_V_Data);
 
 #ifdef __cplusplus
 }
