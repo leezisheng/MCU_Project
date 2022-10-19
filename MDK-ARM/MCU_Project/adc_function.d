@@ -38,7 +38,3 @@ mcu_project\adc_function.o: ../Common/numtype.h
 mcu_project\adc_function.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\stdio.h
 mcu_project\adc_function.o: ../Hardware/ADC_Operation/ADC_Operation.h
 mcu_project\adc_function.o: ../Function/DigtalSignal_Process/DigtalSignal_Process.h
-mcu_project\adc_function.o: ../Middlewares/ST/ARM/DSP/Inc/arm_math.h
-mcu_project\adc_function.o: ../Drivers/CMSIS/Include/core_cm4.h
-mcu_project\adc_function.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\string.h
-mcu_project\adc_function.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\math.h

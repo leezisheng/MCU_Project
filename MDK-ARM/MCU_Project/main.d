@@ -46,8 +46,4 @@ mcu_project\main.o: ../Hardware/USARTServo_Control/ServoMotor_Control.h
 mcu_project\main.o: ../Hardware/USART_Gyroscope/USART_Gyroscope.h
 mcu_project\main.o: ../Function/ADC_Function/ADC_Function.h
 mcu_project\main.o: ../Function/DigtalSignal_Process/DigtalSignal_Process.h
-mcu_project\main.o: ../Middlewares/ST/ARM/DSP/Inc/arm_math.h
-mcu_project\main.o: ../Drivers/CMSIS/Include/core_cm4.h
-mcu_project\main.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\string.h
-mcu_project\main.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\math.h
 mcu_project\main.o: ../Function/GyroscopeData_Process/GyroscopeData_Process.h

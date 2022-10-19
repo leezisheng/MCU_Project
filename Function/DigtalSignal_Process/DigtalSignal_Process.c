@@ -8,6 +8,15 @@
   
 /* Includes ------------------------------------------------------------------*/
 #include "DigtalSignal_Process.h"
+#include "math.h"
+
+/* Whether to use functions from the ARM-DSP library or use inefficient digital processing libraries */
+#if(_ARM_DSP_USED == 1)
+	/*
+		Digital signal processing related library
+	*/
+	#include "arm_math.h"
+#endif
 
 /* External function declaration----------------------------------------------*/
 
@@ -22,7 +31,6 @@ volatile static float32_t TempBuff[FFT_LENGTH*2] = {0};
 volatile static float32_t ProcessedTempBuff[FFT_LENGTH*2] = {0};
 
 /* Static function definition-------------------------------------------------*/
-
 
 /* Function definition--------------------------------------------------------*/
 
@@ -265,6 +273,180 @@ void Get_DataBuff_Scale(float32_t* p_SrcBuff, float32_t ratio,float32_t* p_DstpB
 	#endif
 }
 
+/** 
+* @description: Get the array average
+* @param  {float32_t*} p_SrcBuff  : A pointer to the array to be processed
+* @param  {float32_t*} p_Result   : Average of array
+* @param  {uint32_t}   Buff_Size  : Size of Data Buffer
+* @return {void}                         
+* @author: leeqingshui 
+*/
+void Get_DataBuff_Mean(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Result)
+{
+	#if(_DSP_MEAN_USED == 1)
+		arm_mean_f32(p_SrcBuff, Buff_Size, p_Result);	
+	
+	#else
+		float sum = 0;
+		
+		for(uint32_t i = 0;i<Buff_Size;i++)
+		{
+			sum = sum + *(p_SrcBuff+i);
+		}
+		
+		*p_Result = sum/Buff_Size;
+	
+	#endif
+}
+
+/** 
+* @description: Computes the minimum value of the data array. This function returns the minimum value and its position in the array
+* @param  {float32_t*} p_SrcBuff  : A pointer to the array to be processed
+* @param  {uint32_t}   Buff_Size  : Size of Data Buffer
+* @param  {float32_t*} p_Result   : the minimum value of the data array
+* @param  {uint32_t*}  p_Index    : The minimum element is indexed in the array
+* @return {void}                         
+* @author: leeqingshui 
+*/
+void Get_DataBuff_Min(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Result, uint32_t* p_Index)
+{
+	#if(_DSP_MIN_USED == 1)
+		arm_min_f32 (p_SrcBuff, Buff_Size, p_Result, p_Index);
+	
+	#else
+		// Assume that the first element in the array is the maximum value
+		float32_t temp_min = *p_SrcBuff;
+		uint32_t  temp_index = 0;
+		
+		// Go through the group, getting each element, ready to compare
+		for(uint32_t i = 1; i < Buff_Size; i++)
+		{
+			// If something larger than max occurs during the comparison, let max record the larger value
+			if((*(p_SrcBuff + i)) < temp_min)
+			{
+					temp_min = *(p_SrcBuff + i);
+					temp_index = i;
+			}
+		}
+		
+		// The loop ends and the result is retrieved
+		*p_Result = temp_min;
+		*p_Index  = temp_index;
+		
+	#endif
+}
+
+/** 
+* @description: Gets the sum of squares in the array
+* @param  {float32_t*} p_SrcBuff  : A pointer to the array to be processed
+* @param  {float32_t*} p_Result   : the sum of squares of array
+* @param  {uint32_t}   Buff_Size  : Size of Data Buffer
+* @return {void}                         
+* @author: leeqingshui 
+*/
+void Get_DataBuff_Power(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Result)
+{
+	#if(_DSP_POWER_USED == 1)
+		arm_power_f32(p_SrcBuff, Buff_Size, p_Result);	
+	
+	#else
+		float power = 0;
+		
+		for(uint32_t i = 0;i<Buff_Size;i++)
+		{
+			power = (*(p_SrcBuff+i))*(*(p_SrcBuff+i)) + power;
+		}
+		
+		*p_Result = power;
+	
+	#endif
+}
+
+/** 
+* @description: Gets the Root Mean Sqaure of the array
+* @param  {float32_t*} p_SrcBuff  : A pointer to the array to be processed
+* @param  {float32_t*} p_Result   : the Root Mean Sqaure of squares of array
+* @param  {uint32_t}   Buff_Size  : Size of Data Buffer
+* @return {void}                         
+* @author: leeqingshui 
+*/
+void Get_DataBuff_Rms(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Result)
+{
+	#if(_DSP_RMS_USED == 1)
+		arm_rms_f32(p_SrcBuff, Buff_Size, p_Result);	
+	
+	#else
+		float power = 0;
+		
+		for(uint32_t i = 0;i<Buff_Size;i++)
+		{
+			power = (*(p_SrcBuff+i))*(*(p_SrcBuff+i)) + power;
+		}
+		
+		*p_Result = sqrt(power/Buff_Size);
+	
+	#endif
+}
+
+/** 
+* @description: Gets the Standard deviation of the array
+* @param  {float32_t*} p_SrcBuff  : A pointer to the array to be processed
+* @param  {float32_t*} p_Result   : the Standard deviation of squares of array
+* @param  {uint32_t}   Buff_Size  : Size of Data Buffer
+* @return {void}                         
+* @author: leeqingshui 
+*/
+void Get_DataBuff_Std(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Result)
+{
+	#if(_DSP_STD_USED == 1)
+		arm_std_f32(p_SrcBuff, Buff_Size, p_Result);	
+	
+	#else
+		float sumOfSquares = 0;
+		float sum		   = 0;
+		
+		for(uint32_t i = 0;i<Buff_Size;i++)
+		{
+			sum = *(p_SrcBuff+i) + sum;
+		}
+		
+		Get_DataBuff_Power(p_SrcBuff, Buff_Size, (float32_t*)&sumOfSquares);
+		
+		*p_Result = sqrt((sumOfSquares - (sum*sum/Buff_Size))/(Buff_Size - 1));
+	
+	#endif
+}
+
+/** 
+* @description: Get the array variance
+* @param  {float32_t*} p_SrcBuff  : A pointer to the array to be processed
+* @param  {float32_t*} p_Result   : the variance of squares of array
+* @param  {uint32_t}   Buff_Size  : Size of Data Buffer
+* @return {void}                         
+* @author: leeqingshui 
+*/
+void Get_DataBuff_Var(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Result)
+{
+	#if(_DSP_VAR_USED == 1)
+		arm_var_f32(p_SrcBuff, Buff_Size, p_Result);	
+	
+	#else
+		float meanOfElements = 0;
+		float sum		   = 0;
+		
+		Get_DataBuff_Std(p_SrcBuff, Buff_Size, (float32_t*)&meanOfElements);
+	
+		for(uint32_t i = 0;i<Buff_Size;i++)
+		{
+			sum = (*(p_SrcBuff+i) - meanOfElements)*(*(p_SrcBuff+i) - meanOfElements) + sum;
+		}
+		
+		*p_Result = sum/(Buff_Size);
+	
+	#endif
+}
+
+
 
 /* Functions for testing digital signals */
 void DigtalSignal_Process_Test(void)
@@ -278,5 +460,5 @@ void DigtalSignal_Process_Test(void)
 		TempBuff[i]=(float32_t)(-100+i*1);	
 	}
 	
-	Get_DataBuff_Offeset((float32_t*)TempBuff, (float32_t)50,(float32_t*)ProcessedTempBuff,2*FFT_LENGTH);
 }
+

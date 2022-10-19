@@ -47,10 +47,7 @@ I (../Hardware/USART_Printf/USART_Printf.h)(0x634CE2DC)
 I (../Hardware/USARTServo_Control/ServoMotor_Control.h)(0x634CE472)
 I (../Hardware/USART_Gyroscope/USART_Gyroscope.h)(0x63300125)
 I (../Function/ADC_Function/ADC_Function.h)(0x634D12BA)
-I (../Function/DigtalSignal_Process/DigtalSignal_Process.h)(0x634EADCD)
-I (../Middlewares/ST/ARM/DSP/Inc/arm_math.h)(0x634D01FC)
-I (D:\Lee\MDK5\ARM\ARMCC\include\string.h)(0x6025237E)
-I (D:\Lee\MDK5\ARM\ARMCC\include\math.h)(0x60252378)
+I (../Function/DigtalSignal_Process/DigtalSignal_Process.h)(0x6350357B)
 I (../Function/GyroscopeData_Process/GyroscopeData_Process.h)(0x6332A90B)
 F (../Core/Src/gpio.c)(0x634D03C0)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Common -I ../Hardware/ADC_Operation -I ../Hardware/USART_Printf -I ../Hardware/USARTServo_Control -I ../Hardware/USART_Gyroscope -I ../Function/ADC_Function -I ../Function/DigtalSignal_Process -I ../Function/GyroscopeData_Process -I ../Middlewares/ST/ARM/DSP/Inc --gnu-I.\RTE\_MCU_Project-ID:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\Lee\MDK5\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE -DARM_MATH_CM4 -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING-o mcu_project\gpio.o --omf_browse mcu_project\gpio.crf --depend mcu_project\gpio.d)
 I (../Core/Inc/gpio.h)(0x634D03C0)
@@ -1174,12 +1171,9 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x6305D3C5)
 I (../Common/numtype.h)(0x634D8BB2)
 I (D:\Lee\MDK5\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (../Hardware/ADC_Operation/ADC_Operation.h)(0x632F05F7)
-I (../Function/DigtalSignal_Process/DigtalSignal_Process.h)(0x634EADCD)
-I (../Middlewares/ST/ARM/DSP/Inc/arm_math.h)(0x634D01FC)
-I (D:\Lee\MDK5\ARM\ARMCC\include\string.h)(0x6025237E)
-I (D:\Lee\MDK5\ARM\ARMCC\include\math.h)(0x60252378)
-F (..\Function\DigtalSignal_Process\DigtalSignal_Process.c)(0x634EADCD)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Common -I ../Hardware/ADC_Operation -I ../Hardware/USART_Printf -I ../Hardware/USARTServo_Control -I ../Hardware/USART_Gyroscope -I ../Function/ADC_Function -I ../Function/DigtalSignal_Process -I ../Function/GyroscopeData_Process -I ../Middlewares/ST/ARM/DSP/Inc --gnu-I.\RTE\_MCU_Project-ID:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\Lee\MDK5\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE -DARM_MATH_CM4 -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING-o mcu_project\digtalsignal_process.o --omf_browse mcu_project\digtalsignal_process.crf --depend mcu_project\digtalsignal_process.d)
-I (..\Function\DigtalSignal_Process\DigtalSignal_Process.h)(0x634EADCD)
+I (../Function/DigtalSignal_Process/DigtalSignal_Process.h)(0x6350357B)
+F (..\Function\DigtalSignal_Process\DigtalSignal_Process.c)(0x6350357B)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Common -I ../Hardware/ADC_Operation -I ../Hardware/USART_Printf -I ../Hardware/USARTServo_Control -I ../Hardware/USART_Gyroscope -I ../Function/ADC_Function -I ../Function/DigtalSignal_Process -I ../Function/GyroscopeData_Process -I ../Middlewares/ST/ARM/DSP/Inc --gnu-I.\RTE\_MCU_Project-ID:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\Lee\MDK5\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE -DARM_MATH_CM4 -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING-o mcu_project\digtalsignal_process.o --omf_browse mcu_project\digtalsignal_process.crf --depend mcu_project\digtalsignal_process.d)
+I (..\Function\DigtalSignal_Process\DigtalSignal_Process.h)(0x6350357B)
 I (../Core/Inc/main.h)(0x634D1993)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6305D3C5)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x634D7850)
@@ -1215,9 +1209,9 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x6305D3C5)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x6305D3C5)
 I (../Common/numtype.h)(0x634D8BB2)
 I (D:\Lee\MDK5\ARM\ARMCC\include\stdio.h)(0x60252374)
+I (D:\Lee\MDK5\ARM\ARMCC\include\math.h)(0x60252378)
 I (../Middlewares/ST/ARM/DSP/Inc/arm_math.h)(0x634D01FC)
 I (D:\Lee\MDK5\ARM\ARMCC\include\string.h)(0x6025237E)
-I (D:\Lee\MDK5\ARM\ARMCC\include\math.h)(0x60252378)
 F (..\Function\GyroscopeData_Process\GyroscopeData_Process.c)(0x6349019A)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Common -I ../Hardware/ADC_Operation -I ../Hardware/USART_Printf -I ../Hardware/USARTServo_Control -I ../Hardware/USART_Gyroscope -I ../Function/ADC_Function -I ../Function/DigtalSignal_Process -I ../Function/GyroscopeData_Process -I ../Middlewares/ST/ARM/DSP/Inc --gnu-I.\RTE\_MCU_Project-ID:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\Lee\MDK5\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE -DARM_MATH_CM4 -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING-o mcu_project\gyroscopedata_process.o --omf_browse mcu_project\gyroscopedata_process.crf --depend mcu_project\gyroscopedata_process.d)
 I (..\Function\GyroscopeData_Process\GyroscopeData_Process.h)(0x6332A90B)
 I (../Core/Inc/main.h)(0x634D1993)
@@ -1255,10 +1249,7 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h)(0x6305D3C5)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x6305D3C5)
 I (../Common/numtype.h)(0x634D8BB2)
 I (D:\Lee\MDK5\ARM\ARMCC\include\stdio.h)(0x60252374)
-I (../Function/DigtalSignal_Process/DigtalSignal_Process.h)(0x634EADCD)
-I (../Middlewares/ST/ARM/DSP/Inc/arm_math.h)(0x634D01FC)
-I (D:\Lee\MDK5\ARM\ARMCC\include\string.h)(0x6025237E)
-I (D:\Lee\MDK5\ARM\ARMCC\include\math.h)(0x60252378)
+I (../Function/DigtalSignal_Process/DigtalSignal_Process.h)(0x6350357B)
 I (../Hardware/USART_Gyroscope/USART_Gyroscope.h)(0x63300125)
 F (..\Doc\readme.txt)(0x62CAB4AD)()
 F (../Core/Src/system_stm32f4xx.c)(0x62B2C6D3)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Common -I ../Hardware/ADC_Operation -I ../Hardware/USART_Printf -I ../Hardware/USARTServo_Control -I ../Hardware/USART_Gyroscope -I ../Function/ADC_Function -I ../Function/DigtalSignal_Process -I ../Function/GyroscopeData_Process -I ../Middlewares/ST/ARM/DSP/Inc --gnu-I.\RTE\_MCU_Project-ID:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\Lee\MDK5\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE -DARM_MATH_CM4 -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING-o mcu_project\system_stm32f4xx.o --omf_browse mcu_project\system_stm32f4xx.crf --depend mcu_project\system_stm32f4xx.d)

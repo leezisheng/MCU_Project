@@ -14,11 +14,7 @@
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "main.h"
-/*
-	Digital signal processing related library
-*/
-#include "arm_math.h"  
+#include "main.h"  
 /* Common macro definitions---------------------------------------------------*/
 
 /* Mean filter times, the more times, the slower the sensor data transformation */
@@ -27,11 +23,31 @@
 #define FFT_LENGTH 256
 
 /* Whether to use functions from the ARM-DSP library or use inefficient digital processing libraries */
-#define _DSP_ABS_USED 			0U
-#define _DSP_OFFSET_USED 		0U
-#define _DSP_MAX_USED 			1U
-#define _DSP_SCALE_USED 		0U
+#define _ARM_DSP_USED			1U
 
+#if(_ARM_DSP_USED == 1)
+	#define _DSP_ABS_USED 			1U
+	#define _DSP_OFFSET_USED 		0U
+	#define _DSP_SCALE_USED 		0U
+	#define _DSP_MAX_USED 			1U
+	#define _DSP_MEAN_USED 			1U
+	#define _DSP_MIN_USED 			1U
+	#define _DSP_POWER_USED 		1U
+	#define _DSP_RMS_USED 			1U
+	#define _DSP_STD_USED 			1U
+	#define _DSP_VAR_USED 			1U
+#else
+	#define _DSP_ABS_USED 			0U
+	#define _DSP_OFFSET_USED 		0U
+	#define _DSP_MAX_USED 			0U
+	#define _DSP_SCALE_USED 		0U
+	#define _DSP_MEAN_USED 			0U
+	#define _DSP_MIN_USED 			0U
+	#define _DSP_POWER_USED 		0U
+	#define _DSP_RMS_USED 			0U
+	#define _DSP_STD_USED 			0U
+	#define _DSP_VAR_USED 			0U
+#endif
 /* Data structure declaration-------------------------------------------------*/
 
 /* mean filter structure */
@@ -91,10 +107,20 @@ typedef struct
 	float kGain;
 }Kalman_Filter;
 
+/* FFT transforms the type of points */
+typedef enum 
+{
+	Length_64   = 0,
+	Length_256  = 1,
+	Length_1024 = 2
+}FFT_LENGTH_STATUS;
+	
 /* Round the floating point number x to uint16_t */
 #define ROUND_TO_UINT16(x)   ((uint16_t)(x)+0.5)>(x)? ((uint16_t)(x)):((uint16_t)(x)+1)
 
 /* Function declaration-------------------------------------------------------*/
+
+/* =====================================Time domain filtering algorithm================================= */
 
 /* Mean filtering function */
 float Data_Mean_Filter_F(Mean_Filter_F* p_MeanFilterStruct,float Temp_Data_Buf[]);
@@ -111,6 +137,8 @@ void KalmanFilter_Init(Kalman_Filter* p_Kalman_Filter);
 /* Data were filtered by Kalman filter */
 float KalmanFilter_Calculate(Kalman_Filter* p_Kalman_Filter , float InData);
 
+/* ==========================================Basic DSP functions======================================== */
+
 /* Get the absolute value of an array */
 void Get_DataBuff_Abs(float32_t* p_SrcBuff,float32_t* p_DstpBuff,uint32_t Buff_Size);
 /* !! 
@@ -125,12 +153,38 @@ void Get_DataBuff_Offeset(float32_t* p_SrcBuff, float32_t offset,float32_t* p_Ds
 */
 /* The target array is multiplied by the proportionality constant */
 void Get_DataBuff_Scale(float32_t* p_SrcBuff, float32_t ratio,float32_t* p_DstpBuff,uint32_t Buff_Size);
+
+/* =======================================Statistics DSP functions===================================== */
+
 /* !! 
 	This function causes Hardfault for an unknown reason and does not perform properly !!
 	Notice here that if you use sizeof on an array to find its length, it will cause Hardfault
 */
 /* Computes the maximum value of the data array. This function returns the maximum value and its position in the array. */
 void Get_DataBuff_Max(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Result, uint32_t* p_Index);
+/* Get the array average */
+void Get_DataBuff_Mean(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Result);
+/* Computes the minimum value of the data array. This function returns the minimum value and its position in the array. */
+void Get_DataBuff_Min(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Result, uint32_t* p_Index);
+/* Gets the sum of squares in the array */
+void Get_DataBuff_Power(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Result);
+/* Gets the Root Mean Sqaure of the array */
+void Get_DataBuff_Rms(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Result);
+/* Gets the Standard deviation of the array */
+void Get_DataBuff_Std(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Result);
+/* Get the array variance */
+void Get_DataBuff_Var(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Result);
+
+/* =====================================FourierTransform DSP functions================================= */
+
+/* Fast Fourier transform */
+void Get_DataBuff_FFT(FFT_LENGTH_STATUS length, float32_t* p_SrcBuff, float32_t* p_DstpBuff);
+
+/* ==========================================Semg DSP functions======================================== */
+
+/* Obtain the signal zero crossing rate */
+void Get_DataBuff_Zcr(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Result);
+
 
 /* Functions for testing digital signals */
 void DigtalSignal_Process_Test(void);
