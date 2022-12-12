@@ -29,6 +29,7 @@
 "mcu_project\stm32f4xx_hal_uart.o"
 "mcu_project\templete.o"
 "mcu_project\timx_callback_function.o"
+"mcu_project\runtime_calculate.o"
 "mcu_project\adc_operation.o"
 "mcu_project\usart_printf.o"
 "mcu_project\servomotor_control.o"

@@ -69,7 +69,7 @@ static bool KalmanFilterInitFlag = (bool)FALSE;
 * @param  {uint16_t*}  p_Sensor3_V_Data : Voltage after filtering
 * @param  {uint16_t*}  p_Sensor4_V_Data : Voltage after filtering
 * @param  {uint16_t*}  p_Vref_V_Data    : Voltage after filtering
-* @return {t_FuncRet } : if success,return Operatin_Success
+* @return {t_FuncRet } : if success,return Operation_Success
 * @author: leeqingshui 
 */
 t_FuncRet Get_ADC_MeanFilter_Value(uint16_t* p_Sensor1_V_Data , 
@@ -78,14 +78,14 @@ t_FuncRet Get_ADC_MeanFilter_Value(uint16_t* p_Sensor1_V_Data ,
 						           uint16_t* p_Sensor4_V_Data ,
 						           uint16_t* p_Vref_V_Data)
 {
-	t_FuncRet ret= (t_FuncRet)Operatin_Success;
+	t_FuncRet ret= (t_FuncRet)Operation_Success;
 	
 	/* Initializes the filter structure */
 	Mean_Filter_U16 FilterStruct = {0};
 	
 	/* Turn on ADC voltage acquisition once */
 	ret = ADC_Get_Data();
-	if(ret != (t_FuncRet)Operatin_Success)
+	if(ret != (t_FuncRet)Operation_Success)
 	{
 		return ret;
 	}
@@ -140,7 +140,7 @@ t_FuncRet Get_ADC_MeanFilter_Value(uint16_t* p_Sensor1_V_Data ,
 * @param  {float*}  p_Sensor3_V_Data : Voltage after filtering
 * @param  {float*}  p_Sensor4_V_Data : Voltage after filtering
 * @param  {float*}  p_Vref_V_Data    : Voltage after filtering
-* @return {t_FuncRet } : if success,return Operatin_Success
+* @return {t_FuncRet } : if success,return Operation_Success
 * @author: leeqingshui 
 */
 t_FuncRet Get_ADC_KalmanFilter_Value(float* p_Sensor1_V_Data , 
@@ -149,7 +149,7 @@ t_FuncRet Get_ADC_KalmanFilter_Value(float* p_Sensor1_V_Data ,
 						             float* p_Sensor4_V_Data ,
 						             float* p_Vref_V_Data)
 {
-	t_FuncRet ret= (t_FuncRet)Operatin_Success;
+	t_FuncRet ret= (t_FuncRet)Operation_Success;
 	
 	uint16_t temp_Sensor1_V_Data = 0;
     uint16_t temp_Sensor2_V_Data = 0;
@@ -175,7 +175,7 @@ t_FuncRet Get_ADC_KalmanFilter_Value(float* p_Sensor1_V_Data ,
 						           (uint16_t*)&temp_Sensor3_V_Data ,
 						           (uint16_t*)&temp_Sensor4_V_Data ,
 						           (uint16_t*)&temp_Vref_V_Data);
-	if(ret != (t_FuncRet)Operatin_Success)
+	if(ret != (t_FuncRet)Operation_Success)
 	{
 		return ret;
 	}

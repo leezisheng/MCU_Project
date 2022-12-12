@@ -1517,6 +1517,11 @@
               <FileType>1</FileType>
               <FilePath>..\Common\TIMx_Callback_Function.c</FilePath>
             </File>
+            <File>
+              <FileName>Runtime_Calculate.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Common\Runtime_Calculate.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1708,9 +1713,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>::CMSIS</GroupName>
-        </Group>
-        <Group>
           <GroupName>Middlewares/Library/DSP Library/DSP Library</GroupName>
           <GroupOption>
             <CommonProperty>
@@ -1807,6 +1809,9 @@
               </FileOption>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>::CMSIS</GroupName>
         </Group>
       </Groups>
     </Target>

@@ -63,14 +63,14 @@ volatile static float gyro_z;
 /** 
 * @description: The data returned by gyroscope is analyzed
 * @param  {unsigned char}  ucData  :  data that Serial port 1 interrupts receiving to be parsed
-* @return {t_FuncRet}      ret     :  Operatin_Fail    - Data frame received error, receive again
-*                                     Operatin_Success - Complete a data reception
+* @return {t_FuncRet}      ret     :  Operation_Fail    - Data frame received error, receive again
+*                                     Operation_Success - Complete a data reception
 *                                     Operation_Wait   - This data reception is still in progress
 * @author: leeqingshui 
 */
 t_FuncRet CopeSerial2Data(unsigned char ucData)
 {
-	t_FuncRet ret = (t_FuncRet)Operatin_Success;
+	t_FuncRet ret = (t_FuncRet)Operation_Success;
 	
 	// Store the received data into a buffer
 	ucRxBuffer[ucRxCnt++]=ucData;
@@ -79,7 +79,7 @@ t_FuncRet CopeSerial2Data(unsigned char ucData)
 	if (ucRxBuffer[0]!=0x55) 
 	{
 		ucRxCnt=0;
-		ret = (t_FuncRet)Operatin_Fail;
+		ret = (t_FuncRet)Operation_Fail;
 		return ret;
 	}
 	
@@ -111,7 +111,7 @@ t_FuncRet CopeSerial2Data(unsigned char ucData)
 		/* Data parsing is complete. Clear the cache */
 		ucRxCnt=0;
 		
-		ret = (t_FuncRet)Operatin_Success;
+		ret = (t_FuncRet)Operation_Success;
 	}
 	
 	return (t_FuncRet)ret ;
@@ -121,12 +121,12 @@ t_FuncRet CopeSerial2Data(unsigned char ucData)
 /** 
 * @description: Send instructions to the gyroscope
 * @param  {uint8_t *[3]} data :  An order array to be sent 
-* @return {{t_FuncRet} : if success , return (t_FuncRet)Operatin_Success
+* @return {{t_FuncRet} : if success , return (t_FuncRet)Operation_Success
 * @author: leeqingshui 
 */
 t_FuncRet Send_Command(uint8_t data[3])
 {
-	t_FuncRet ret = (t_FuncRet)Operatin_Success;
+	t_FuncRet ret = (t_FuncRet)Operation_Success;
 	
 	static uint8_t tx_buff;
 	
@@ -137,7 +137,7 @@ t_FuncRet Send_Command(uint8_t data[3])
 		// Data transmission failure
 		if((HAL_UART_Transmit(&huart1,&tx_buff,1,0Xff)) != HAL_OK)
 		{
-			ret = Operatin_Fail;
+			ret = Operation_Fail;
 		}
 	}
 
@@ -147,23 +147,23 @@ t_FuncRet Send_Command(uint8_t data[3])
 /** 
 * @description: Gyroscope calibration
 * @param  {void} 
-* @return {{t_FuncRet} : if success , return (t_FuncRet)Operatin_Success
+* @return {{t_FuncRet} : if success , return (t_FuncRet)Operation_Success
 * @author: leeqingshui 
 */
 t_FuncRet Gyroscope_Calibration(void)
 {
-	t_FuncRet ret = (t_FuncRet)Operatin_Success;
+	t_FuncRet ret = (t_FuncRet)Operation_Success;
 	
 	/* Calibration of acceleration */
 	ret = Send_Command(ACCCMD);
 	
-	if(ret == Operatin_Fail)
+	if(ret == Operation_Fail)
 	{
 		return (t_FuncRet)ret;
 	}
 	
 	#ifdef USE_FULL_ASSERT
-		assert_param(ret != Operatin_Fail);
+		assert_param(ret != Operation_Fail);
 	#endif
 	
 	/* Wait until the internal calibration of the module is good. The internal calculation of the module will take some time */
@@ -171,13 +171,13 @@ t_FuncRet Gyroscope_Calibration(void)
 	
 	/* Z axis Angle calibration */
 	ret = (Send_Command(YAWCMD)) & ret;
-	if(ret == Operatin_Fail)
+	if(ret == Operation_Fail)
 	{
 		return (t_FuncRet)ret;
 	}
 	
 	#ifdef USE_FULL_ASSERT
-		assert_param(ret != Operatin_Fail);
+		assert_param(ret != Operation_Fail);
 	#endif
 	
 	/* Wait until the internal calibration of the module is good. The internal calculation of the module will take some time */

@@ -57,12 +57,12 @@ static uint8_t Get_CheckSum(uint8_t* p_buf);
 *				see the instructions below for details) to prevent bus conflicts.
 * @param  {uint8_t} oldID : ID number of the service motor to be operated 
 * @param  {uint8_t} newID : The ID number of the servo motor to be written
-* @return {t_FuncRet}     : if success , return (t_FuncRet)Operatin_Success
+* @return {t_FuncRet}     : if success , return (t_FuncRet)Operation_Success
 * @author: leeqingshui 
 */
 t_FuncRet ServoMotor_SetID(uint8_t oldID, uint8_t newID)
 {
-	t_FuncRet ret = (t_FuncRet)Operatin_Success;
+	t_FuncRet ret = (t_FuncRet)Operation_Success;
 	
 	/* create command sends the data frame structure */ 
 	SendDataFrame CmdInfoStruct;
@@ -106,12 +106,12 @@ t_FuncRet ServoMotor_SetID(uint8_t oldID, uint8_t newID)
 *								 The higher eight digits are valid
 * @param  {uint16_t}  time     : The time range is 0 to 30,000 milliseconds
 *								 The higher eight digits are valid
-* @return {t_FuncRet}          : if success , return (t_FuncRet)Operatin_Success
+* @return {t_FuncRet}          : if success , return (t_FuncRet)Operation_Success
 * @author: leeqingshui 
 */
 t_FuncRet ServoMotor_Move_Immediately(uint8_t id, int16_t position, uint16_t time)
 {
-	t_FuncRet ret = (t_FuncRet)Operatin_Success;
+	t_FuncRet ret = (t_FuncRet)Operation_Success;
 	
 	/* create command sends the data frame structure */ 
 	SendDataFrame CmdInfoStruct;
@@ -152,12 +152,12 @@ t_FuncRet ServoMotor_Move_Immediately(uint8_t id, int16_t position, uint16_t tim
 *				At this time, the steering gear has no torque output. 1 represents the loading motor, at this time the steering engine has torque output, 
 *				the default value is 0.
 * @param  {uint8_t}   id  : ID of the service motor to be operated
-* @return {t_FuncRet}     : if success , return (t_FuncRet)Operatin_Success
+* @return {t_FuncRet}     : if success , return (t_FuncRet)Operation_Success
 * @author: leeqingshui 
 */
 t_FuncRet ServoMotor_Unload(uint8_t id)
 {
-	t_FuncRet ret = (t_FuncRet)Operatin_Success;
+	t_FuncRet ret = (t_FuncRet)Operation_Success;
 	
 	/* create command sends the data frame structure */ 
 	SendDataFrame CmdInfoStruct;
@@ -195,12 +195,12 @@ t_FuncRet ServoMotor_Unload(uint8_t id)
 *				At this time, the steering gear has no torque output. 1 represents the loading motor, at this time the steering engine has torque output, 
 *				the default value is 0.
 * @param  {uint8_t}   id  : ID of the service motor to be operated
-* @return {t_FuncRet}     : if success , return (t_FuncRet)Operatin_Success
+* @return {t_FuncRet}     : if success , return (t_FuncRet)Operation_Success
 * @author: leeqingshui 
 */
 t_FuncRet ServoMotor_Load(uint8_t id)
 {
-	t_FuncRet ret = (t_FuncRet)Operatin_Success;
+	t_FuncRet ret = (t_FuncRet)Operation_Success;
 	
 	/* create command sends the data frame structure */ 
 	SendDataFrame CmdInfoStruct;
@@ -239,12 +239,12 @@ t_FuncRet ServoMotor_Load(uint8_t id)
 *					Parameter 2: eight digits higher than the current Angle position value of the steering gear, no default value.
 * @param  {uint8_t}  id       : ID of the service motor to be operated
 * @param  {int32_t*} p_angle  : Pointer parameter, Angle value to be read
-* @return {t_FuncRet}         : if success , return (t_FuncRet)Operatin_Success
+* @return {t_FuncRet}         : if success , return (t_FuncRet)Operation_Success
 * @author: leeqingshui 
 */
 t_FuncRet ServoMotor_Read_Position(uint8_t id , int32_t* p_angle)
 {
-	t_FuncRet ret = (t_FuncRet)Operatin_Success;
+	t_FuncRet ret = (t_FuncRet)Operation_Success;
 	
 	/* create command sends the data frame structure */ 
 	SendDataFrame CmdInfoStruct;
@@ -285,12 +285,12 @@ t_FuncRet ServoMotor_Read_Position(uint8_t id , int32_t* p_angle)
 *					Parameter 1: the lower eight digits of the current Angle position value of the steering gear.
 *					Parameter 2: eight digits higher than the current Angle position value of the steering gear, no default value.
 * @param  {int32_t*} p_ret : Pointer parameter, return value to be read
-* @return {t_FuncRet}      : if success , return (t_FuncRet)Operatin_Success
+* @return {t_FuncRet}      : if success , return (t_FuncRet)Operation_Success
 * @author: leeqingshui 
 */
 t_FuncRet ServoMotor_Read_Ret(int32_t* p_ret)
 {
-	t_FuncRet ret = (t_FuncRet)Operatin_Success;
+	t_FuncRet ret = (t_FuncRet)Operation_Success;
 	
 	/* Structure is converted to an array */
 	uint8_t DataBuf[MAX_DATA_LENGTH + 6];
@@ -322,7 +322,7 @@ t_FuncRet ServoMotor_Read_Ret(int32_t* p_ret)
 	if(((uint8_t)checksum) != (uint8_t)RxDataStruct.Checksum)
 	{
 		/* The checksum does not match. The failure flag bit is returned */
-		return (t_FuncRet)Operatin_Fail;
+		return (t_FuncRet)Operation_Fail;
 	}
 	
 	cmd = RxDataStruct.Command;
@@ -339,7 +339,7 @@ t_FuncRet ServoMotor_Read_Ret(int32_t* p_ret)
 			Note: The Angle position value returned should be converted to a signed short int, because the Angle read may be negative
 			*/
 			*p_ret = (int32_t)BYTE_TO_HW(RxDataStruct.Command_Parameter[1] ,RxDataStruct.Command_Parameter[0]);
-			ret = (t_FuncRet)Operatin_Success;
+			ret = (t_FuncRet)Operation_Success;
 			UART6_Reset();
 			return ret;
 		default:
@@ -355,12 +355,12 @@ t_FuncRet ServoMotor_Read_Ret(int32_t* p_ret)
 * @param  {SendDataFrame} CmdStruct : the command structure to be split
 * @param  {uint8_t*} 	  DataBuf   : array to send
 * @param  {uint8_t } 	  DataBuf   : length of array to send
-* @return {t_FuncRet}               : if success , return (t_FuncRet)Operatin_Success
+* @return {t_FuncRet}               : if success , return (t_FuncRet)Operation_Success
 * @author: leeqingshui 
 */
 static t_FuncRet CmdStruct_To_Array(SendDataFrame* p_CmdStruct , uint8_t* p_DataBuf ,uint8_t Length_CmdStruct)
 {
-	t_FuncRet ret = (t_FuncRet)Operatin_Success;
+	t_FuncRet ret = (t_FuncRet)Operation_Success;
 	
 	// A pointer enforces a cast
 	uint8_t* p_StructElem = (uint8_t*)p_CmdStruct;
@@ -379,12 +379,12 @@ static t_FuncRet CmdStruct_To_Array(SendDataFrame* p_CmdStruct , uint8_t* p_Data
 * @param  {SendDataFrame} CmdStruct : the command structure to be split
 * @param  {uint8_t*} 	  DataBuf   : array to send
 * @param  {uint8_t } 	  DataBuf   : length of array to send
-* @return {t_FuncRet}               : if success , return (t_FuncRet)Operatin_Success
+* @return {t_FuncRet}               : if success , return (t_FuncRet)Operation_Success
 * @author: leeqingshui 
 */
 static t_FuncRet CmdStruct_To_Array_Checksum(SendDataFrame* p_CmdStruct , uint8_t* p_DataBuf)
 {
-	t_FuncRet ret = (t_FuncRet)Operatin_Success;
+	t_FuncRet ret = (t_FuncRet)Operation_Success;
 	int ptr_offset = 0;
 
 	// A pointer enforces a cast
@@ -434,7 +434,7 @@ static uint8_t Get_CheckSum(uint8_t* p_buf)
 /* Steering gear control test: Control rotation of No. 0 to 6 steering gear */
 t_FuncRet ServoMotor_Control_Init(void)
 {
-	t_FuncRet ret = (t_FuncRet)Operatin_Success;
+	t_FuncRet ret = (t_FuncRet)Operation_Success;
 	uint8_t temp_id = 0;
 	
 	for(temp_id = 0;temp_id<=6;temp_id++)
@@ -454,7 +454,7 @@ t_FuncRet ServoMotor_Control_Init(void)
 	/* Enable timer 3 Interrupt */
 	if(HAL_TIM_Base_Start_IT(&htim3) != HAL_OK)
 	{
-		ret = Operatin_Fail;
+		ret = Operation_Fail;
 		return (t_FuncRet)ret;
 	}
 	

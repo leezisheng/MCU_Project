@@ -11,7 +11,6 @@
 #include "USART_Printf.h"
 #include "tim.h"
 
-
 /* External function declaration----------------------------------------------*/
 
 
@@ -22,12 +21,15 @@
 
 /* Timer 3 handle pointer */
 extern TIM_HandleTypeDef htim3;
-/* Test the count variable for the 10Hz interrupt in timer 3 */
-static uint32_t tim3_count = 0;
 /* Handle of the timer associated with ADC timing acquisition, with a frequency of 2000Hz */
 extern TIM_HandleTypeDef htim2;
-/* Test the count variable for the 2000Hz interrupt in timer 2 */
-static uint32_t tim2_count = 0;
+
+/* Static function definition-------------------------------------------------*/
+
+
+/* Function definition--------------------------------------------------------*/
+
+
 
 /**
   * @brief  Period elapsed callback in non blocking mode
@@ -43,12 +45,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	if (htim == (&htim3))
 	{
 		UART6_Reset();
-		
-		tim3_count++;
-		if(tim3_count == 10)
-		{
-			tim3_count = 0;
-		}
 	}
 	/* 
 		Timer 2 is interrupted periodically(2000Hz), 
@@ -56,11 +52,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	*/
 	if(htim == (&htim2))
 	{
-		tim2_count++;
-	    if(tim2_count == 2000)
-		{
-			tim2_count = 0;
-		}
+        ADC_KalmanFilter_Value_Test();
 	}
 }
 
