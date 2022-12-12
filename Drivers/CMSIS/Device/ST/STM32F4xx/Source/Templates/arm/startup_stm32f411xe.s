@@ -177,24 +177,6 @@ Reset_Handler    PROC
 
                  LDR     R0, =SystemInit
                  BLX     R0
-				 ;要使用FPU就需要加上这段代码，作用是关闭CM4的lazy stacking功能
-				 ;加上之后就可以使用snprintf和printf打印浮点数，以及直接使用浮点数
-				 IF {FPU} != "SoftVFP"
-
-				 LDR.W   R0,=0xE000ED88
-				 LDR     R1,[R0]
-				 ORR     R1, R1,#(0xF<<20)
-						 
-				 STR     R1,[R0]
-				 DSB
-						 
-				 LDR.W   R0,=0xE000EF34
-				 LDR     R1,[R0]
-				 AND     R1,#(0x3FFFFFFF)
-				 STR     R1,[R0]
-				 ISB
-				 ENDIF
-				 
                  LDR     R0, =__main
                  BX      R0
                  ENDP

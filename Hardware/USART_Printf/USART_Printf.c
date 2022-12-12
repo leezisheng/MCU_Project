@@ -86,11 +86,6 @@ static uint8_t command_parameter_count = 0;
 /* Res receives return variables for the serial port */
 static uint8_t Res = 0;
 
-/* Timer 3 handle pointer */
-extern TIM_HandleTypeDef htim3;
-/* Test the count variable for the 10Hz interrupt in timer 3 */
-static uint32_t tim3_count = 0;
-
 /* ++++++++++++Serial port 1 interrupt callback function variable++++++++++++ */
 /* Serial port 1 Receives data */
 static uint8_t USART1_Rx_Data = 0;
@@ -101,7 +96,6 @@ volatile static t_FuncRet Gyroscope_Ret = Operatin_Success;
 
 /* Convert an integer to a string,itoa ( integer to array ) */
 static char *itoa( int value, char *string, int radix );
-
 
 /* Function definition--------------------------------------------------------*/
 
@@ -123,7 +117,6 @@ int fputc(int ch, FILE *f)
     }
     return(ch);
 }
-
 
 /** 
 * @description: the printf function for serial port 6 redirection
@@ -624,32 +617,8 @@ void UART6_Reset(void)
 	RxDataStruct.HeaderFrame_2 = 0;
 }
 
-/**
-  * @brief  Period elapsed callback in non blocking mode
-  * @param  htim : TIM handle
-  * @retval None
-  */
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-	/* 
-		Timer 3 is interrupted periodically(10Hz), 
-		and the receive clearance function of serial port 6 is invoked 
-	*/
-	if (htim == (&htim3))
-	{
-		UART6_Reset();
-		
-		tim3_count++;
-		if(tim3_count == 100)
-		{
-			tim3_count = 0;
-		}
-	}
-}
-
 /* Serial port 6 The receiver is cleared periodically */
 t_FuncRet UART1_isRxComplete(void)
 {
 	return Gyroscope_Ret;
 }
-

@@ -5,7 +5,10 @@
   * Description        : This file contains basic operations on the ADC, including 
   *						 initialization, reading data, returning data, and so on
   *
-  *						 Change the ADC to trigger timer 2, and set the sampling rate to 100/1000/5 = 20K
+  *						 ADC sampling is triggered by software
+  *						 ADC software startup trigger program is started in TIM2 (2000Hz)timer interrupt. 
+  *						 Specific parameters of TIM2 are as follows:
+  *						 APB1 100MHz = 100*1000000 PSC:1000-1 ARR:50-1 
   * parameter          :
   * 					 ADC1:Preenmption Priority 0
 							 mode: IN1  -- PA1
@@ -40,23 +43,23 @@
 							 
 							 Rank 1
 							 Channel Channel 1
-							 Sampling Time 15 Cycles
+							 Sampling Time 56 Cycles
 							 
 							 Rank 2 *
 							 Channel Channel 3 
-							 Sampling Time 15 Cycles
+							 Sampling Time 56 Cycles
 							 
 							 Rank 3
 							 Channel Channel 5
-							 Sampling Time 15 Cycles
+							 Sampling Time 56 Cycles
 							 
 							 Rank 4 *
 							 Channel Channel 6 
-							 Sampling Time 15 Cycles
+							 Sampling Time 56 Cycles
 							 
 							 Rank 5 *
 							 Channel Vref 
-							 Sampling Time 15 Cycles
+							 Sampling Time 56 Cycles
 						 
 						 
 						 DMA2: Preenmption Priority 2
@@ -131,7 +134,17 @@ t_FuncRet  ADC_Operation_Init(void)
 	*/
 	
 	/* Start timer 2 first and then DMA transfer */
-	if(HAL_TIM_Base_Start(&htim2)!=HAL_OK)
+	
+	/* 
+		Timer 2 is interrupted periodically(2000Hz), 
+		and Implementation of ADC timing multi - channel sampling conversion
+	*/
+	
+	/* Clear the IT flag bit */
+	__HAL_TIM_CLEAR_IT(&htim2,TIM_IT_UPDATE ); 
+
+	/* Enable timer 3 Interrupt */
+	if(HAL_TIM_Base_Start_IT(&htim2)!=HAL_OK)
 	{
 		return ret= (t_FuncRet)Operatin_Fail;
 	}

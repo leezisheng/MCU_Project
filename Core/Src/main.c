@@ -69,6 +69,14 @@
 */
 #include "GyroscopeData_Process.h"
 
+#include "arm_math.h"
+#include "arm_const_structs.h"
+
+/* An input array for testing */
+volatile static float32_t TempBuff[FFT_LENGTH*2] = {0};
+/* A processed array for testing */
+volatile static float32_t ProcessedTempBuff[FFT_LENGTH*2] = {0};
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -228,7 +236,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	DigtalSignal_Process_Test();
+	  
+	
   }
   /* USER CODE END 3 */
 }
@@ -288,11 +297,11 @@ void SystemClock_Config(void)
 */
 t_FuncRet Hardware_Init(void)
 {
-	HAL_Delay(50);
+	HAL_Delay(500);
 	printf("====The system starts to initialize hardware====\r\n");
 	
 	/* Initialize ADC related peripherals: ADC GPIO port and DMA channel*/
-	HAL_Delay(50);
+	HAL_Delay(1000);
 	ret= ADC_Operation_Init();
 	if(ret == Operatin_Fail)
 	{
@@ -306,7 +315,7 @@ t_FuncRet Hardware_Init(void)
 	#endif
 	
 	/* Enable serial port 6 Interrupt receiving (control the action of the manipulator through serial port 6) */
-	HAL_Delay(50);
+	HAL_Delay(1000);
 	ret = USART6_Start_IT();
 	if(ret == Operatin_Fail)
 	{
@@ -320,7 +329,7 @@ t_FuncRet Hardware_Init(void)
 	#endif
 	
 	/* Enable serial port 1 Interrupt receiving (Read and write gyroscope data through serial port 1) */
-	HAL_Delay(50);
+	HAL_Delay(1000);
 	ret = USART1_Start_IT();
 	if(ret == Operatin_Fail)
 	{
@@ -334,7 +343,7 @@ t_FuncRet Hardware_Init(void)
 	#endif
 	
 	/* Steering gear control test: Control rotation of No. 0 to 6 steering gear */
-	HAL_Delay(50);
+	HAL_Delay(1000);
 	ret = ServoMotor_Control_Init();
 	if(ret == Operatin_Fail)
 	{
@@ -348,7 +357,7 @@ t_FuncRet Hardware_Init(void)
 	#endif
 	
 	/* Gyroscope initialization: acceleration calibration and Z-axis Angle calibration */
-	HAL_Delay(50);
+	HAL_Delay(1000);
 	ret = Gyroscope_Calibration();
 	if(ret == Operatin_Fail)
 	{
@@ -357,6 +366,7 @@ t_FuncRet Hardware_Init(void)
 	}
 	printf("success to initialize Gyroscope\r\n");
 	
+	HAL_Delay(1000);
 	/* After the device is powered on, the device delays */
 	printf("Device power-on delay 500 ms, please wait\r\n");
 	HAL_Delay(500);
