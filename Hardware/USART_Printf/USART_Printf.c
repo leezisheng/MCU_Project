@@ -5,11 +5,11 @@
   * Description        : This file contains basic operations on the USART2¡¢USART6¡¢
   *					     including initialization, reading data, returning data, and so on
   *
-  *                      USART6  ------> Used to control the serving motor
-  *                      USART1  ------> Used to Send and receive gyroscope data
-  *                      USART2  ------> Used to Send and receive data to the upper computer
+  *                      USART6  ------> Used to control the serving motor (Baud Rate 115200)
+  *                      USART1  ------> Used to Send and receive gyroscope data(Baud Rate 9600)
+  *                      USART2  ------> Used to Send and receive data to the upper computer(Baud Rate 115200)
   *
-  * parameter          : 
+  * Pin               : 
   *					     PA9     ------> USART1_TX
   *					 	 PA10    ------> USART1_RX
   *
@@ -19,17 +19,6 @@
   *					     PC6     ------> USART6_TX
   *						 PC7     ------> USART6_RX
   *
-  *					     Basic Parameters:
-  *						 Baud Rate 115200
-  *						 Word Length 8 Bits (including Parity)
-  *						 Parity None
-  *						 Stop Bits 1
-  *						 
-  *						 Advanced Parameters:
-  *						 Data Direction Receive and Transmit
-  *						 Over Sampling 16 Samples
-  *
-  * Attention:
   * 					In this file, SWO is used instead of UART to achieve Printf printing function
   *	Data reference:
   *                     https://www.cnblogs.com/wanban/p/11789160.html

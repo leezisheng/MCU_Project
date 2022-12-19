@@ -468,7 +468,6 @@ void USART_Gyroscope_MeanFilter_Test(void)
 						                  (float*)&gyro_z );
 }
 
-
 #endif
 /* USER CODE END 4 */
 
