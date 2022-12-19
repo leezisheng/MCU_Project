@@ -94,7 +94,7 @@ static uint8_t Res = 0;
 /* Serial port 1 Receives data */
 static uint8_t USART1_Rx_Data = 0;
 /* Static variable that determines whether data parsing is complete for serial port 1 */
-volatile static t_FuncRet Gyroscope_Ret = Operatin_Success;
+volatile static t_FuncRet Gyroscope_Ret = Operation_Success;
 
 /* Static function definition-------------------------------------------------*/
 
@@ -148,12 +148,12 @@ int fputc(int ch, FILE *f)
 *
 * @param {const char*} Data : String constant
 * @param {void}        ...  : Format the sent data
-* @return {int} ret: if success , return Operatin_Success
+* @return {int} ret: if success , return Operation_Success
 * @author: leeqingshui 
 */
 t_FuncRet USART6_printf(const char* Data, ...)
 {
-	t_FuncRet ret = (t_FuncRet)Operatin_Success;
+	t_FuncRet ret = (t_FuncRet)Operation_Success;
 	
 	const char *s;
 	int d;   
@@ -189,7 +189,7 @@ t_FuncRet USART6_printf(const char* Data, ...)
                 case 'r': // Check whether it is a carriage return character                                    
                 if(HAL_UART_Transmit (&huart6, (uint8_t *)&temp_r, (uint16_t)1 , 1000)!=HAL_OK)
 				{
-					ret = (t_FuncRet)Operatin_Fail;
+					ret = (t_FuncRet)Operation_Fail;
 					return (t_FuncRet)ret ;
 				}
                 Data ++;
@@ -198,7 +198,7 @@ t_FuncRet USART6_printf(const char* Data, ...)
                 case 'n':   // Check whether it is a carriage return character                              
                 if(HAL_UART_Transmit (&huart6, (uint8_t *)&temp_n, (uint16_t)1 , 1000)!=HAL_OK)
 				{
-					ret = (t_FuncRet)Operatin_Fail;
+					ret = (t_FuncRet)Operation_Fail;
 					return (t_FuncRet)ret ;
 				}
                 Data ++;
@@ -234,7 +234,7 @@ t_FuncRet USART6_printf(const char* Data, ...)
                 {
 					if(HAL_UART_Transmit (&huart6, (uint8_t *)s, (uint16_t)1 , 1000)!=HAL_OK)
 					{
-						ret = (t_FuncRet)Operatin_Fail;
+						ret = (t_FuncRet)Operation_Fail;
 						return (t_FuncRet)ret ;
 					}
                 }
@@ -249,7 +249,7 @@ t_FuncRet USART6_printf(const char* Data, ...)
                 {
                     if(HAL_UART_Transmit (&huart6, (uint8_t *)s, (uint16_t)1 , 1000)!=HAL_OK)
 					{
-						ret = (t_FuncRet)Operatin_Fail;
+						ret = (t_FuncRet)Operation_Fail;
 						return (t_FuncRet)ret ;
 					}
                 }
@@ -264,7 +264,7 @@ t_FuncRet USART6_printf(const char* Data, ...)
         {
 			if(HAL_UART_Transmit (&huart6, (uint8_t *)Data++, (uint16_t)1 , 1000)!=HAL_OK)
 			{
-				ret = (t_FuncRet)Operatin_Fail;
+				ret = (t_FuncRet)Operation_Fail;
 				return (t_FuncRet)ret ;
 			}
 		}
@@ -338,16 +338,16 @@ static char *itoa( int value, char *string, int radix )
 * @description: Send an indefinite array using a serial port
 * @param  {uint8_t*} DataBuf : array to send
 * @param  {uint8_t*}   Length_DataBuf : Length of  array to print
-* @return {t_FuncRet}        : if success , return (t_FuncRet)Operatin_Success
+* @return {t_FuncRet}        : if success , return (t_FuncRet)Operation_Success
 * @author: leeqingshui 
 */
 t_FuncRet USART6_SendBuf(uint8_t* DataBuf , uint8_t Length_DataBuf)
 {
-	t_FuncRet ret = (t_FuncRet)Operatin_Success;
+	t_FuncRet ret = (t_FuncRet)Operation_Success;
 	
 	if(HAL_UART_Transmit (&huart6, (uint8_t *)DataBuf, (uint16_t)Length_DataBuf, 100)!=HAL_OK)
 	{
-		ret = (t_FuncRet)Operatin_Fail;
+		ret = (t_FuncRet)Operation_Fail;
 		return (t_FuncRet)ret ;
 	}
 	
@@ -357,17 +357,17 @@ t_FuncRet USART6_SendBuf(uint8_t* DataBuf , uint8_t Length_DataBuf)
 /** 
 * @description: Enable the serial port. 6 Receive an interrupt
 * @param  {void} 
-* @return {t_FuncRet} : if success , return (t_FuncRet)Operatin_Success
+* @return {t_FuncRet} : if success , return (t_FuncRet)Operation_Success
 * @author: leeqingshui 
 */
 t_FuncRet USART6_Start_IT(void)
 {
-	t_FuncRet ret = (t_FuncRet)Operatin_Success;
+	t_FuncRet ret = (t_FuncRet)Operation_Success;
 	
 	/* Only one character can be received per interrupt */
 	if(HAL_UART_Receive_IT(&huart6, (uint8_t *)&USART6_Rx_Data, 1) != HAL_OK)
 	{
-		ret = (t_FuncRet)Operatin_Fail;
+		ret = (t_FuncRet)Operation_Fail;
 		return (t_FuncRet)ret ;
 	}
 	
@@ -559,17 +559,17 @@ bool isRxCompleted(void)
 /** 
 * @description: Enable the serial port. 1 Receive an interrupt
 * @param  {void} 
-* @return {t_FuncRet} : if success , return (t_FuncRet)Operatin_Success
+* @return {t_FuncRet} : if success , return (t_FuncRet)Operation_Success
 * @author: leeqingshui 
 */
 t_FuncRet USART1_Start_IT(void)
 {
-	t_FuncRet ret = (t_FuncRet)Operatin_Success;
+	t_FuncRet ret = (t_FuncRet)Operation_Success;
 	
 	/* Only one character can be received per interrupt */
 	if(HAL_UART_Receive_IT(&huart1, (uint8_t *)&USART1_Rx_Data, 1) != HAL_OK)
 	{
-		ret = (t_FuncRet)Operatin_Fail;
+		ret = (t_FuncRet)Operation_Fail;
 		return (t_FuncRet)ret ;
 	}
 	

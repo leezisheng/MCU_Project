@@ -54,8 +54,8 @@ typedef double* 			    p_float64_t;
 /* Function return type */
 typedef enum
 {
-    Operatin_Success = 1,
-	Operatin_Fail    = 0,
+    Operation_Success = 1,
+	Operation_Fail    = 0,
 	Operation_Wait   = 2 
 } t_FuncRet;
 

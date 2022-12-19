@@ -69,6 +69,9 @@
 */
 #include "GyroscopeData_Process.h"
 
+/*
+    This file includes the ARM digital signal processing related firmware library
+*/
 #include "arm_math.h"
 #include "arm_const_structs.h"
 
@@ -102,51 +105,48 @@ They are not used when the program is running
 	and are not required for official launch
 */
 
-/* Steering gear control test: Control rotation of No. 0 to 6 steering gear */
-t_FuncRet ServoMotor_Control_Test(void);
-
 /* A variable that stores the return value of a function for easy debugging */
-static t_FuncRet ret = Operatin_Success;
+static t_FuncRet ret = Operation_Success;
 
 /* Adc-related global variables */
-static uint16_t Sensor1_V_Data = 0;
-static uint16_t Sensor2_V_Data = 0;
-static uint16_t Sensor3_V_Data = 0;
-static uint16_t Sensor4_V_Data = 0;
-static uint16_t Vref           = 0;
+static uint16_t Sensor1_V_Data          = 0;
+static uint16_t Sensor2_V_Data          = 0;
+static uint16_t Sensor3_V_Data          = 0;
+static uint16_t Sensor4_V_Data          = 0;
+static uint16_t Vref                    = 0;
 volatile static uint32_t sample_count   = 0;
 
-static float Sensor1_V_Data_F = 0;
-static float Sensor2_V_Data_F = 0;
-static float Sensor3_V_Data_F = 0;
-static float Sensor4_V_Data_F = 0;
-static float Vref_F           = 0;
+static float Sensor1_V_Data_F           = 0;
+static float Sensor2_V_Data_F           = 0;
+static float Sensor3_V_Data_F           = 0;
+static float Sensor4_V_Data_F           = 0;
+static float Vref_F                     = 0;
 
 /* Servo Motor Postion(Angle) */
-volatile static int32_t Angle = 0;
+volatile static int32_t Angle           = 0;
 
 /* Gyroscope related data */
 /* 
 	Gyroscope calibration count variable: when count is 10, acceleration and Z-axis Angle calibration is started 
 */
-volatile static float angle_x = 0;
-volatile static float angle_y = 0;
-volatile static float angle_z = 0;
+volatile static float angle_x           = 0;
+volatile static float angle_y           = 0;
+volatile static float angle_z           = 0;
 
-volatile static float acc_x 	 = 0;
-volatile static float acc_y 	 = 0;
-volatile static float acc_z 	 = 0;
+volatile static float acc_x 	        = 0;
+volatile static float acc_y 	        = 0;
+volatile static float acc_z 	        = 0;
 
-volatile static float gyro_x  = 0;
-volatile static float gyro_y  = 0;
-volatile static float gyro_z  = 0;
+volatile static float gyro_x            = 0;
+volatile static float gyro_y            = 0;
+volatile static float gyro_z            = 0;
 
 /* Manipulator control related variables */
 
-volatile static uint8_t temp_id		= 6;
-volatile static int32_t angle 		= 0;
-volatile static int16_t position	= 900;
-volatile static int32_t wait_time 	= 500;
+volatile static uint8_t temp_id		    = 6;
+volatile static int32_t angle 	        = 0;
+volatile static int16_t position        = 900;
+volatile static int32_t wait_time 	    = 500;
 
 #endif
 
@@ -209,14 +209,14 @@ int main(void)
   /* Peripheral initialization function */
   
   ret = Hardware_Init();
-  if(ret == Operatin_Fail)
+  if(ret == Operation_Fail)
   {
   	printf("Failed to initialize Hardware Procedure\r\n");
 	Error_Handler();
   }
   
   #ifdef USE_FULL_ASSERT
-		assert_param(ret != Operatin_Fail);
+		assert_param(ret != Operation_Fail);
   #endif
   
   printf("success to initialize Hardware Procedure\r\n");
@@ -231,8 +231,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    
 	  
-	
   }
   /* USER CODE END 3 */
 }
@@ -287,7 +287,7 @@ void SystemClock_Config(void)
 /** 
 * @description: Peripheral initialization function
 * @param  {void} 
-* @return {t_FuncRet} : if success,return Operatin_Success
+* @return {t_FuncRet} : if success,return Operation_Success
 * @author: leeqingshui 
 */
 t_FuncRet Hardware_Init(void)
@@ -298,7 +298,7 @@ t_FuncRet Hardware_Init(void)
 	/* Initialize ADC related peripherals: ADC GPIO port and DMA channel*/
 	HAL_Delay(1000);
 	ret= ADC_Operation_Init();
-	if(ret == Operatin_Fail)
+	if(ret == Operation_Fail)
 	{
 		printf("Failed to initialize ADC. Procedure\r\n");
 		Error_Handler();
@@ -306,13 +306,13 @@ t_FuncRet Hardware_Init(void)
 	printf("success to initialize ADC Procedure\r\n");
 	
 	#ifdef USE_FULL_ASSERT
-		assert_param(ret != Operatin_Fail);
+		assert_param(ret != Operation_Fail);
 	#endif
 	
 	/* Enable serial port 6 Interrupt receiving (control the action of the manipulator through serial port 6) */
 	HAL_Delay(1000);
 	ret = USART6_Start_IT();
-	if(ret == Operatin_Fail)
+	if(ret == Operation_Fail)
 	{
 		printf("Failed to initialize USART6 IT\r\n");
 		Error_Handler();
@@ -320,13 +320,13 @@ t_FuncRet Hardware_Init(void)
 	printf("success to initialize USART6 IT\r\n");
 	
 	#ifdef USE_FULL_ASSERT
-		assert_param(ret != Operatin_Fail);
-	#endif
+		assert_param(ret != Operation_Fail);
+    #endif
 	
 	/* Enable serial port 1 Interrupt receiving (Read and write gyroscope data through serial port 1) */
 	HAL_Delay(1000);
 	ret = USART1_Start_IT();
-	if(ret == Operatin_Fail)
+	if(ret == Operation_Fail)
 	{
 		printf("Failed to initialize USART1 IT\r\n");
 		Error_Handler();
@@ -334,13 +334,13 @@ t_FuncRet Hardware_Init(void)
 	printf("success to initialize USART1 IT\r\n");
 	
 	#ifdef USE_FULL_ASSERT
-		assert_param(ret != Operatin_Fail);
+		assert_param(ret != Operation_Fail);
 	#endif
 	
 	/* Steering gear control test: Control rotation of No. 0 to 6 steering gear */
 	HAL_Delay(1000);
 	ret = ServoMotor_Control_Init();
-	if(ret == Operatin_Fail)
+	if(ret == Operation_Fail)
 	{
 		printf("Failed to initialize ServoMotor\r\n");
 		Error_Handler();
@@ -348,13 +348,13 @@ t_FuncRet Hardware_Init(void)
 	printf("success to initialize ServoMotor\r\n");
 	
 	#ifdef USE_FULL_ASSERT
-		assert_param(ret != Operatin_Fail);
+		assert_param(ret != Operation_Fail);
 	#endif
 	
 	/* Gyroscope initialization: acceleration calibration and Z-axis Angle calibration */
 	HAL_Delay(1000);
 	ret = Gyroscope_Calibration();
-	if(ret == Operatin_Fail)
+	if(ret == Operation_Fail)
 	{
 		printf("Failed to initialize Gyroscope\r\n");
 		Error_Handler();
@@ -380,42 +380,42 @@ void ADC_Original_Value_Test(void)
 {
 	/* Enable ADC multi-channel DMA acquisition */
     ret= ADC_Get_Data();
-	if(ret == Operatin_Fail)
+	if(ret == Operation_Fail)
 	{
 		Error_Handler();
 	}
 	
     /* Obtain the voltage of no. 1 EMG sensor */
 	ret= ADC_Get_SensorData_1(&Sensor1_V_Data);
-	if(ret == Operatin_Fail)
+	if(ret == Operation_Fail)
 	{
 		Error_Handler();
 	}
 	
 	/* Obtain the voltage of no. 2 EMG sensor */
 	ret= ADC_Get_SensorData_2(&Sensor2_V_Data);
-	if(ret == Operatin_Fail)
+	if(ret == Operation_Fail)
 	{
 		Error_Handler();
 	}
 	
 	/* Obtain the voltage of no. 3 EMG sensor */
 	ret= ADC_Get_SensorData_3(&Sensor3_V_Data);
-	if(ret == Operatin_Fail)
+	if(ret == Operation_Fail)
 	{
 		Error_Handler();
 	}
 	
 	/* Obtain the voltage of no. 4 EMG sensor */
 	ret= ADC_Get_SensorData_4(&Sensor4_V_Data);
-	if(ret == Operatin_Fail)
+	if(ret == Operation_Fail)
 	{
 		Error_Handler();
 	}
 	
 	/* Obtain the voltage of Vref */
 	ret= ADC_Get_Vref(&Vref);
-	if(ret == Operatin_Fail)
+	if(ret == Operation_Fail)
 	{
 		Error_Handler();
 	}
@@ -425,7 +425,7 @@ void ADC_Original_Value_Test(void)
 void ADC_MeanFilter_Value_Test(void)
 {
 	ret = Get_ADC_MeanFilter_Value(&Sensor1_V_Data, &Sensor2_V_Data, &Sensor3_V_Data, &Sensor4_V_Data, &Vref);  
-	if(ret == Operatin_Fail)
+	if(ret == Operation_Fail)
 	{
 		Error_Handler();
 	}
@@ -435,7 +435,7 @@ void ADC_MeanFilter_Value_Test(void)
 void ADC_KalmanFilter_Value_Test(void)
 {
 	ret = Get_ADC_KalmanFilter_Value(&Sensor1_V_Data_F, &Sensor2_V_Data_F, &Sensor3_V_Data_F, &Sensor4_V_Data_F, &Vref_F);
-	if(ret == Operatin_Fail)
+	if(ret == Operation_Fail)
 	{
 		Error_Handler();
 	}

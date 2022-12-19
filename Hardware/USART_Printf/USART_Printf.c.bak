@@ -4,7 +4,10 @@
   *
   * Description        : This file contains basic operations on the USART2¡¢USART6¡¢
   *					     including initialization, reading data, returning data, and so on
+<<<<<<< HEAD
   *                      USART6  ------> Used to control the serving motor
+=======
+>>>>>>> 93d48d4f715bd1b080ef38fbf0daa0897184323a
   *
   * parameter          : 
   *					     PA9     ------> USART1_TX
@@ -91,7 +94,11 @@ static uint8_t Res = 0;
 /* Serial port 1 Receives data */
 static uint8_t USART1_Rx_Data = 0;
 /* Static variable that determines whether data parsing is complete for serial port 1 */
+<<<<<<< HEAD
 volatile static t_FuncRet Gyroscope_Ret = Operatin_Success;
+=======
+volatile static t_FuncRet Gyroscope_Ret = Operation_Success;
+>>>>>>> 93d48d4f715bd1b080ef38fbf0daa0897184323a
 
 /* Static function definition-------------------------------------------------*/
 
@@ -145,12 +152,20 @@ int fputc(int ch, FILE *f)
 *
 * @param {const char*} Data : String constant
 * @param {void}        ...  : Format the sent data
+<<<<<<< HEAD
 * @return {int} ret: if success , return Operatin_Success
+=======
+* @return {int} ret: if success , return Operation_Success
+>>>>>>> 93d48d4f715bd1b080ef38fbf0daa0897184323a
 * @author: leeqingshui 
 */
 t_FuncRet USART6_printf(const char* Data, ...)
 {
+<<<<<<< HEAD
 	t_FuncRet ret = (t_FuncRet)Operatin_Success;
+=======
+	t_FuncRet ret = (t_FuncRet)Operation_Success;
+>>>>>>> 93d48d4f715bd1b080ef38fbf0daa0897184323a
 	
 	const char *s;
 	int d;   
@@ -335,12 +350,20 @@ static char *itoa( int value, char *string, int radix )
 * @description: Send an indefinite array using a serial port
 * @param  {uint8_t*} DataBuf : array to send
 * @param  {uint8_t*}   Length_DataBuf : Length of  array to print
+<<<<<<< HEAD
 * @return {t_FuncRet}        : if success , return (t_FuncRet)Operatin_Success
+=======
+* @return {t_FuncRet}        : if success , return (t_FuncRet)Operation_Success
+>>>>>>> 93d48d4f715bd1b080ef38fbf0daa0897184323a
 * @author: leeqingshui 
 */
 t_FuncRet USART6_SendBuf(uint8_t* DataBuf , uint8_t Length_DataBuf)
 {
+<<<<<<< HEAD
 	t_FuncRet ret = (t_FuncRet)Operatin_Success;
+=======
+	t_FuncRet ret = (t_FuncRet)Operation_Success;
+>>>>>>> 93d48d4f715bd1b080ef38fbf0daa0897184323a
 	
 	if(HAL_UART_Transmit (&huart6, (uint8_t *)DataBuf, (uint16_t)Length_DataBuf, 100)!=HAL_OK)
 	{
@@ -354,12 +377,20 @@ t_FuncRet USART6_SendBuf(uint8_t* DataBuf , uint8_t Length_DataBuf)
 /** 
 * @description: Enable the serial port. 6 Receive an interrupt
 * @param  {void} 
+<<<<<<< HEAD
 * @return {t_FuncRet} : if success , return (t_FuncRet)Operatin_Success
+=======
+* @return {t_FuncRet} : if success , return (t_FuncRet)Operation_Success
+>>>>>>> 93d48d4f715bd1b080ef38fbf0daa0897184323a
 * @author: leeqingshui 
 */
 t_FuncRet USART6_Start_IT(void)
 {
+<<<<<<< HEAD
 	t_FuncRet ret = (t_FuncRet)Operatin_Success;
+=======
+	t_FuncRet ret = (t_FuncRet)Operation_Success;
+>>>>>>> 93d48d4f715bd1b080ef38fbf0daa0897184323a
 	
 	/* Only one character can be received per interrupt */
 	if(HAL_UART_Receive_IT(&huart6, (uint8_t *)&USART6_Rx_Data, 1) != HAL_OK)
@@ -556,17 +587,29 @@ bool isRxCompleted(void)
 /** 
 * @description: Enable the serial port. 1 Receive an interrupt
 * @param  {void} 
+<<<<<<< HEAD
 * @return {t_FuncRet} : if success , return (t_FuncRet)Operatin_Success
+=======
+* @return {t_FuncRet} : if success , return (t_FuncRet)Operation_Success
+>>>>>>> 93d48d4f715bd1b080ef38fbf0daa0897184323a
 * @author: leeqingshui 
 */
 t_FuncRet USART1_Start_IT(void)
 {
+<<<<<<< HEAD
 	t_FuncRet ret = (t_FuncRet)Operatin_Success;
+=======
+	t_FuncRet ret = (t_FuncRet)Operation_Success;
+>>>>>>> 93d48d4f715bd1b080ef38fbf0daa0897184323a
 	
 	/* Only one character can be received per interrupt */
 	if(HAL_UART_Receive_IT(&huart1, (uint8_t *)&USART1_Rx_Data, 1) != HAL_OK)
 	{
+<<<<<<< HEAD
 		ret = (t_FuncRet)Operatin_Fail;
+=======
+		ret = (t_FuncRet)Operation_Fail;
+>>>>>>> 93d48d4f715bd1b080ef38fbf0daa0897184323a
 		return (t_FuncRet)ret ;
 	}
 	

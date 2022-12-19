@@ -36,6 +36,7 @@ mcu_project\adc_operation.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_t
 mcu_project\adc_operation.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 mcu_project\adc_operation.o: ../Common/numtype.h
 mcu_project\adc_operation.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\stdio.h
+mcu_project\adc_operation.o: ../Common/Runtime_Calculate.h
 mcu_project\adc_operation.o: ../Core/Inc/adc.h
 mcu_project\adc_operation.o: ../Core/Inc/dma.h
 mcu_project\adc_operation.o: ../Core/Inc/tim.h

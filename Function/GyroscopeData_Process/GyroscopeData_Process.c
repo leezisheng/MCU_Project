@@ -68,7 +68,7 @@ static uint8_t DataBuf_Index = 0;
 * @param  {uint16_t*}  p_gyro_x  : Data after filtering
 * @param  {uint16_t*}  p_gyro_y  : Data after filtering
 * @param  {uint16_t*}  p_gyro_z  : Data after filtering
-* @return {t_FuncRet } : if success,return Operatin_Success
+* @return {t_FuncRet } : if success,return Operation_Success
 * @author: leeqingshui 
 */
 t_FuncRet Get_MotionData_MeanFilter_Value(float* p_angle_x , 
@@ -78,7 +78,7 @@ t_FuncRet Get_MotionData_MeanFilter_Value(float* p_angle_x ,
 								          float* p_gyro_y  ,
 						                  float* p_gyro_z )
 {
-	t_FuncRet ret= (t_FuncRet)Operatin_Success;
+	t_FuncRet ret= (t_FuncRet)Operation_Success;
 	
 	/* Initializes the filter structure */
 	Mean_Filter_F FilterStruct = {0};

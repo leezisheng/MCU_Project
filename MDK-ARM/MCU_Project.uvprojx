@@ -1517,6 +1517,11 @@
               <FileType>1</FileType>
               <FilePath>..\Common\TIMx_Callback_Function.c</FilePath>
             </File>
+            <File>
+              <FileName>Runtime_Calculate.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Common\Runtime_Calculate.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -19,8 +19,8 @@
 					     
 						 ADC sampling rate £º
 							 Sampling period = conversion time + Read time
-							 Conversion time = Sampling time£¨56 clock cycles£© +12 clock cycles (STM32F4)
-							 Conversion frequency = ADC clock frequency/£¨Conversion time£©= 25 Mhz /68 cycle = 367Khz
+							 Conversion time = Sampling time£¨15 clock cycles£© +12 clock cycles (STM32F4)
+							 Conversion frequency = ADC clock frequency/£¨Conversion time£©= 25 Mhz /27 cycle = 925Khz
 						 
 							 ADCs_Common_Settings:
 							 Mode Independent mode
@@ -43,23 +43,23 @@
 							 
 							 Rank 1
 							 Channel Channel 1
-							 Sampling Time 56 Cycles
+							 Sampling Time 15 Cycles
 							 
 							 Rank 2 *
 							 Channel Channel 3 
-							 Sampling Time 56 Cycles
+							 Sampling Time 15 Cycles
 							 
 							 Rank 3
 							 Channel Channel 5
-							 Sampling Time 56 Cycles
+							 Sampling Time 15 Cycles
 							 
 							 Rank 4 *
 							 Channel Channel 6 
-							 Sampling Time 56 Cycles
+							 Sampling Time 15 Cycles
 							 
 							 Rank 5 *
 							 Channel Vref 
-							 Sampling Time 56 Cycles
+							 Sampling Time 15 Cycles
 						 
 						 
 						 DMA2: Preenmption Priority 2
@@ -121,12 +121,12 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *AdcHandle)
 /** 
 * @description: Initialize ADC related peripherals: ADC GPIO port and DMA channel
 * @param  {void} 
-* @return {uint8_t } : if success,return Operatin_Success
+* @return {uint8_t } : if success,return Operation_Success
 * @author: leeqingshui 
 */
 t_FuncRet  ADC_Operation_Init(void)
 {
-	t_FuncRet ret= (t_FuncRet)Operatin_Success;
+	t_FuncRet ret= (t_FuncRet)Operation_Success;
 	
 	/* 
 	Note that there should be a calibration procedure before turning on the ADC, 
@@ -146,7 +146,7 @@ t_FuncRet  ADC_Operation_Init(void)
 	/* Enable timer 3 Interrupt */
 	if(HAL_TIM_Base_Start_IT(&htim2)!=HAL_OK)
 	{
-		return ret= (t_FuncRet)Operatin_Fail;
+		return ret= (t_FuncRet)Operation_Fail;
 	}
 	
 	/* Start the conversion process and enable interrupt */
@@ -155,7 +155,7 @@ t_FuncRet  ADC_Operation_Init(void)
                           ADCCONVERTEDVALUES_BUFFER_SIZE
                          ) != HAL_OK)
 	{
-		return ret= (t_FuncRet)Operatin_Fail;
+		return ret= (t_FuncRet)Operation_Fail;
 	}
 	
 	/* The flag bit reset of ADC1 collection is complete */
@@ -167,12 +167,12 @@ t_FuncRet  ADC_Operation_Init(void)
 /** 
 * @description: Obtain the voltage values collected by the 2 channels
 * @param  {void} 
-* @return {t_FuncRet } : if success,return Operatin_Success
+* @return {t_FuncRet } : if success,return Operation_Success
 * @author: leeqingshui 
 */
 t_FuncRet ADC_Get_Data(void)
 {
-	t_FuncRet ret= (t_FuncRet)Operatin_Success;
+	t_FuncRet ret= (t_FuncRet)Operation_Success;
 	
 	HAL_ADC_Start(&hadc1);
 	
@@ -198,7 +198,7 @@ t_FuncRet ADC_Get_Data(void)
 	  uhADCChannel_Vref_ToDAC_mVolt = COMPUTATION_DIGITAL_12BITS_TO_VOLTAGE(aADCxConvertedValues[4]);
 		
 	  ubSequenceCompleted = RESET;
-      ret= (t_FuncRet)Operatin_Success;
+      ret= (t_FuncRet)Operation_Success;
 	}
 	
 	return ret;
@@ -207,12 +207,12 @@ t_FuncRet ADC_Get_Data(void)
 /** 
 * @description: Obtain the voltage of no. 1 EMG sensor 
 * @param  {float} Sensor_V_Data : the voltage of no. 1 EMG sensor 
-* @return {t_FuncRet}           : if success,return Operatin_Success
+* @return {t_FuncRet}           : if success,return Operation_Success
 * @author: leeqingshui 
 */
 t_FuncRet ADC_Get_SensorData_1(uint16_t* p_Sensor_V_Data)
 {
-	t_FuncRet ret= (t_FuncRet)Operatin_Success;
+	t_FuncRet ret= (t_FuncRet)Operation_Success;
 	
 	*p_Sensor_V_Data =  uhADCChannel_1_ToDAC_mVolt;
 	
@@ -222,12 +222,12 @@ t_FuncRet ADC_Get_SensorData_1(uint16_t* p_Sensor_V_Data)
 /** 
 * @description: Obtain the voltage of no. 2 EMG sensor 
 * @param  {float} Sensor_V_Data : the voltage of no. 1 EMG sensor 
-* @return {t_FuncRet}           : if success,return Operatin_Success
+* @return {t_FuncRet}           : if success,return Operation_Success
 * @author: leeqingshui 
 */
 t_FuncRet ADC_Get_SensorData_2(uint16_t* p_Sensor_V_Data)
 {
-	t_FuncRet ret= (t_FuncRet)Operatin_Success;
+	t_FuncRet ret= (t_FuncRet)Operation_Success;
 	
 	*p_Sensor_V_Data = uhADCChannel_3_ToDAC_mVolt;
 	
@@ -237,12 +237,12 @@ t_FuncRet ADC_Get_SensorData_2(uint16_t* p_Sensor_V_Data)
 /** 
 * @description: Obtain the voltage of no. 3 EMG sensor 
 * @param  {float} Sensor_V_Data : the voltage of no. 1 EMG sensor 
-* @return {t_FuncRet}           : if success,return Operatin_Success
+* @return {t_FuncRet}           : if success,return Operation_Success
 * @author: leeqingshui 
 */
 t_FuncRet ADC_Get_SensorData_3(uint16_t* p_Sensor_V_Data)
 {
-	t_FuncRet ret= (t_FuncRet)Operatin_Success;
+	t_FuncRet ret= (t_FuncRet)Operation_Success;
 	
 	*p_Sensor_V_Data =  uhADCChannel_5_ToDAC_mVolt;
 	
@@ -252,12 +252,12 @@ t_FuncRet ADC_Get_SensorData_3(uint16_t* p_Sensor_V_Data)
 /** 
 * @description: Obtain the voltage of no. 4 EMG sensor 
 * @param  {float} Sensor_V_Data : the voltage of no. 1 EMG sensor 
-* @return {t_FuncRet}           : if success,return Operatin_Success
+* @return {t_FuncRet}           : if success,return Operation_Success
 * @author: leeqingshui 
 */
 t_FuncRet ADC_Get_SensorData_4(uint16_t* p_Sensor_V_Data)
 {
-	t_FuncRet ret= (t_FuncRet)Operatin_Success;
+	t_FuncRet ret= (t_FuncRet)Operation_Success;
 	
 	*p_Sensor_V_Data = uhADCChannel_6_ToDAC_mVolt;
 	
@@ -267,12 +267,12 @@ t_FuncRet ADC_Get_SensorData_4(uint16_t* p_Sensor_V_Data)
 /** 
 * @description: Obtain the voltage of Vref
 * @param  {float} Sensor_V_Data : Vref 
-* @return {t_FuncRet}           : if success,return Operatin_Success
+* @return {t_FuncRet}           : if success,return Operation_Success
 * @author: leeqingshui 
 */
 t_FuncRet ADC_Get_Vref(uint16_t* p_Vref)
 {
-	t_FuncRet ret= (t_FuncRet)Operatin_Success;
+	t_FuncRet ret= (t_FuncRet)Operation_Success;
 	
 	*p_Vref = uhADCChannel_Vref_ToDAC_mVolt;
 	

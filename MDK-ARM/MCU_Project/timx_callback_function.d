@@ -35,5 +35,6 @@ mcu_project\timx_callback_function.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f
 mcu_project\timx_callback_function.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 mcu_project\timx_callback_function.o: ../Common/numtype.h
 mcu_project\timx_callback_function.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\stdio.h
+mcu_project\timx_callback_function.o: ../Common/Runtime_Calculate.h
 mcu_project\timx_callback_function.o: ../Hardware/USART_Printf/USART_Printf.h
 mcu_project\timx_callback_function.o: ../Core/Inc/tim.h
