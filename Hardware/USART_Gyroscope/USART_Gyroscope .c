@@ -170,13 +170,8 @@ t_FuncRet Gyroscope_Calibration(void)
 	HAL_Delay(100);
 	
 	/* Z axis Angle calibration */
-<<<<<<< HEAD
-	ret = (t_FuncRet)((Send_Command(YAWCMD)) & (ret));
-	if(ret == Operatin_Fail)
-=======
 	ret = (Send_Command(YAWCMD)) & ret;
 	if(ret == Operation_Fail)
->>>>>>> 93d48d4f715bd1b080ef38fbf0daa0897184323a
 	{
 		return (t_FuncRet)ret;
 	}
