@@ -72,11 +72,6 @@
 #include "arm_math.h"
 #include "arm_const_structs.h"
 
-/* An input array for testing */
-volatile static float32_t TempBuff[FFT_LENGTH*2] = {0};
-/* A processed array for testing */
-volatile static float32_t ProcessedTempBuff[FFT_LENGTH*2] = {0};
-
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/

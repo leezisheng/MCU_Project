@@ -1,0 +1,15 @@
+mcu_project\svmfunctions.o: D:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\DSP\Source\SVMFunctions\SVMFunctions.c
+mcu_project\svmfunctions.o: D:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\DSP\Source\SVMFunctions\arm_svm_linear_init_f32.c
+mcu_project\svmfunctions.o: D:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\DSP\Include\dsp/svm_functions.h
+mcu_project\svmfunctions.o: D:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\DSP\Include\arm_math_types.h
+mcu_project\svmfunctions.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
+mcu_project\svmfunctions.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\stdint.h
+mcu_project\svmfunctions.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
+mcu_project\svmfunctions.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\string.h
+mcu_project\svmfunctions.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\math.h
+mcu_project\svmfunctions.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\float.h
+mcu_project\svmfunctions.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\limits.h
+mcu_project\svmfunctions.o: D:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\DSP\Include\arm_math_memory.h
+mcu_project\svmfunctions.o: D:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\DSP\Include\dsp/none.h
+mcu_project\svmfunctions.o: D:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\DSP\Include\dsp/utils.h
+mcu_project\svmfunctions.o: D:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\DSP\Include\dsp/svm_defines.h

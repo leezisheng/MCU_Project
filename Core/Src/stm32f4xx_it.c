@@ -97,7 +97,7 @@ void HardFault_Handler(void)
 	2. Open the storage location in Memory and find the address starting with 08
 	3. Enter the address starting with 08 in Disassembly to locate the fault
   */
-  uint32_t r_psp, r_msp;
+  volatile uint32_t r_psp, r_msp;
   r_psp = __get_PSP();
   r_msp = __get_MSP();
 	

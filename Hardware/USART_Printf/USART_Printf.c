@@ -5,6 +5,10 @@
   * Description        : This file contains basic operations on the USART2¡¢USART6¡¢
   *					     including initialization, reading data, returning data, and so on
   *
+  *                      USART6  ------> Used to control the serving motor
+  *                      USART1  ------> Used to Send and receive gyroscope data
+  *                      USART2  ------> Used to Send and receive data to the upper computer
+  *
   * parameter          : 
   *					     PA9     ------> USART1_TX
   *					 	 PA10    ------> USART1_RX

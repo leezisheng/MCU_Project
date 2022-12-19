@@ -19,8 +19,6 @@
 
 /* Mean filter times, the more times, the slower the sensor data transformation */
 #define MEAN_FILTER_NUM	3
-/* Number of fast Fourier transform points */
-#define FFT_LENGTH 1024
 
 /* Whether to use functions from the ARM-DSP library or use inefficient digital processing libraries */
 #define _ARM_DSP_USED			1U
@@ -38,10 +36,6 @@
 	#define _DSP_RMS_USED 			1U
 	#define _DSP_STD_USED 			1U
 	#define _DSP_VAR_USED 			1U
-	/* Complex DSP functions macro definitions */
-	#define _DSP_COMPLEX_MAG_USED   0U
-	/* FourierTransform DSP functions macro definitions */
-	#define _DSP_FFT_USED 			1U
 #else
 	#define _DSP_ABS_USED 			0U
 	#define _DSP_OFFSET_USED 		0U
@@ -53,7 +47,6 @@
 	#define _DSP_RMS_USED 			0U
 	#define _DSP_STD_USED 			0U
 	#define _DSP_VAR_USED 			0U
-	#define _DSP_FFT_USED 			0U
 #endif
 
 /* Round the floating point number x to uint16_t */
@@ -120,27 +113,6 @@ typedef struct
 	float kGain;
 }Kalman_Filter;
 
-/* FFT transforms the type of points */
-typedef enum 
-{
-	Length_16   = -2,
-	Length_32   = -1,
-	Length_64   = 0,
-	Length_128  = 1,
-	Length_256  = 2,
-	Length_512  = 3,
-	Length_1024 = 4,
-	Length_2048 = 5,
-	Length_4096 = 6
-}FFT_LENGTH_STATUS;
-
-/* the complex struct data type */
-typedef struct 
-{
-  float real;		
-  float imag;		
-}ComplexStruct;
-
 /* Function declaration-------------------------------------------------------*/
 
 /* =====================================Time domain filtering algorithm================================= */
@@ -197,22 +169,6 @@ void Get_DataBuff_Rms(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Res
 void Get_DataBuff_Std(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Result);
 /* Get the array variance */
 void Get_DataBuff_Var(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Result);
-
-/* ========================================Complex DSP functions======================================= */
-
-/* Compute complex array magnitude values */
-void Get_DataBuff_ComplexMag(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_DstpBuff);
-
-/* =====================================FourierTransform DSP functions================================= */
-
-/* Fast Fourier transform */
-void Get_DataBuff_FFT(FFT_LENGTH_STATUS length, float32_t* p_SrcBuff, float32_t* p_DstpBuff, uint32_t Dst_Buff_Size);
-
-/* ==========================================Semg DSP functions======================================== */
-
-/* Obtain the signal zero crossing rate */
-void Get_DataBuff_Zcr(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Result, uint32_t Dst_Buff_Size);
-
 
 /* Functions for testing digital signals */
 void DigtalSignal_Process_Test(void);

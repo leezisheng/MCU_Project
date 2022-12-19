@@ -49,7 +49,7 @@ t_FuncRet Gyroscope_Calibration(void);
 /* The parameters of the gyroscope data are analyzed */
 t_FuncRet CopeSerial2Data(unsigned char ucData);
 /* Serial port send command function */
-t_FuncRet Send_Command(uint8_t data[3]);
+t_FuncRet Send_Command(const uint8_t data[3]);
 
 /* Return the X-axis acceleration */
 float Get_Xaxis_Acc(void);

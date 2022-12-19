@@ -124,7 +124,7 @@ t_FuncRet CopeSerial2Data(unsigned char ucData)
 * @return {{t_FuncRet} : if success , return (t_FuncRet)Operatin_Success
 * @author: leeqingshui 
 */
-t_FuncRet Send_Command(uint8_t data[3])
+t_FuncRet Send_Command(const uint8_t data[3])
 {
 	t_FuncRet ret = (t_FuncRet)Operatin_Success;
 	
@@ -170,7 +170,7 @@ t_FuncRet Gyroscope_Calibration(void)
 	HAL_Delay(100);
 	
 	/* Z axis Angle calibration */
-	ret = (Send_Command(YAWCMD)) & ret;
+	ret = (t_FuncRet)((Send_Command(YAWCMD)) & (ret));
 	if(ret == Operatin_Fail)
 	{
 		return (t_FuncRet)ret;
