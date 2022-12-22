@@ -36,3 +36,4 @@ mcu_project\stm32f4xx_hal_msp.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_h
 mcu_project\stm32f4xx_hal_msp.o: ../Common/numtype.h
 mcu_project\stm32f4xx_hal_msp.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\stdio.h
 mcu_project\stm32f4xx_hal_msp.o: ../Common/Runtime_Calculate.h
+mcu_project\stm32f4xx_hal_msp.o: ../Common/numtype_conversion.h

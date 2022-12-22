@@ -44,7 +44,7 @@ static t_FuncRet CmdStruct_To_Array_Checksum(SendDataFrame* p_CmdStruct , uint8_
 /* Split the instruction structure into arrays to facilitate subsequent sending */
 static t_FuncRet CmdStruct_To_Array(SendDataFrame* p_CmdStruct , uint8_t* p_DataBuf ,uint8_t Length_CmdStruct);
 /* Computes an instruction data checksum */
-static uint8_t Get_CheckSum(uint8_t* p_buf);
+static uint8_t   Get_CheckSum(uint8_t* p_buf);
 
 /* Function definition--------------------------------------------------------*/
 

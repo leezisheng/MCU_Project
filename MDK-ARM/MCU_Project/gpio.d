@@ -37,3 +37,4 @@ mcu_project\gpio.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 mcu_project\gpio.o: ../Common/numtype.h
 mcu_project\gpio.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\stdio.h
 mcu_project\gpio.o: ../Common/Runtime_Calculate.h
+mcu_project\gpio.o: ../Common/numtype_conversion.h

@@ -63,7 +63,7 @@ static bool KalmanFilterInitFlag = (bool)FALSE;
 /* Function definition--------------------------------------------------------*/
 
 /** 
-* @description: Get the median filter voltage value
+* @description: Get the Mean filter voltage value
 * @param  {uint16_t*}  p_Sensor1_V_Data : Voltage after filtering
 * @param  {uint16_t*}  p_Sensor2_V_Data : Voltage after filtering
 * @param  {uint16_t*}  p_Sensor3_V_Data : Voltage after filtering

@@ -61,7 +61,7 @@ static uint8_t DataBuf_Index = 0;
 /* Function definition--------------------------------------------------------*/
 
 /** 
-* @description: Get the median filter the motion data value
+* @description: Get the Mean filter the motion data value
 * @param  {uint16_t*}  p_angle_x : Data after filtering
 * @param  {uint16_t*}  p_angle_y : Data after filtering
 * @param  {uint16_t*}  p_angle_z : Data after filtering

@@ -322,7 +322,7 @@ t_FuncRet ServoMotor_Read_Ret(int32_t* p_ret)
 	if(((uint8_t)checksum) != (uint8_t)RxDataStruct.Checksum)
 	{
 		/* The checksum does not match. The failure flag bit is returned */
-		return (t_FuncRet)Operatin_Fail;
+		return (t_FuncRet)Operation_Fail;
 	}
 	
 	cmd = RxDataStruct.Command;

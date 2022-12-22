@@ -35,6 +35,7 @@ extern "C" {
 #include "numtype.h"
 #include <stdio.h>
 #include "Runtime_Calculate.h"
+#include "numtype_conversion.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -62,6 +63,9 @@ extern "C" {
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
+
+/* A function to indicate whether hardware initialization is complete */
+t_FuncRet IsCompleteHardwareInit(void);
 
 /* 
 	The following functions are only used for software development and debugging, 

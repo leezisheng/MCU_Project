@@ -70,6 +70,11 @@
 #include "GyroscopeData_Process.h"
 
 /*
+    This file defines the structure and functions for sending data to the upmachine
+*/
+#include "SendData_Function.h"
+
+/*
     This file includes the ARM digital signal processing related firmware library
 */
 #include "arm_math.h"
@@ -95,6 +100,11 @@
 
 /* USER CODE BEGIN PV */
 
+/* A variable that stores the return value of a function for easy debugging */
+static t_FuncRet ret = Operation_Success;
+/* A variable used to indicate whether hardware initialization was successful */
+static volatile bool HardwareComplete_Flag = (bool)FALSE;
+
 /* 
 Note: global variables are used here only to see the value of the variable. 
 They are not used when the program is running 
@@ -104,9 +114,6 @@ They are not used when the program is running
 	The following functions are only used for software development and debugging, 
 	and are not required for official launch
 */
-
-/* A variable that stores the return value of a function for easy debugging */
-static t_FuncRet ret = Operation_Success;
 
 /* Adc-related global variables */
 static uint16_t Sensor1_V_Data          = 0;
@@ -143,10 +150,10 @@ volatile static float gyro_z            = 0;
 
 /* Manipulator control related variables */
 
-volatile static uint8_t temp_id		    = 6;
+volatile static uint8_t temp_id		    = 0;
 volatile static int32_t angle 	        = 0;
-volatile static int16_t position        = 900;
-volatile static int32_t wait_time 	    = 500;
+volatile static int16_t position        = 0;
+volatile static int32_t wait_time 	    = 0;
 
 #endif
 
@@ -204,22 +211,28 @@ int main(void)
   MX_USART6_UART_Init();
   MX_TIM2_Init();
   MX_TIM3_Init();
+  MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
   
   /* Peripheral initialization function */
   
   ret = Hardware_Init();
-  if(ret == Operation_Fail)
-  {
-  	printf("Failed to initialize Hardware Procedure\r\n");
-	Error_Handler();
-  }
   
   #ifdef USE_FULL_ASSERT
 		assert_param(ret != Operation_Fail);
   #endif
   
-  printf("success to initialize Hardware Procedure\r\n");
+  if(ret == Operation_Fail)
+  {
+  	printf("Failed to initialize Hardware Procedure\r\n");
+    HardwareComplete_Flag = (bool)FALSE;
+	Error_Handler();
+  }
+  else
+  {
+    printf("Success to initialize Hardware Procedure\r\n");
+    HardwareComplete_Flag = (bool)TRUE;
+  }
   
   /* USER CODE END 2 */
 
@@ -229,10 +242,8 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
     /* USER CODE BEGIN 3 */
-    
-	  
+
   }
   /* USER CODE END 3 */
 }
@@ -296,6 +307,11 @@ t_FuncRet Hardware_Init(void)
 	printf("====The system starts to initialize hardware====\r\n");
 	
 	/* Initialize ADC related peripherals: ADC GPIO port and DMA channel*/
+    /* The interruption of timer 2 was enabled */
+    /* 
+		Timer 2 is interrupted periodically(Fre = 2000Hz), 
+		and Implementation of ADC timing multi - channel sampling conversion
+	*/
 	HAL_Delay(1000);
 	ret= ADC_Operation_Init();
 	if(ret == Operation_Fail)
@@ -336,8 +352,27 @@ t_FuncRet Hardware_Init(void)
 	#ifdef USE_FULL_ASSERT
 		assert_param(ret != Operation_Fail);
 	#endif
+    
+    /* Enable serial port 2 Interrupt receiving */
+	HAL_Delay(1000);
+	ret = USART2_Start_IT();
+	if(ret == Operation_Fail)
+	{
+		printf("Failed to initialize USART2 IT\r\n");
+		Error_Handler();
+	}
+	printf("success to initialize USART2 IT\r\n");
+	
+	#ifdef USE_FULL_ASSERT
+		assert_param(ret != Operation_Fail);
+	#endif
 	
 	/* Steering gear control test: Control rotation of No. 0 to 6 steering gear */
+    /* The interruption of timer 3 was enabled */
+    /* 
+		Timer 3 is interrupted periodically(Fre = 100Hz), 
+		and the receive clearance function of serial port 6 is invoked 
+	*/
 	HAL_Delay(1000);
 	ret = ServoMotor_Control_Init();
 	if(ret == Operation_Fail)
@@ -352,6 +387,11 @@ t_FuncRet Hardware_Init(void)
 	#endif
 	
 	/* Gyroscope initialization: acceleration calibration and Z-axis Angle calibration */
+    /* The interruption of timer 4 was enabled */
+    /*
+        Timer 4 Periodic interrupt (Fre = 20Hz)
+        and is used for timed data return of serial gyro JY-60
+    */
 	HAL_Delay(1000);
 	ret = Gyroscope_Calibration();
 	if(ret == Operation_Fail)
@@ -367,6 +407,23 @@ t_FuncRet Hardware_Init(void)
 	HAL_Delay(500);
 
 	return ret;
+}
+
+/* A function to indicate whether hardware initialization is complete */
+t_FuncRet IsCompleteHardwareInit(void)
+{
+    t_FuncRet ret = Operation_Wait;
+    
+    if(HardwareComplete_Flag == (bool)FALSE)
+    {
+        ret = Operation_Fail;
+    }
+    else if(HardwareComplete_Flag == (bool)TRUE)
+    {
+        ret = Operation_Success;
+    }
+    
+    return ret;
 }
 
 #ifdef CODE_TEST
@@ -457,7 +514,7 @@ void USART_Gyroscope_Original_Test(void)
 	gyro_z  = Get_Zaxis_Angle_Acc();
 }
 
-/* Serial port gyroscope Original movement data output test */
+/* Serial port gyroscope MeanFilter movement data output test */
 void USART_Gyroscope_MeanFilter_Test(void)
 {
 	ret = Get_MotionData_MeanFilter_Value((float*)&angle_x , 

@@ -39,7 +39,7 @@
 	The receiving manipulator returns a state variable
 */
 t_FuncRet USART6_printf(const char* Data, ...);
-/* Send the array using serial port 6 */
+/* Send the array using serial port 6 in Polling mode */
 t_FuncRet USART6_SendBuf(uint8_t* DataBuf , uint8_t Length_DataBuf);
 /* Enable the serial port. 6 Receive an interrupt */
 t_FuncRet USART6_Start_IT(void);
@@ -59,6 +59,15 @@ t_FuncRet USART1_Start_IT(void);
 void HAL_UART1_RxCpltCallback(void);
 /* Serial port 6 The receiver is cleared periodically */
 t_FuncRet UART1_isRxComplete(void);
+
+/*
+	Serial port 2 sends ADC data and Angle and angular velocity data to the host computer
+*/
+/* Send the array using serial port 2 in Polling mode */
+t_FuncRet USART2_SendBuf(uint8_t* DataBuf , uint8_t Length_DataBuf);
+/* Enable the serial port 2 Receive an interrupt */
+t_FuncRet USART2_Start_IT(void);
+
 
 #ifdef __cplusplus
 }

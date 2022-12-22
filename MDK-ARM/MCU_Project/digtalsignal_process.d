@@ -37,6 +37,7 @@ mcu_project\digtalsignal_process.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
 mcu_project\digtalsignal_process.o: ../Common/numtype.h
 mcu_project\digtalsignal_process.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\stdio.h
 mcu_project\digtalsignal_process.o: ../Common/Runtime_Calculate.h
+mcu_project\digtalsignal_process.o: ../Common/numtype_conversion.h
 mcu_project\digtalsignal_process.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\math.h
 mcu_project\digtalsignal_process.o: ../Middlewares/ST/ARM/DSP/Inc/arm_math.h
 mcu_project\digtalsignal_process.o: ../Drivers/CMSIS/Include/core_cm4.h

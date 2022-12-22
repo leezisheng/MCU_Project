@@ -20,8 +20,7 @@
 
 /* Global variable------------------------------------------------------------*/
 
-/* ++++++++++++++++++++++++++++++Command string++++++++++++++++++++++++++++++ */
-
+/* Command string */
 /* The z-axis Angle goes to zero */
 const uint8_t YAWCMD[3]     	= {0XFF,0XAA,0X52};
 /* Calibration of acceleration */
@@ -55,6 +54,9 @@ volatile static float acc_z;
 volatile static float gyro_x;
 volatile static float gyro_y;
 volatile static float gyro_z;
+
+/* Timing reading of gyroscope data with timer 4 interrupt (Fre = 20Hz) */
+extern TIM_HandleTypeDef htim4;
 
 /* Static function definition-------------------------------------------------*/
 
@@ -170,13 +172,8 @@ t_FuncRet Gyroscope_Calibration(void)
 	HAL_Delay(100);
 	
 	/* Z axis Angle calibration */
-<<<<<<< HEAD
-	ret = (t_FuncRet)((Send_Command(YAWCMD)) & (ret));
-	if(ret == Operatin_Fail)
-=======
-	ret = (Send_Command(YAWCMD)) & ret;
+	ret = (t_FuncRet)((Send_Command(YAWCMD)) & ret);
 	if(ret == Operation_Fail)
->>>>>>> 93d48d4f715bd1b080ef38fbf0daa0897184323a
 	{
 		return (t_FuncRet)ret;
 	}
@@ -187,6 +184,12 @@ t_FuncRet Gyroscope_Calibration(void)
 	
 	/* Wait until the internal calibration of the module is good. The internal calculation of the module will take some time */
 	HAL_Delay(10);
+    
+    /*
+        Timer 4 Periodic interrupt (Fre = 20Hz)
+        and is used for timed data return of serial gyro JY-60
+    */
+    
 
 	return (t_FuncRet)ret;
 }

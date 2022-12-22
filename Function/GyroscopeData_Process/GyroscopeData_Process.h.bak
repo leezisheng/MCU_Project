@@ -32,6 +32,7 @@ t_FuncRet Get_MotionData_MeanFilter_Value(float* p_angle_x ,
 								   float* p_gyro_y  ,
 						           float* p_gyro_z );
 
+
 #ifdef __cplusplus
 }
 #endif

@@ -24,13 +24,14 @@
 
 /* Function declaration-------------------------------------------------------*/
 
-/* Get the median filter the motion data value */
+/* Get the Mean filter the motion data value */
 t_FuncRet Get_MotionData_MeanFilter_Value(float* p_angle_x , 
 								   float* p_angle_y ,
 						           float* p_angle_z ,
 						           float* p_gyro_x  ,
 								   float* p_gyro_y  ,
 						           float* p_gyro_z );
+
 
 #ifdef __cplusplus
 }
