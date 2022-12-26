@@ -18,14 +18,14 @@
 /* External function declaration----------------------------------------------*/
 
 /* extern function : Serial port sending function */
-extern t_FuncRet USART6_SendBuf(uint8_t* DataBuf , uint8_t Length_DataBuf);
+extern t_FuncRet USART6_SendBuf_Polling(uint8_t* DataBuf , uint8_t Length_DataBuf);
 /* Check whether the serial port receives the information */
-extern bool isRxCompleted(void);
+extern bool USART6_isRxCompleted(void);
 
 /* Private macro definitions--------------------------------------------------*/
 
 /* Serial port send macro definition */
-#define ServoMotorWrite  USART6_SendBuf
+#define ServoMotorWrite  USART6_SendBuf_Polling
 
 /* Global variable------------------------------------------------------------*/
 
@@ -300,7 +300,7 @@ t_FuncRet ServoMotor_Read_Ret(int32_t* p_ret)
 	uint8_t cmd;
 	static uint8_t checksum = 0;
 	
-	while(!isRxCompleted())
+	while(!USART6_isRxCompleted())
 	{
 		count--;
 		/* Data reception timed out and a failure flag bit was returned */
@@ -340,7 +340,7 @@ t_FuncRet ServoMotor_Read_Ret(int32_t* p_ret)
 			*/
 			*p_ret = (int32_t)BYTE_TO_HW(RxDataStruct.Command_Parameter[1] ,RxDataStruct.Command_Parameter[0]);
 			ret = (t_FuncRet)Operation_Success;
-			UART6_Reset();
+			USART6_RecvDataClear();
 			return ret;
 		default:
 			break;

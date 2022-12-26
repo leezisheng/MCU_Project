@@ -34,7 +34,7 @@ extern float Data_Mean_Filter_F(Mean_Filter_F* p_MeanFilterStruct,float Temp_Dat
 extern void Mean_Filter_Rest_F(Mean_Filter_F* p_MeanFilterStruct);
 
 /* Serial port 6 The receiver is cleared periodically */
-extern t_FuncRet UART1_isRxComplete(void);
+extern t_FuncRet USART1_isRxComplete(void);
 
 /* Private macro definitions--------------------------------------------------*/
 

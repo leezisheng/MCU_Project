@@ -108,6 +108,12 @@ Function brief :
 6. GPIO:
     (1) PB0-RUNTIME_TEST_GPIO
 
+/*======================================================== peripherals Parameter ==========================================================*/
+
+
+
+
+
 /*===============================================================Key points================================================================*/
 
 1. Why display "unknown signals" on the Display of Filling Signals in Logic Analyzer during MDK Debugging?

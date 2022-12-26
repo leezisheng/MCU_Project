@@ -4,7 +4,8 @@ Function brief :
     The project uses STM32F411-DISCO suite as the device side,
     (1) ADC peripherals were used to collect the voltage value of the four-channel SEMG sensor at a frequency of 2000Hz, 
         and serial port peripherals were used to receive the six-axis gyroscope motion data at a frequency of 20Hz;
-    (2) The serial port is used to send data to the upper computer, and the upper computer is used for frequency domain analysis and real-time waveform display;
+    (2) The USB Virtual Serial Port (CDC) is used to send data to the upper computer, 
+        and the upper computer is used for frequency domain analysis and real-time waveform display;
     (3) Do time domain analysis on the embedded device and output the data to the UI screen of the serial port through GPIO analog serial port;
 
 /*=============================================================code layers=================================================================*/

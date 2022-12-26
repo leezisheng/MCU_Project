@@ -7,7 +7,7 @@
   *
   *                      USART6  ------> Used to control the serving motor (Baud Rate 115200)
   *                      USART1  ------> Used to Send and receive gyroscope data(Baud Rate 9600)
-  *                      USART2  ------> Used to Send and receive data to the upper computer(Baud Rate 115200)
+  *                      USART2  ------> Used for man-machine interaction with the serial port screen(Baud Rate 115200)
   *
   * Pin               : 
   *					     PA9     ------> USART1_TX
@@ -144,7 +144,7 @@ int fputc(int ch, FILE *f)
 * @return {t_FuncRet}  ret  : if success , return Operation_Success
 * @author: leeqingshui 
 */
-t_FuncRet USART6_printf(const char* Data, ...)
+t_FuncRet USART6_Printf_Polling(const char* Data, ...)
 {
 	t_FuncRet ret = (t_FuncRet)Operation_Success;
 	
@@ -334,7 +334,7 @@ static char *itoa( int value, char *string, int radix )
 * @return {t_FuncRet}               : if success , return (t_FuncRet)Operation_Success
 * @author: leeqingshui 
 */
-t_FuncRet USART6_SendBuf(uint8_t* DataBuf , uint8_t Length_DataBuf)
+t_FuncRet USART6_SendBuf_Polling(uint8_t* DataBuf , uint8_t Length_DataBuf)
 {
 	t_FuncRet ret = (t_FuncRet)Operation_Success;
 	
@@ -379,7 +379,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 {
 	if(UartHandle->Instance == USART1)
 	{
-		HAL_UART1_RxCpltCallback();
+		HAL_USART1_RxCpltCallback();
 	}
 	
 	if(UartHandle->Instance == USART2)
@@ -389,14 +389,14 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 	
 	if(UartHandle->Instance == USART6)
 	{
-		HAL_UART6_RxCpltCallback();
+		HAL_USART6_RxCpltCallback();
 	}	
 }
 
 /**
 * @brief  Serial port 6 Data receive callback function
 */
-void HAL_UART6_RxCpltCallback(void)
+void HAL_USART6_RxCpltCallback(void)
 {
 	/* 
 		Only one character can be received per interrupt 
@@ -536,7 +536,7 @@ void HAL_UART6_RxCpltCallback(void)
 * @return {bool When the serial port 6 data is received, set the flag bit, the function returns TRUE; Otherwise return FALSE     
 * @author: leeqingshui 
 */
-bool isRxCompleted(void)
+bool USART6_isRxCompleted(void)
 {
 	if(isUartRxCompleted == (bool)TRUE)
 	{
@@ -572,7 +572,7 @@ t_FuncRet USART1_Start_IT(void)
 /**
 * @brief  Serial port 1 Data receive callback function
 */
-void HAL_UART1_RxCpltCallback(void)
+void HAL_USART1_RxCpltCallback(void)
 {
 	Gyroscope_Ret = CopeSerial2Data(USART1_Rx_Data);
 	HAL_UART_Receive_IT(&huart1, (uint8_t *)&USART1_Rx_Data, 1);
@@ -595,7 +595,7 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 }
 
 /* Serial port 6 The receiver is cleared periodically */
-void UART6_Reset(void)
+void USART6_RecvDataClear(void)
 {
 	/* Flag bit: Indicates whether to start receiving data */
 	isGotFrameHeader = (bool)FALSE;
@@ -615,7 +615,7 @@ void UART6_Reset(void)
 }
 
 /* Serial port 6 The receiver is cleared periodically */
-t_FuncRet UART1_isRxComplete(void)
+t_FuncRet USART1_isRxComplete(void)
 {
 	return Gyroscope_Ret;
 }
@@ -627,7 +627,7 @@ t_FuncRet UART1_isRxComplete(void)
 * @return {t_FuncRet}               : if success , return (t_FuncRet)Operation_Success
 * @author: leeqingshui 
 */
-t_FuncRet USART2_SendBuf(uint8_t* DataBuf , uint8_t Length_DataBuf)
+t_FuncRet USART2_SendBuf_Polling(uint8_t* DataBuf , uint8_t Length_DataBuf)
 {
 	t_FuncRet ret = (t_FuncRet)Operation_Success;
 	

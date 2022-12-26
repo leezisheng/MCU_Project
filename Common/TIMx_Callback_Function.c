@@ -46,7 +46,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	{
         if(IsCompleteHardwareInit() == Operation_Success)
         {
-            UART6_Reset();
+            USART6_RecvDataClear();
         }
 	}
     
@@ -58,7 +58,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	{
         if(IsCompleteHardwareInit() == Operation_Success)
         {
-            ADC_KalmanFilter_Value_Test();
+//            ADC_KalmanFilter_Value_Test();
         }
 	}
     
@@ -70,7 +70,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	{
         if(IsCompleteHardwareInit() == Operation_Success)
         {
-           USART_Gyroscope_MeanFilter_Test();
+//           USART_Gyroscope_MeanFilter_Test();
         }
 	}
 }

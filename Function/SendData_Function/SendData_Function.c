@@ -15,7 +15,7 @@
 /* Private macro definitions--------------------------------------------------*/
 
 /* Serial port send macro definition */
-#define DataWrite  USART2_SendBuf
+#define DataWrite  USART2_SendBuf_Polling
 
 /* Global variable------------------------------------------------------------*/
 
@@ -51,8 +51,8 @@ t_FuncRet SendDataToPC(uint8_t DataType, void* Data0, void* Data1, void* Data2, 
         
         SendDataStruct.HeaderFrame1 = (uint8_t)FRAME_HEADER;
         SendDataStruct.HeaderFrame2 = (uint8_t)FRAME_HEADER;
-        SendDataStruct.DataType     = DataType;
-        SendDataStruct.Stop         = FRAME_STOP;
+        SendDataStruct.DataType     = (uint8_t)DataType;
+        SendDataStruct.Stop         = (uint8_t)FRAME_STOP;
         
         /* The gyroscope output Angle and angular velocity data of the data type float32_t */
         if(DataType == GYROSCOPE_TYPE)
@@ -95,10 +95,10 @@ t_FuncRet SendDataToPC(uint8_t DataType, void* Data0, void* Data1, void* Data2, 
         }
         else if(DataType == ADC_TYPE)
         {
-            u16_temp_data0 = (uint16_t)(*((float32_t*)Data0));
-            u16_temp_data1 = (uint16_t)(*((float32_t*)Data1));
-            u16_temp_data2 = (uint16_t)(*((float32_t*)Data2));
-            u16_temp_data3 = (uint16_t)(*((float32_t*)Data3));
+            u16_temp_data0 = (uint16_t)(*((uint16_t*)Data0));
+            u16_temp_data1 = (uint16_t)(*((uint16_t*)Data1));
+            u16_temp_data2 = (uint16_t)(*((uint16_t*)Data2));
+            u16_temp_data3 = (uint16_t)(*((uint16_t*)Data3));
             
             SendDataStruct.Data0_H = GET_HIGH_BYTE(u16_temp_data0);
             SendDataStruct.Data0_L = GET_LOW_BYTE(u16_temp_data0);

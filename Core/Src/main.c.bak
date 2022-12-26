@@ -116,17 +116,17 @@ They are not used when the program is running
 */
 
 /* Adc-related global variables */
-static uint16_t Sensor1_V_Data          = 0;
-static uint16_t Sensor2_V_Data          = 0;
-static uint16_t Sensor3_V_Data          = 0;
-static uint16_t Sensor4_V_Data          = 0;
-static uint16_t Vref                    = 0;
-volatile static uint32_t sample_count   = 0;
+static uint16_t Sensor1_V_Data          = 3300;
+static uint16_t Sensor2_V_Data          = 2900;
+static uint16_t Sensor3_V_Data          = 1500;
+static uint16_t Sensor4_V_Data          = 1000;
+static uint16_t Vref                    = 800;
+volatile static uint32_t sample_count   = 400;
 
-static float Sensor1_V_Data_F           = 3300;
-static float Sensor2_V_Data_F           = 100;
-static float Sensor3_V_Data_F           = 10;
-static float Sensor4_V_Data_F           = 40;
+static float Sensor1_V_Data_F           = 0;
+static float Sensor2_V_Data_F           = 0;
+static float Sensor3_V_Data_F           = 0;
+static float Sensor4_V_Data_F           = 0;
 static float Vref_F                     = 0;
 
 /* Servo Motor Postion(Angle) */
@@ -136,12 +136,12 @@ volatile static int32_t Angle           = 0;
 /* 
 	Gyroscope calibration count variable: when count is 10, acceleration and Z-axis Angle calibration is started 
 */
-volatile static float angle_x           = 2.789;
-volatile static float angle_y           = 131.69;
+volatile static float angle_x           = 90.71;
+volatile static float angle_y           = 43.75;
 volatile static float angle_z           = 0;
 
-volatile static float acc_x 	        = 100.78;
-volatile static float acc_y 	        = 600.589;
+volatile static float acc_x 	        = 12.75;
+volatile static float acc_y 	        = 33.33;
 volatile static float acc_z 	        = 0;
 
 volatile static float gyro_x            = 0;
@@ -150,10 +150,10 @@ volatile static float gyro_z            = 0;
 
 /* Manipulator control related variables */
 
-volatile static uint8_t temp_id		    = 6;
+volatile static uint8_t temp_id		    = 0;
 volatile static int32_t angle 	        = 0;
-volatile static int16_t position        = 900;
-volatile static int32_t wait_time 	    = 500;
+volatile static int16_t position        = 0;
+volatile static int32_t wait_time 	    = 0;
 
 #endif
 
@@ -167,7 +167,7 @@ void SystemClock_Config(void);
 t_FuncRet Hardware_Init(void);
 
 /* Serial port 6 The receiver is cleared periodically */
-extern void UART6_Reset(void);
+extern void USART6_RecvDataClear(void);
 
 /* USER CODE END PFP */
 
@@ -243,7 +243,10 @@ int main(void)
   {
     /* USER CODE END WHILE */
     /* USER CODE BEGIN 3 */
-
+    HAL_Delay(1000);
+    SendDataToPC((uint8_t)ADC_TYPE, (void*)&Sensor1_V_Data, (void*)&Sensor2_V_Data, (void*)&Sensor3_V_Data, (void*)&Sensor4_V_Data);
+    HAL_Delay(1000);
+    SendDataToPC(GYROSCOPE_TYPE, (void*)&angle_x, (void*)&angle_y, (void*)&acc_x, (void*)&acc_y);
   }
   /* USER CODE END 3 */
 }

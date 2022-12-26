@@ -116,12 +116,12 @@ They are not used when the program is running
 */
 
 /* Adc-related global variables */
-static uint16_t Sensor1_V_Data          = 0;
-static uint16_t Sensor2_V_Data          = 0;
-static uint16_t Sensor3_V_Data          = 0;
-static uint16_t Sensor4_V_Data          = 0;
-static uint16_t Vref                    = 0;
-volatile static uint32_t sample_count   = 0;
+static uint16_t Sensor1_V_Data          = 3300;
+static uint16_t Sensor2_V_Data          = 2900;
+static uint16_t Sensor3_V_Data          = 1500;
+static uint16_t Sensor4_V_Data          = 1000;
+static uint16_t Vref                    = 800;
+volatile static uint32_t sample_count   = 400;
 
 static float Sensor1_V_Data_F           = 0;
 static float Sensor2_V_Data_F           = 0;
@@ -136,12 +136,12 @@ volatile static int32_t Angle           = 0;
 /* 
 	Gyroscope calibration count variable: when count is 10, acceleration and Z-axis Angle calibration is started 
 */
-volatile static float angle_x           = 0;
-volatile static float angle_y           = 0;
+volatile static float angle_x           = 90.71;
+volatile static float angle_y           = 43.75;
 volatile static float angle_z           = 0;
 
-volatile static float acc_x 	        = 0;
-volatile static float acc_y 	        = 0;
+volatile static float acc_x 	        = 12.75;
+volatile static float acc_y 	        = 33.33;
 volatile static float acc_z 	        = 0;
 
 volatile static float gyro_x            = 0;
@@ -167,7 +167,7 @@ void SystemClock_Config(void);
 t_FuncRet Hardware_Init(void);
 
 /* Serial port 6 The receiver is cleared periodically */
-extern void UART6_Reset(void);
+extern void USART6_RecvDataClear(void);
 
 /* USER CODE END PFP */
 
@@ -243,7 +243,7 @@ int main(void)
   {
     /* USER CODE END WHILE */
     /* USER CODE BEGIN 3 */
-
+    
   }
   /* USER CODE END 3 */
 }
