@@ -41,4 +41,7 @@ mcu_project\timx_callback_function.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\stdio
 mcu_project\timx_callback_function.o: ../Common/Runtime_Calculate.h
 mcu_project\timx_callback_function.o: ../Common/numtype_conversion.h
 mcu_project\timx_callback_function.o: ../Hardware/USART_Printf/USART_Printf.h
+mcu_project\timx_callback_function.o: ../Function/SendData_Function/SendData_Function.h
 mcu_project\timx_callback_function.o: ../Core/Inc/tim.h
+mcu_project\timx_callback_function.o: ../Function/GyroscopeData_Process/GyroscopeData_Process.h
+mcu_project\timx_callback_function.o: ../Function/ADC_Function/ADC_Function.h

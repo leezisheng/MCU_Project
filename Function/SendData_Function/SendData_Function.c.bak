@@ -7,7 +7,7 @@
   
 /* Includes ------------------------------------------------------------------*/
 #include "SendData_Function.h"
-#include "USART_Printf.h"
+#include "usbd_cdc_if.h"
 
 /* External function declaration----------------------------------------------*/
 
@@ -15,7 +15,7 @@
 /* Private macro definitions--------------------------------------------------*/
 
 /* Serial port send macro definition */
-#define DataWrite  USART2_SendBuf
+#define DataWrite  CDC_Transmit_FS
 
 /* Global variable------------------------------------------------------------*/
 
@@ -33,8 +33,8 @@
 * @param   {void*}   Datax    : Data that needs to be sent and whose data type is uncertain
 * @return  {t_FuncRet}        : if success , return (t_FuncRet)Operation_Success
 * @example :
-*           SendDataToPC(ADC_TYPE, (void*)&Sensor1_V_Data_F, (void*)&Sensor2_V_Data_F, (void*)&Sensor3_V_Data_F, (void*)&Sensor4_V_Data_F);
-*           SendDataToPC(GYROSCOPE_TYPE, (void*)&angle_x, (void*)&angle_y, (void*)&acc_x, (void*)&acc_y);
+*           SendDataToPC(ADC_TYPE, (void*)&Sensor1_V_Data, (void*)&Sensor2_V_Data_F, (void*)&Sensor3_V_Data_F, (void*)&Sensor4_V_Data_F);
+*           SendDataToPC(GYROSCOPE_TYPE, (void*)&angle_x, (void*)&angle_y, (void*)&gyro_x, (void*)&gyro_y);
 * @author: leeqingshui 
 */
 t_FuncRet SendDataToPC(uint8_t DataType, void* Data0, void* Data1, void* Data2, void* Data3)
@@ -111,7 +111,10 @@ t_FuncRet SendDataToPC(uint8_t DataType, void* Data0, void* Data1, void* Data2, 
         }
         
         /* Data transmission */
-        DataWrite((uint8_t*)&SendDataStruct,sizeof(SendDataStruct));
+        if(DataWrite((uint8_t*)&SendDataStruct,sizeof(SendDataStruct)) != USBD_OK)
+        {
+            ret = Operation_Fail;
+        }
     }
     else
     {

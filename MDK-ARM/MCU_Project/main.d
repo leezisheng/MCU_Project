@@ -64,3 +64,9 @@ mcu_project\main.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\math.h
 mcu_project\main.o: ../Drivers/CMSIS/DSP/Include/arm_const_structs.h
 mcu_project\main.o: ../Drivers/CMSIS/DSP/Include/arm_math.h
 mcu_project\main.o: ../Drivers/CMSIS/DSP/Include/arm_common_tables.h
+mcu_project\main.o: ../USB_DEVICE/App/usbd_cdc_if.h
+mcu_project\main.o: ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h
+mcu_project\main.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h
+mcu_project\main.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h
+mcu_project\main.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h
+mcu_project\main.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h

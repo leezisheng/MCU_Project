@@ -9,7 +9,10 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "USART_Printf.h"
+#include "SendData_Function.h"
 #include "tim.h"
+#include "GyroscopeData_Process.h"
+#include "ADC_Function.h"
 
 /* External function declaration----------------------------------------------*/
 
@@ -25,6 +28,21 @@ extern TIM_HandleTypeDef htim3;
 extern TIM_HandleTypeDef htim2;
 /* Timing reading of gyroscope data with timer 4 interrupt (Fre = 20Hz) */
 extern TIM_HandleTypeDef htim4;
+
+/* Adc-related static global variables */
+static uint16_t Temp_Sensor1_V_Data          = 0;
+static uint16_t Temp_Sensor2_V_Data          = 0;
+static uint16_t Temp_Sensor3_V_Data          = 0;
+static uint16_t Temp_Sensor4_V_Data          = 0;
+static uint16_t Temp_Vref                    = 0;
+
+/* Gyroscope related data */
+volatile static float32_t Temp_angle_x       = 0;
+volatile static float32_t Temp_angle_y       = 0;
+volatile static float32_t Temp_angle_z       = 0;
+volatile static float32_t Temp_gyro_x        = 0;
+volatile static float32_t Temp_gyro_y        = 0;
+volatile static float32_t Temp_gyro_z        = 0;
 
 /* Static function definition-------------------------------------------------*/
 
@@ -58,8 +76,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	{
         if(IsCompleteHardwareInit() == Operation_Success)
         {
-//            ADC_KalmanFilter_Value_Test();
-            
+            Runtime_Calculate_Start_Hardware();
+            Get_ADC_MeanFilter_Value(&Temp_Sensor1_V_Data, &Temp_Sensor2_V_Data, &Temp_Sensor3_V_Data, &Temp_Sensor4_V_Data, &Temp_Vref);
+            SendDataToPC(ADC_TYPE, (void*)&Temp_Sensor1_V_Data, (void*)&Temp_Sensor2_V_Data, (void*)&Temp_Sensor3_V_Data, (void*)&Temp_Sensor4_V_Data);
+            Runtime_Calculate_Finish_Hardware();
         }
 	}
     
@@ -71,9 +91,12 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	{
         if(IsCompleteHardwareInit() == Operation_Success)
         {
-            Runtime_Calculate_Start_Hardware();
-//           USART_Gyroscope_MeanFilter_Test();
-            Runtime_Calculate_Finish_Hardware();
+           Get_MotionData_MeanFilter_Value((float*)&Temp_angle_x , 
+										   (float*)&Temp_angle_y ,
+						                   (float*)&Temp_angle_z ,
+						                   (float*)&Temp_gyro_x  ,
+								           (float*)&Temp_gyro_y  ,
+						                   (float*)&Temp_gyro_z );
         }
 	}
 }

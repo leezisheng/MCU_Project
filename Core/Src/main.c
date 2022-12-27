@@ -80,6 +80,10 @@
 */
 #include "arm_math.h"
 #include "arm_const_structs.h"
+/*
+    The virtual serial port sends related header files
+*/
+#include "usbd_cdc_if.h"
 
 /* USER CODE END Includes */
 
@@ -116,7 +120,7 @@ They are not used when the program is running
 	and are not required for official launch
 */
 
-/* Adc-related global variables */
+/* Adc-related static global variables */
 static uint16_t Sensor1_V_Data          = 3300;
 static uint16_t Sensor2_V_Data          = 2900;
 static uint16_t Sensor3_V_Data          = 1500;
@@ -246,8 +250,6 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-//    SendDataToPC(ADC_TYPE, (void*)&Sensor1_V_Data_F, (void*)&Sensor2_V_Data_F, (void*)&Sensor3_V_Data_F, (void*)&Sensor4_V_Data_F);
-//    SendDataToPC(GYROSCOPE_TYPE, (void*)&angle_x, (void*)&angle_y, (void*)&acc_x, (void*)&acc_y);
   }
   /* USER CODE END 3 */
 }
