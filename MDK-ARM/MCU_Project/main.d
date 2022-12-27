@@ -33,6 +33,9 @@ mcu_project\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 mcu_project\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 mcu_project\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 mcu_project\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+mcu_project\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd.h
+mcu_project\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h
+mcu_project\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd_ex.h
 mcu_project\main.o: ../Common/numtype.h
 mcu_project\main.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\stdio.h
 mcu_project\main.o: ../Common/Runtime_Calculate.h
@@ -41,6 +44,11 @@ mcu_project\main.o: ../Core/Inc/adc.h
 mcu_project\main.o: ../Core/Inc/dma.h
 mcu_project\main.o: ../Core/Inc/tim.h
 mcu_project\main.o: ../Core/Inc/usart.h
+mcu_project\main.o: ../USB_DEVICE/App/usb_device.h
+mcu_project\main.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h
+mcu_project\main.o: ../USB_DEVICE/Target/usbd_conf.h
+mcu_project\main.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\stdlib.h
+mcu_project\main.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\string.h
 mcu_project\main.o: ../Core/Inc/gpio.h
 mcu_project\main.o: ../Hardware/ADC_Operation/ADC_Operation.h
 mcu_project\main.o: ../Hardware/USART_Printf/USART_Printf.h
@@ -49,10 +57,9 @@ mcu_project\main.o: ../Hardware/USART_Gyroscope/USART_Gyroscope.h
 mcu_project\main.o: ../Function/ADC_Function/ADC_Function.h
 mcu_project\main.o: ../Function/DigtalSignal_Process/DigtalSignal_Process.h
 mcu_project\main.o: ../Function/GyroscopeData_Process/GyroscopeData_Process.h
-mcu_project\main.o: ..\Function\SendData_Function\SendData_Function.h
+mcu_project\main.o: ../Function/SendData_Function/SendData_Function.h
 mcu_project\main.o: ../Middlewares/ST/ARM/DSP/Inc/arm_math.h
 mcu_project\main.o: ../Drivers/CMSIS/Include/core_cm4.h
-mcu_project\main.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\string.h
 mcu_project\main.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\math.h
 mcu_project\main.o: ../Drivers/CMSIS/DSP/Include/arm_const_structs.h
 mcu_project\main.o: ../Drivers/CMSIS/DSP/Include/arm_math.h

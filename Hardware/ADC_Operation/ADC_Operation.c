@@ -8,7 +8,7 @@
   *						 ADC sampling is triggered by software
   *						 ADC software startup trigger program is started in TIM2 (2000Hz)timer interrupt. 
   *						 Specific parameters of TIM2 are as follows:
-  *						 APB1 100MHz = 100*1000000 PSC:1000-1 ARR:50-1 
+  *						 APB1_Timer_Clock 100MHz = 100*1000000 PSC:1000-1 ARR:50-1 
   * parameter          :
   * 					 ADC1:Preenmption Priority 0
 							 mode: IN1  -- PA1
@@ -20,13 +20,13 @@
 						 ADC sampling rate £º
 							 Sampling period = conversion time + Read time
 							 Conversion time = Sampling time£¨15 clock cycles£© +12 clock cycles (STM32F4)
-							 Conversion frequency = ADC clock frequency/£¨Conversion time£©= 25 Mhz /27 cycle = 925Khz
+							 Conversion frequency = ADC clock frequency/£¨Conversion time£©= 36 Mhz /27 cycle = 1333Khz
 						 
 							 ADCs_Common_Settings:
 							 Mode Independent mode
 							 
 							 ADC_Settings:
-							 Clock Prescaler PCLK2 divided by 4 = 25MHz
+							 Clock Prescaler PCLK2 divided by 2 = 36MHz
 							 Resolution 12 bits (15 ADC Clock cycles)
 							 Data Alignment Right alignment
 							 Scan Conversion Mode Enabled

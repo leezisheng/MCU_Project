@@ -19,7 +19,7 @@
 
 /* Global variable------------------------------------------------------------*/
 
-/* Timer 3 handle pointer */
+/* Timer 3 is interrupted periodically(Fre = 100Hz), and the receive clearance function of serial port 6 is invoked  */
 extern TIM_HandleTypeDef htim3;
 /* Handle of the timer associated with ADC timing acquisition, with a frequency of 2000Hz */
 extern TIM_HandleTypeDef htim2;
@@ -59,6 +59,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
         if(IsCompleteHardwareInit() == Operation_Success)
         {
 //            ADC_KalmanFilter_Value_Test();
+            
         }
 	}
     
@@ -70,7 +71,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	{
         if(IsCompleteHardwareInit() == Operation_Success)
         {
+            Runtime_Calculate_Start_Hardware();
 //           USART_Gyroscope_MeanFilter_Test();
+            Runtime_Calculate_Finish_Hardware();
         }
 	}
 }

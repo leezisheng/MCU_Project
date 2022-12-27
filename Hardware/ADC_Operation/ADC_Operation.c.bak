@@ -20,13 +20,13 @@
 						 ADC sampling rate £º
 							 Sampling period = conversion time + Read time
 							 Conversion time = Sampling time£¨15 clock cycles£© +12 clock cycles (STM32F4)
-							 Conversion frequency = ADC clock frequency/£¨Conversion time£©= 25 Mhz /27 cycle = 925Khz
+							 Conversion frequency = ADC clock frequency/£¨Conversion time£©= 36 Mhz /27 cycle = 1333Khz
 						 
 							 ADCs_Common_Settings:
 							 Mode Independent mode
 							 
 							 ADC_Settings:
-							 Clock Prescaler PCLK2 divided by 4 = 25MHz
+							 Clock Prescaler PCLK2 divided by 2 = 36MHz
 							 Resolution 12 bits (15 ADC Clock cycles)
 							 Data Alignment Right alignment
 							 Scan Conversion Mode Enabled
@@ -146,7 +146,7 @@ t_FuncRet  ADC_Operation_Init(void)
 	/* Enable timer 3 Interrupt */
 	if(HAL_TIM_Base_Start_IT(&htim2)!=HAL_OK)
 	{
-		return ret= (t_FuncRet)Operatin_Fail;
+		return ret= (t_FuncRet)Operation_Fail;
 	}
 	
 	/* Start the conversion process and enable interrupt */
@@ -155,7 +155,7 @@ t_FuncRet  ADC_Operation_Init(void)
                           ADCCONVERTEDVALUES_BUFFER_SIZE
                          ) != HAL_OK)
 	{
-		return ret= (t_FuncRet)Operatin_Fail;
+		return ret= (t_FuncRet)Operation_Fail;
 	}
 	
 	/* The flag bit reset of ADC1 collection is complete */

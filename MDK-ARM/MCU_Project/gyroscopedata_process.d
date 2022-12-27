@@ -34,6 +34,9 @@ mcu_project\gyroscopedata_process.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4
 mcu_project\gyroscopedata_process.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 mcu_project\gyroscopedata_process.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 mcu_project\gyroscopedata_process.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
+mcu_project\gyroscopedata_process.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd.h
+mcu_project\gyroscopedata_process.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h
+mcu_project\gyroscopedata_process.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd_ex.h
 mcu_project\gyroscopedata_process.o: ../Common/numtype.h
 mcu_project\gyroscopedata_process.o: D:\Lee\MDK5\ARM\ARMCC\Bin\..\include\stdio.h
 mcu_project\gyroscopedata_process.o: ../Common/Runtime_Calculate.h
