@@ -8,6 +8,8 @@
   *                      USART6  ------> Used to control the serving motor (Baud Rate 115200)
   *                      USART1  ------> Used to Send and receive gyroscope data(Baud Rate 9600)
   *                      USART2  ------> Used for man-machine interaction with the serial port screen(Baud Rate 115200)
+  *                      Printf function redirects 
+  *                      ------> Implemented through ITM, the debugging serial port Debug(printf) Viewer can view debugging information
   *
   * Pin               : 
   *					     PA9     ------> USART1_TX

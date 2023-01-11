@@ -57,6 +57,12 @@ extern "C" {
 */
 #define CODE_TEST
 
+/* 
+    If USB_TRANSMIT_TEST is defined, then start the USB function test:
+    That is, USB sends the received characters
+  */
+//#define USB_TRANSMIT_TEST
+
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/

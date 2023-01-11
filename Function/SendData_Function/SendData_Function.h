@@ -1,7 +1,14 @@
 /**
   ******************************************************************************
   * File Name          : SendData_Function.c
-  * Description        : This file defines the structure and functions for sending data to the upmachine
+  * Description        : This file declaration the structure and functions for sending data to the upmachine
+  *
+  * The process of communication with the upper computer:
+  *     (1) First of all, STM32 sends the synchronization sequence signal to the upper computer
+  *         The synchronization sequence signal is 0x56 and After send the synchronization signal, STM32 controls LED3 flip level
+  *     (2) After receiving the synchronization signal, the upper computer send to PC the ack signal
+  *         The ack signal is 0x57. After receive the ack signal, STM32 reverses the level of LED4
+  *     (3) After received the ack signal, STM32 sends the data structure
   ******************************************************************************
  */
 
@@ -24,6 +31,10 @@
 /* Format frame macro definition */
 #define FRAME_HEADER                        0x55
 #define FRAME_STOP                          0x78
+
+/* Macro definition of sync signal and ack signal */
+#define SYNC_SIGNAL                         0x56
+#define ACK_SIGNAL                          0x57
 
 /* The macro gets the lower octet of A */
 #define GET_LOW_BYTE(DATA) 					((uint8_t)(DATA))
@@ -83,10 +94,20 @@ typedef struct
 
 /* Extern Variable------------------------------------------------------------*/
 
+/* Synchronization signal received flag bit */
+extern bool AckSignalRecvFlag;
+/* USB virtual serial port receiving flag bit */
+extern bool USBRecvSuccessFlag;
+
 /* Function declaration-------------------------------------------------------*/
 
+/* Synchronous signal sending function */
+t_FuncRet SendSyncSignalToPC(void);
+/* Ack signal reception confirmation function */
+t_FuncRet AckSignal_Recv(uint8_t* Buf);
 /* A function that sends data to PC */
 t_FuncRet SendDataToPC(uint8_t DataType, void* Data0, void* Data1, void* Data2, void* Data3);
+
 
 #ifdef __cplusplus
 }

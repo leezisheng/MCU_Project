@@ -8,6 +8,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "SendData_Function.h"
 #include "usbd_cdc_if.h"
+#include "numtype.h"
 
 /* External function declaration----------------------------------------------*/
 
@@ -19,11 +20,74 @@
 
 /* Global variable------------------------------------------------------------*/
 
+/* Synchronization signal received flag bit */
+bool AckSignalRecvFlag  = (bool)FALSE;
+/* USB virtual serial port receiving flag bit */
+bool USBRecvSuccessFlag = (bool)FALSE;
 
 /* Static function definition-------------------------------------------------*/
 
 
 /* Function definition--------------------------------------------------------*/
+
+/** 
+* @description                : Synchronous signal sending function
+*                               First of all, STM32 sends the synchronization sequence signal to the upper computer
+*                               The synchronization sequence signal is 0x56 and After send the synchronization signal, STM32 controls LED3 flip level
+* @param   {uint8_t*} void    
+* @return  {t_FuncRet}        : if send ack signals success , return (t_FuncRet)Operation_Success
+* @author: leeqingshui 
+*/
+t_FuncRet SendSyncSignalToPC(void)
+{
+    t_FuncRet ret = Operation_Success;
+    
+    uint8_t temp_sync = SYNC_SIGNAL;
+    
+    /* Data transmission */
+    if(DataWrite((uint8_t*)&temp_sync,sizeof(temp_sync)) != USBD_OK)
+    {
+       ret = Operation_Fail;
+    }
+    else
+    {
+        HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
+    }
+    return ret;
+}
+
+/** 
+* @description                : Ack signal reception confirmation function
+*                               After receiving the synchronization signal, the upper computer send to PC the ack signal
+*                               The ack signal is 0x57. After receive the Ack signal successfully, STM32 reverses the level of LED4
+* @param   {uint8_t*} Buf     : USB Data received by the virtual serial port
+*                               It is called by CDC_Receive_FS function in usbd_cdc_if.c file, 
+*                               which automatically enters interrupt and calls when USB receives.
+*                               You can process or dump the contents of the receive buffer directly there.
+* @return  {t_FuncRet}        : If the received data is a Ack signal, return (t_FuncRet)Operation_Success
+* @author: leeqingshui 
+*/
+t_FuncRet AckSignal_Recv(uint8_t* Buf)
+{
+    t_FuncRet ret = Operation_Success;
+    
+    /* The USB virtual serial port receives data. */
+    USBRecvSuccessFlag = (bool)TRUE;
+    
+    if((*Buf) != ACK_SIGNAL)
+    {
+        ret = Operation_Fail;
+    }
+    /* The Ack signal was received successfully */
+    else
+    {
+        HAL_GPIO_TogglePin(LD4_GPIO_Port, LD4_Pin);
+        /* The successful reception flag bit of the Ack signal is set to 1 */
+        AckSignalRecvFlag = (bool)TRUE;
+    }
+
+    return ret;
+}
 
 /** 
 * @description                : A function that sends data to PC 
@@ -40,6 +104,9 @@
 t_FuncRet SendDataToPC(uint8_t DataType, void* Data0, void* Data1, void* Data2, void* Data3)
 {
     t_FuncRet ret = Operation_Success;
+    
+    /* The USB virtual serial port receives data */
+    
     
     /* Determines whether the data type is correct */
     if(IS_TRUE_DATATYPE(DataType))

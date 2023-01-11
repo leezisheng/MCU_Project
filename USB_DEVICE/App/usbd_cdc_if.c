@@ -24,6 +24,11 @@
 
 /* USER CODE BEGIN INCLUDE */
 
+/*
+    This file defines the structure and functions for sending data to the upmachine
+*/
+#include "SendData_Function.h"
+
 /* USER CODE END INCLUDE */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -32,6 +37,9 @@
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
+
+/* A variable that stores the return value of a function for easy debugging */
+static t_FuncRet ret = Operation_Success;
 
 /* USER CODE END PV */
 
@@ -262,7 +270,20 @@ static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
 static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
 {
   /* USER CODE BEGIN 6 */
-  CDC_Transmit_FS(Buf,*Len);
+  /*
+    The receiver function is not given in usbd_cdc_if.h, but is given in usbd_cdc_if.c with the static keyword
+    This function is called automatically when USB receives an interrupt, and can directly process or dump the contents of the receive buffer.
+  */
+  
+  /* 
+    If USB_TRANSMIT_TEST is defined, then start the USB function test:
+    That is, USB sends the received characters
+  */
+  #ifdef USB_TRANSMIT_TEST
+    CDC_Transmit_FS(Buf,*Len);
+  #endif
+  
+  ret = AckSignal_Recv((uint8_t*)Buf);
   USBD_CDC_SetRxBuffer(&hUsbDeviceFS, &Buf[0]);
   USBD_CDC_ReceivePacket(&hUsbDeviceFS);
   return (USBD_OK);
@@ -318,6 +339,7 @@ static int8_t CDC_TransmitCplt_FS(uint8_t *Buf, uint32_t *Len, uint8_t epnum)
 }
 
 /* USER CODE BEGIN PRIVATE_FUNCTIONS_IMPLEMENTATION */
+
 
 /* USER CODE END PRIVATE_FUNCTIONS_IMPLEMENTATION */
 

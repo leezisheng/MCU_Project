@@ -19,6 +19,12 @@
 
 /* Private macro definitions--------------------------------------------------*/
 
+/* Whether to use the receive wait delay */
+//#define USE_USB_RECV_DELAY                  0
+#ifdef USE_USB_RECV_DELAY
+    /* Receive wait time parameter */
+    #define WAIT_ACK_SIGNAL_DELAY_TIME          255
+#endif
 
 /* Global variable------------------------------------------------------------*/
 
@@ -28,6 +34,10 @@ extern TIM_HandleTypeDef htim3;
 extern TIM_HandleTypeDef htim2;
 /* Timing reading of gyroscope data with timer 4 interrupt (Fre = 20Hz) */
 extern TIM_HandleTypeDef htim4;
+/* Ack signal received flag bit */
+extern bool AckSignalRecvFlag;
+/* USB virtual serial port receiving flag bit */
+extern bool USBRecvSuccessFlag;
 
 /* Adc-related static global variables */
 static uint16_t Temp_Sensor1_V_Data          = 0;
@@ -43,6 +53,10 @@ volatile static float32_t Temp_angle_z       = 0;
 volatile static float32_t Temp_gyro_x        = 0;
 volatile static float32_t Temp_gyro_y        = 0;
 volatile static float32_t Temp_gyro_z        = 0;
+
+
+/* The delay variable waiting for a response signal to arrive */
+uint8_t wait_ack_delay_val = WAIT_ACK_SIGNAL_DELAY_TIME;
 
 /* Static function definition-------------------------------------------------*/
 
@@ -76,8 +90,47 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	{
         if(IsCompleteHardwareInit() == Operation_Success)
         {
-            Get_ADC_MeanFilter_Value(&Temp_Sensor1_V_Data, &Temp_Sensor2_V_Data, &Temp_Sensor3_V_Data, &Temp_Sensor4_V_Data, &Temp_Vref);
-            SendDataToPC(ADC_TYPE, (void*)&Temp_Sensor1_V_Data, (void*)&Temp_Sensor2_V_Data, (void*)&Temp_Sensor3_V_Data, (void*)&Temp_Sensor4_V_Data);
+            /* First of all, STM32 sends the synchronization sequence signal to the upper computer */
+            SendSyncSignalToPC();
+            
+            /* After receiving the synchronization signal, the upper computer send to PC the ack signal */
+            
+            /* Whether to use the receive wait delay */
+            #ifdef USE_USB_RECV_DELAY
+            
+            /* Wait for the Ack signal to arrive */
+            for(wait_ack_delay_val = WAIT_ACK_SIGNAL_DELAY_TIME;wait_ack_delay_val != 0;wait_ack_delay_val = wait_ack_delay_val-1)
+            {
+                /* The USB virtual serial port receives data and jumps out of the loop */
+                if(USBRecvSuccessFlag != (bool)FALSE) 
+                {
+                    break;
+                }
+            }
+            /* When the delay is reached, the while loop breaks out and the wait_ack_delay_val variable restores to its original value */
+            wait_ack_delay_val = WAIT_ACK_SIGNAL_DELAY_TIME;
+            /* Complete data reception, reset flag bit */
+            USBRecvSuccessFlag = (bool)FALSE;
+            
+            #endif
+            
+            /* The synchronization signal was received successfully */
+            if(AckSignalRecvFlag != (bool)FALSE)
+            {
+                Runtime_Calculate_Start_Hardware();
+                /* Get the Mean filter voltage value , This is a three-point mean */
+                Get_ADC_MeanFilter_Value(&Temp_Sensor1_V_Data, &Temp_Sensor2_V_Data, &Temp_Sensor3_V_Data, &Temp_Sensor4_V_Data, &Temp_Vref);
+                /* After sending the ack signal, STM32 sends the data structure */
+                SendDataToPC(ADC_TYPE, (void*)&Temp_Sensor1_V_Data, (void*)&Temp_Sensor2_V_Data, (void*)&Temp_Sensor3_V_Data, (void*)&Temp_Sensor4_V_Data);
+                /* The successful reception flag bit of the synchronization signal is set to 0 */
+                AckSignalRecvFlag = (bool)FALSE;
+                Runtime_Calculate_Finish_Hardware();
+            }
+            /* If no synchronization signal is received or an incorrect synchronization signal is received, skip this step */
+            else
+            {
+                return;
+            }
         }
 	}
     

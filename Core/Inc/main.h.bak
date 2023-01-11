@@ -35,6 +35,7 @@ extern "C" {
 #include "numtype.h"
 #include <stdio.h>
 #include "Runtime_Calculate.h"
+#include "numtype_conversion.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

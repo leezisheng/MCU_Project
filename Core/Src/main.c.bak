@@ -237,7 +237,7 @@ int main(void)
   else
   {
     printf("Success to initialize Hardware Procedure\r\n");
-    HardwareComplete_Flag = (bool)TRUE;
+    HardwareComplete_Flag = (bool)FALSE;
   }
   
   /* USER CODE END 2 */
@@ -250,10 +250,6 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    HAL_Delay(1000);
-    Runtime_Calculate_Start_Hardware();
-    SendDataToPC(ADC_TYPE, (void*)&Sensor1_V_Data, (void*)&Sensor2_V_Data, (void*)&Sensor3_V_Data, (void*)&Sensor4_V_Data);
-    Runtime_Calculate_Finish_Hardware();
   }
   /* USER CODE END 3 */
 }

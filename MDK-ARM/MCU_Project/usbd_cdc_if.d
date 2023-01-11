@@ -50,3 +50,4 @@ mcu_project\usbd_cdc_if.o: ../Common/numtype_conversion.h
 mcu_project\usbd_cdc_if.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h
 mcu_project\usbd_cdc_if.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h
 mcu_project\usbd_cdc_if.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h
+mcu_project\usbd_cdc_if.o: ../Function/SendData_Function/SendData_Function.h
