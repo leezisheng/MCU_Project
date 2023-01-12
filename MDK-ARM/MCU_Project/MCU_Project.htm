@@ -3,7 +3,7 @@
 <title>Static Call Graph - [MCU_Project\MCU_Project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image MCU_Project\MCU_Project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Thu Jan 12 02:25:52 2023
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Fri Jan 13 03:34:11 2023
 <BR><P>
 <H3>Maximum Stack Usage =        284 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1185,7 +1185,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_IRQHandler
 </UL>
 
-<P><STRONG><a name="[101]"></a>HAL_TIM_PeriodElapsedCallback</STRONG> (Thumb, 134 bytes, Stack size 16 bytes, timx_callback_function.o(i.HAL_TIM_PeriodElapsedCallback))
+<P><STRONG><a name="[101]"></a>HAL_TIM_PeriodElapsedCallback</STRONG> (Thumb, 144 bytes, Stack size 16 bytes, timx_callback_function.o(i.HAL_TIM_PeriodElapsedCallback))
 <BR><BR>[Stack]<UL><LI>Max Depth = 228<LI>Call Chain = HAL_TIM_PeriodElapsedCallback &rArr; SendDataToPC &rArr; CDC_Transmit_FS &rArr; USBD_CDC_TransmitPacket &rArr; USBD_LL_Transmit &rArr; HAL_PCD_EP_Transmit &rArr; USB_EPStartXfer &rArr; USB_WritePacket
 </UL>
 <BR>[Calls]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_MotionData_MeanFilter_Value
@@ -1693,8 +1693,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_LL_StallEP
 </UL>
-<BR>[Called By]<UL><LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_GetStatus
-<LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_GetDescriptor
+<BR>[Called By]<UL><LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_GetDescriptor
 <LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_GetConfig
 <LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_ClrFeature
 <LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_StdItfReq
@@ -1703,6 +1702,7 @@ Global Symbols
 <LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_CDC_Setup
 <LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_SetConfig
 <LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_SetAddress
+<LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_GetStatus
 </UL>
 
 <P><STRONG><a name="[141]"></a>USBD_CtlPrepareRx</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, usbd_ioreq.o(i.USBD_CtlPrepareRx))
@@ -1726,11 +1726,11 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_LL_Transmit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_GetStatus
-<LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_GetDescriptor
+<BR>[Called By]<UL><LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_GetDescriptor
 <LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_GetConfig
 <LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_StdEPReq
 <LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_CDC_Setup
+<LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_GetStatus
 </UL>
 
 <P><STRONG><a name="[144]"></a>USBD_CtlSendStatus</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, usbd_ioreq.o(i.USBD_CtlSendStatus))
@@ -2041,14 +2041,14 @@ Global Symbols
 <P><STRONG><a name="[157]"></a>USBD_StdDevReq</STRONG> (Thumb, 166 bytes, Stack size 16 bytes, usbd_ctlreq.o(i.USBD_StdDevReq))
 <BR><BR>[Stack]<UL><LI>Max Depth = 172<LI>Call Chain = USBD_StdDevReq &rArr; USBD_GetDescriptor &rArr; USBD_CtlSendData &rArr; USBD_LL_Transmit &rArr; HAL_PCD_EP_Transmit &rArr; USB_EPStartXfer &rArr; USB_WritePacket
 </UL>
-<BR>[Calls]<UL><LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_GetStatus
-<LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_GetDescriptor
+<BR>[Calls]<UL><LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_GetDescriptor
 <LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_GetConfig
 <LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_ClrFeature
 <LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_CtlError
 <LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_SetFeature
 <LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_SetConfig
 <LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_SetAddress
+<LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_GetStatus
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_LL_SetupStage
 </UL>

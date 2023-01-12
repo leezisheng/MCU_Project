@@ -59,7 +59,7 @@ typedef struct
         frame header :
         Sending two 0x55 consecutively indicates data arrival 
     */
-    uint8_t HeaderFrame1;
+//    uint8_t HeaderFrame1;
     uint8_t HeaderFrame2;
     
     /*
@@ -96,6 +96,8 @@ typedef struct
 
 /* Synchronization signal received flag bit */
 extern bool AckSignalRecvFlag;
+/* USB virtual serial port receiving flag bit */
+extern bool USBRecvSuccessFlag;
 
 /* Function declaration-------------------------------------------------------*/
 

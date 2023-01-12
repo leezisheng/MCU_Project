@@ -71,7 +71,7 @@ t_FuncRet AckSignal_Recv(uint8_t* Buf)
 {
     t_FuncRet ret = Operation_Success;
     
-    /* */
+    /* The USB virtual serial port receives data. */
     USBRecvSuccessFlag = (bool)TRUE;
     
     if((*Buf) != ACK_SIGNAL)
@@ -105,6 +105,9 @@ t_FuncRet SendDataToPC(uint8_t DataType, void* Data0, void* Data1, void* Data2, 
 {
     t_FuncRet ret = Operation_Success;
     
+    /* The USB virtual serial port receives data */
+    
+    
     /* Determines whether the data type is correct */
     if(IS_TRUE_DATATYPE(DataType))
     {
@@ -113,7 +116,7 @@ t_FuncRet SendDataToPC(uint8_t DataType, void* Data0, void* Data1, void* Data2, 
         
         uint16_t u16_temp_data0, u16_temp_data1, u16_temp_data2, u16_temp_data3;
         
-        SendDataStruct.HeaderFrame1 = (uint8_t)FRAME_HEADER;
+//        SendDataStruct.HeaderFrame1 = (uint8_t)FRAME_HEADER;
         SendDataStruct.HeaderFrame2 = (uint8_t)FRAME_HEADER;
         SendDataStruct.DataType     = (uint8_t)DataType;
         SendDataStruct.Stop         = (uint8_t)FRAME_STOP;

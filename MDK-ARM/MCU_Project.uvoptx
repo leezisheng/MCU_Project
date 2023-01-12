@@ -178,17 +178,7 @@
         <Ww>
           <count>5</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Buf,0x10</ItemText>
-        </Ww>
-        <Ww>
-          <count>6</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>AckSignalRecvFlag</ItemText>
-        </Ww>
-        <Ww>
-          <count>7</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>wait_ack_delay_val,0x0A</ItemText>
+          <ItemText>count,0x0A</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>

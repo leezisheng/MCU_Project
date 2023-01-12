@@ -54,9 +54,11 @@ volatile static float32_t Temp_gyro_x        = 0;
 volatile static float32_t Temp_gyro_y        = 0;
 volatile static float32_t Temp_gyro_z        = 0;
 
-
-/* The delay variable waiting for a response signal to arrive */
-uint8_t wait_ack_delay_val = WAIT_ACK_SIGNAL_DELAY_TIME;
+#ifdef USE_USB_RECV_DELAY
+    /* The delay variable waiting for a response signal to arrive */
+    uint8_t wait_ack_delay_val = WAIT_ACK_SIGNAL_DELAY_TIME
+#endif
+u
 
 /* Static function definition-------------------------------------------------*/
 

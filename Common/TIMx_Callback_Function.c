@@ -59,6 +59,8 @@ volatile static float32_t Temp_gyro_z        = 0;
     uint8_t wait_ack_delay_val = WAIT_ACK_SIGNAL_DELAY_TIME
 #endif
 
+uint32_t count = 0;
+
 /* Static function definition-------------------------------------------------*/
 
 
@@ -118,6 +120,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
             /* The synchronization signal was received successfully */
             if(AckSignalRecvFlag != (bool)FALSE)
             {
+                count = count+1;
                 Runtime_Calculate_Start_Hardware();
                 /* Get the Mean filter voltage value , This is a three-point mean */
                 Get_ADC_MeanFilter_Value(&Temp_Sensor1_V_Data, &Temp_Sensor2_V_Data, &Temp_Sensor3_V_Data, &Temp_Sensor4_V_Data, &Temp_Vref);
