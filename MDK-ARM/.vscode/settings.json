@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "hmi_control.h": "c",
+        "numtype_conversion.h": "c",
+        "numtype.h": "c",
+        "usart_printf.h": "c",
+        "adc_function.h": "c",
+        "main.h": "c"
+    }
+}

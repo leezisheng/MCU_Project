@@ -85,6 +85,10 @@
 */
 #include "usbd_cdc_if.h"
 
+/*
+
+*/
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -237,7 +241,7 @@ int main(void)
   else
   {
     printf("Success to initialize Hardware Procedure\r\n");
-    HardwareComplete_Flag = (bool)FALSE;
+    HardwareComplete_Flag = (bool)TRUE;
   }
   
   /* USER CODE END 2 */

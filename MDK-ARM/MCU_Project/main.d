@@ -70,3 +70,5 @@ mcu_project\main.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ior
 mcu_project\main.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h
 mcu_project\main.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h
 mcu_project\main.o: ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h
+mcu_project\main.o: ..\Hardware\HMI_Control\HMI_Control.h
+mcu_project\main.o: ..\Function\HMI_Function\HMI_Function.h

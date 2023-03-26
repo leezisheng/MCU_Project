@@ -28,7 +28,7 @@
 * @description : Check whether the key is pressed
 * @param {GPIO_TypeDef*} GPIOx      : The GPIO type can be GPIOA, GPIOB, etc
 * @param {uint16_t}      GPIO_Pin   : GPIO port
-* @return uint8_t}       KEY_STATUS : Key state, pressed or released
+* @return {uint8_t}       KEY_STATUS : Key state, pressed or released
 * @author: leeqingshui 
 */
 uint8_t Key_Scan(GPIO_TypeDef* GPIOx,uint16_t GPIO_Pin)

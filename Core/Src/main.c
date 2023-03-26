@@ -85,6 +85,18 @@
 */
 #include "usbd_cdc_if.h"
 
+/*
+    This file includes definition of serial port panel control function 
+    and related data structure definition
+*/
+#include "HMI_Control.h"
+
+/*
+    This file includes serial port panel curve update function, serial port panel data display function, 
+    and related structure declaration
+*/
+#include "HMI_Function.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/

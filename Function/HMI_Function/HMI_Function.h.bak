@@ -1,0 +1,71 @@
+/**
+  ******************************************************************************
+  * File Name          : HMI_Function.h
+  *
+  * Description        : The following functions are declared: serial port panel 
+  *                      curve update function, serial port panel data display function, 
+  *                      and related structure declaration
+  ******************************************************************************
+  */
+
+/* Define to prevent recursive inclusion -------------------------------------*/
+
+#ifndef __HMI_FUNCTION_H
+#define __HMI_FUNCTION_H
+
+#ifdef __cplusplus
+ extern "C" {
+#endif
+
+/* Includes ------------------------------------------------------------------*/
+#include "main.h"
+
+
+
+/* Common macro definitions---------------------------------------------------*/
+
+/*
+    Data conversion macro definitions and macro functions related to waveform display range
+    The waveform displays data ranging from 0 to 255, while the voltage data ranges from 0 to 3300
+    Therefore, data range transformation is required
+*/
+#define V_FULL_SCALE        3300
+#define C_FULL_SCALE        255
+#define DATA_RANGE_CONV(x)  (int32_t)(((x)/(V_FULL_SCALE))*(C_FULL_SCALE))
+
+
+/* Extern Variable------------------------------------------------------------*/
+
+
+
+/* Data structure declaration-------------------------------------------------*/
+
+
+
+/* Function declaration-------------------------------------------------------*/
+
+/* Refresh the screen curve component */
+t_FuncRet HMI_Refresh_Curve_Component(uint16_t* value_0,
+                                      uint16_t* value_1,
+                                      uint16_t* value_2,
+                                      uint16_t* value_3);
+
+/* Refresh the screen Number component */
+t_FuncRet HMI_Refresh_Num_Component(uint16_t* value_0,
+                                    uint16_t* value_1,
+                                    uint16_t* value_2,
+                                    uint16_t* value_3,
+                                    uint16_t* value_4,
+                                    uint16_t* value_5,
+                                    uint16_t* value_6,
+                                    uint16_t* value_7,
+                                    uint16_t* value_8,
+                                    uint16_t* value_9,
+                                    uint16_t* value_10,
+                                    uint16_t* value_11);
+
+#ifdef __cplusplus
+}
+#endif
+#endif /* __HMI_FUNCTION_H */
+

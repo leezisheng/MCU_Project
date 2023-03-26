@@ -2,7 +2,7 @@
   ******************************************************************************
   * File Name          : USART_Printf.c
   *
-  * Description        : This file contains basic operations on the USART2¡¢USART6¡¢
+  * Description        : This file contains basic operations on the USART2ï¿½ï¿½USART6ï¿½ï¿½
   *					     including initialization, reading data, returning data, and so on
   *
   *                      USART6  ------> Used to control the serving motor (Baud Rate 115200)
@@ -177,7 +177,7 @@ t_FuncRet USART6_Printf_Polling(const char* Data, ...)
 
     while (*Data != 0)  // Determine if it is the end
     {                                         
-        if (*Data == 0x5c)  // Determine if it is "/"
+        if (*Data == 0x5c)  // Determine if it is "\"
         {                                     
             switch ( *++Data ) // Determine if it is "/"
             {
@@ -396,8 +396,8 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
 }
 
 /**
-* @brief  Serial port 6 Data receive callback function
-*/
+ * @brief  Serial port 6 Data receive callback function
+ */
 void HAL_USART6_RxCpltCallback(void)
 {
 	/* 
@@ -441,7 +441,7 @@ void HAL_USART6_RxCpltCallback(void)
 	
 	/* After receiving two frames, start data parsing */
 	/* 
-		Communication protocol format£º
+		Communication protocol formatï¿½ï¿½
 		| frame header | frame header | ID number | Data length | Command | command parameter 1 ... command parameter N | checksum
 	*/
 	if(isGotFrameHeader)
@@ -662,3 +662,132 @@ t_FuncRet USART2_Start_IT(void)
 	return (t_FuncRet)ret ;
 }
 
+/** 
+* @description: the printf function for serial port 2 redirection
+* @param {const char*} Data : String constant
+* @param {void}        ...  : Format the sent data
+* @return {t_FuncRet}  ret  : if success , return Operation_Success
+* @author: leeqingshui 
+*/
+t_FuncRet USART2_Printf_IT(const char* Data, ...)
+{
+	t_FuncRet ret = (t_FuncRet)Operation_Success;
+	
+	const char *s;
+	int d;   
+    char buf[16];
+
+	/* 
+	typedef struct __va_list { void *__ap; } va_list; 
+	
+	This variable is a pointer to the address of the parameter. 
+	The value of the parameter can only be obtained by combining the parameter type with the address of the parameter. 
+	Va_list is defined as char*. Some machines also define void*
+	
+	*/
+    va_list ap;
+	
+	/*
+	#define va_start(ap, parmN) __va_start(ap, parmN)
+	
+	Va_start (va_list,type) refers to the first variable argument. 
+	Va_start is defined as &v + _INTSIZEOF(v), where &v is the starting address of the last fixed argument.
+	*/
+    va_start(ap, Data);
+	
+	uint8_t temp_r = 0x0d;
+	uint8_t temp_n = 0x0a;
+
+    while (*Data != 0)  // Determine if it is the end
+    {                                         
+        if (*Data == 0x5c)  // Determine if it is "/"
+        {                                     
+            switch ( *++Data ) // Determine if it is "/"
+            {
+                case 'r': // Check whether it is a carriage return character                                    
+                if(HAL_UART_Transmit_IT(&huart2, (uint8_t *)&temp_r, (uint16_t)1)!=HAL_OK)
+				{
+					ret = (t_FuncRet)Operation_Fail;
+					return (t_FuncRet)ret ;
+				}
+                Data ++;
+                break;
+
+                case 'n':   // Check whether it is a carriage return character                              
+                if(HAL_UART_Transmit_IT(&huart2, (uint8_t *)&temp_n, (uint16_t)1)!=HAL_OK)
+				{
+					ret = (t_FuncRet)Operation_Fail;
+					return (t_FuncRet)ret ;
+				}
+                Data ++;
+                break;
+
+                default:
+                Data ++;
+                break;
+            }            
+        }
+
+        else if ( * Data == '%')  // Determines whether it is a format symbol
+        {                                     
+            switch ( *++Data )
+            {               
+                case 's':  // Check whether it is a character type   
+                
+                /* 
+				#define va_arg(ap, type) __va_arg(ap, type)
+				
+				Va_arg (va_list, type) is used to obtain the value of the specified parameter type and 
+				make va_list point to the starting address of a parameter, equivalent to a stack operation
+				
+				This macro does two things:
+				(1) Use the type name entered by the user to cast the parameter address to obtain the value required by the user
+				(2) Calculate the actual size of this parameter, and move the pointer to the end of this parameter, that is, 
+				the first address of the next parameter, for subsequent processing.
+				
+				*/				
+                s = va_arg(ap, const char *);
+				
+                for ( ; *s; s++) 
+                {
+					if(HAL_UART_Transmit_IT(&huart2, (uint8_t *)s, (uint16_t)1)!=HAL_OK)
+					{
+						ret = (t_FuncRet)Operation_Fail;
+						return (t_FuncRet)ret ;
+					}
+                }
+                Data++;
+                break;
+
+                case 'd':  // Checks whether it is a decimal symbol         
+                    
+                d = va_arg(ap, int);
+                itoa(d, buf, 10);
+                for (s = buf; *s; s++) 
+                {
+                    if(HAL_UART_Transmit_IT(&huart2, (uint8_t *)s, (uint16_t)1)!=HAL_OK)
+					{
+						ret = (t_FuncRet)Operation_Fail;
+						return (t_FuncRet)ret ;
+					}
+                }
+                     Data++;
+                     break;
+                default:
+                     Data++;
+                     break;
+            }        
+        }
+        else 
+        {
+			if(HAL_UART_Transmit_IT(&huart2, (uint8_t *)Data++, (uint16_t)1)!=HAL_OK)
+			{
+				ret = (t_FuncRet)Operation_Fail;
+				return (t_FuncRet)ret ;
+			}
+		}
+    }
+	/* Clears the argument list. The collimated argument pointer arg_ptr is invalid. */
+	va_end (ap);
+	return (t_FuncRet)ret ;
+}

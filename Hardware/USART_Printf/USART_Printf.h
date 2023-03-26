@@ -67,6 +67,8 @@ t_FuncRet USART1_isRxComplete(void);
 t_FuncRet USART2_SendBuf_Polling(uint8_t* DataBuf , uint8_t Length_DataBuf);
 /* Enable the serial port 2 Receive an interrupt */
 t_FuncRet USART2_Start_IT(void);
+/* Serial port 2 string sending function */
+t_FuncRet USART2_Printf_IT(const char* Data, ...);
 
 
 #ifdef __cplusplus

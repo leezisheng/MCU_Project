@@ -21,7 +21,7 @@
 #define MEAN_FILTER_NUM	3
 
 /* Whether to use functions from the ARM-DSP library or use inefficient digital processing libraries */
-#define _ARM_DSP_USED			1U
+#define _ARM_DSP_USED			0U
 
 #if(_ARM_DSP_USED == 1)
 	/* Basic DSP functions macro definitions */

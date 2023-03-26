@@ -189,7 +189,15 @@ t_FuncRet Gyroscope_Calibration(void)
         Timer 4 Periodic interrupt (Fre = 20Hz)
         and is used for timed data return of serial gyro JY-60
     */
+    /* Clear the IT flag bit */
+	__HAL_TIM_CLEAR_IT(&htim4,TIM_IT_UPDATE ); 
     
+    /* Enable timer 4 Interrupt */
+	if(HAL_TIM_Base_Start_IT(&htim4) != HAL_OK)
+	{
+		ret = Operation_Fail;
+		return (t_FuncRet)ret;
+	}
 
 	return (t_FuncRet)ret;
 }
