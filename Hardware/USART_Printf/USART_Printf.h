@@ -19,6 +19,7 @@
 #include "main.h"
 
 /* Common macro definitions---------------------------------------------------*/
+
 #ifdef __GNUC__
 /* With GCC, small printf (option LD Linker->Libraries->Small printf
    set to 'Yes') calls __io_putchar() */
@@ -26,6 +27,12 @@
 #else
 #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 #endif /* __GNUC__ */
+
+/* Serial port 2 interrupts sending associated macro definitions */
+
+/* Send buffer capacity, adjusted as needed */
+#define TX_2_BUF_LEN  256 
+
 
 /* Extern Variable------------------------------------------------------------*/
 

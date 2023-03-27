@@ -172,6 +172,16 @@ volatile static int32_t angle 	        = 0;
 volatile static int16_t position        = 0;
 volatile static int32_t wait_time 	    = 0;
 
+
+/* HMI related data */
+volatile static HMI_Control_Num_Component       Test_NumberCP;
+volatile static HMI_Control_Curve_Component     Test_CurveCP;
+
+volatile static uint16_t test_value_0 = 1200;
+volatile static uint16_t test_value_1 = 2400;
+volatile static uint16_t test_value_2 = 270;
+volatile static uint16_t test_value_3 = 3290;
+
 #endif
 
 /* USER CODE END PV */
@@ -262,6 +272,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    HMI_Function_Test();
   }
   /* USER CODE END 3 */
 }
@@ -542,6 +553,56 @@ void USART_Gyroscope_MeanFilter_Test(void)
 								          (float*)&gyro_y  ,
 						                  (float*)&gyro_z );
 }
+
+/* HMI serial port screen test function */
+void HMI_Control_Test(void)
+{
+    Test_NumberCP.Num_Component_ID          = Num_ID_0;
+    Test_NumberCP.Num_Component_Val         = 2200;
+    
+    Test_CurveCP.Curve_Component_Channel    = 0;
+    Test_CurveCP.Curve_Component_ID         = Num_ID_1;
+    Test_CurveCP.Curve_Component_Val        = 135;
+    
+    ret = HMI_Control_Set_NumComponent_Value((HMI_Control_Num_Component*)&Test_NumberCP);
+    #ifdef USE_FULL_ASSERT
+        assert_param(ret != Operation_Fail);
+	#endif
+    
+    ret = HMI_Control_Set_CurveComponent_Value((HMI_Control_Curve_Component*)&Test_CurveCP);
+    #ifdef USE_FULL_ASSERT
+        assert_param(ret != Operation_Fail);
+	#endif
+}    
+
+/* HMI Test function of the serial port screen */
+void HMI_Function_Test(void)
+{
+    ret = HMI_Refresh_Curve_Component((uint16_t*)&Sensor1_V_Data, (uint16_t*)&Sensor2_V_Data, (uint16_t*)&Sensor3_V_Data, (uint16_t*)&Sensor4_V_Data);
+    #ifdef USE_FULL_ASSERT
+        assert_param(ret != Operation_Fail);
+	#endif
+    
+    ret = HMI_Refresh_Num_Component((uint16_t*)&test_value_0, 
+                                    (uint16_t*)&test_value_1, 
+                                    (uint16_t*)&test_value_2, 
+                                    (uint16_t*)&test_value_3,
+    
+                                    (uint16_t*)&test_value_2, 
+                                    (uint16_t*)&test_value_2, 
+                                    (uint16_t*)&test_value_2, 
+                                    (uint16_t*)&test_value_2,
+    
+                                    (uint16_t*)&test_value_0, 
+                                    (uint16_t*)&test_value_0, 
+                                    (uint16_t*)&test_value_3, 
+                                    (uint16_t*)&test_value_3
+                                    );
+    #ifdef USE_FULL_ASSERT
+        assert_param(ret != Operation_Fail);
+	#endif
+}
+
 
 #endif
 /* USER CODE END 4 */

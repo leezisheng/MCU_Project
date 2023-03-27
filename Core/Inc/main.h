@@ -91,6 +91,10 @@ void ADC_KalmanFilter_Value_Test(void);
 void USART_Gyroscope_Original_Test(void);
 /* Serial port gyroscope Original movement data output test */
 void USART_Gyroscope_MeanFilter_Test(void);
+/* HMI serial port screen test function */
+void HMI_Control_Test(void);
+/* HMI Test function of the serial port screen */
+void HMI_Function_Test(void);
 
 #endif
 

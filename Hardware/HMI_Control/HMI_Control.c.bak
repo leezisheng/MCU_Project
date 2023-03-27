@@ -69,5 +69,9 @@ t_FuncRet HMI_Control_Set_CurveComponent_Value(HMI_Control_Curve_Component* p_HM
 
     ret = HMI_Write_Command("add %d,%d,%d\xff\xff\xff",ID,Channel,Val);
 
+    #ifdef USE_FULL_ASSERT
+		assert_param(ret != Operation_Fail);
+	#endif
+
     return ret;
 }

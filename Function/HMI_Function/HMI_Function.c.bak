@@ -84,17 +84,28 @@ t_FuncRet HMI_Refresh_Curve_Component(uint16_t* value_0,
         The waveform displays data ranging from 0 to 255, while the voltage data ranges from 0 to 3300
         Therefore, data range transformation is required
     */
-    int32_t temp_value_0 = DATA_RANGE_CONV(*value_0);
-    int32_t temp_value_1 = DATA_RANGE_CONV(*value_1);
-    int32_t temp_value_2 = DATA_RANGE_CONV(*value_2);
-    int32_t temp_value_3 = DATA_RANGE_CONV(*value_3);
+    int32_t temp_value_0 = (int32_t)((*value_0));
+    int32_t temp_value_1 = (int32_t)((*value_1));
+    int32_t temp_value_2 = (int32_t)((*value_2));
+    int32_t temp_value_3 = (int32_t)((*value_3));
+    
+    float32_t   f_temp_value_0  = DATA_RANGE_CONV(temp_value_0);
+    float32_t   f_temp_value_1  = DATA_RANGE_CONV(temp_value_1);
+    float32_t   f_temp_value_2  = DATA_RANGE_CONV(temp_value_2);
+    float32_t   f_temp_value_3  = DATA_RANGE_CONV(temp_value_3);
+    
+    
+    temp_value_0 = (int32_t)f_temp_value_0;
+    temp_value_1 = (int32_t)f_temp_value_1;
+    temp_value_2 = (int32_t)f_temp_value_2;
+    temp_value_3 = (int32_t)f_temp_value_3;
     
     /* Complete component structure member assignment and data sending operations */
     
     CurveComponent_0.Curve_Component_ID       =   CH0_CURVE_ID;
     CurveComponent_0.Curve_Component_Channel  =   CH0_CHANNEL_NUM;
     CurveComponent_0.Curve_Component_Val      =   temp_value_0;
-    ret = HMI_Control_Set_NumComponent_Value((HMI_Control_Num_Component*)&CurveComponent_0);
+    ret = HMI_Control_Set_CurveComponent_Value((HMI_Control_Curve_Component*)&CurveComponent_0);
     
     #ifdef USE_FULL_ASSERT
         assert_param(ret != Operation_Fail);
@@ -103,7 +114,7 @@ t_FuncRet HMI_Refresh_Curve_Component(uint16_t* value_0,
     CurveComponent_1.Curve_Component_ID       =   CH1_CURVE_ID;
     CurveComponent_1.Curve_Component_Channel  =   CH1_CHANNEL_NUM;
     CurveComponent_1.Curve_Component_Val      =   temp_value_1;
-    ret = HMI_Control_Set_NumComponent_Value((HMI_Control_Num_Component*)&CurveComponent_1);
+    ret = HMI_Control_Set_CurveComponent_Value((HMI_Control_Curve_Component*)&CurveComponent_1);
     
     #ifdef USE_FULL_ASSERT
         assert_param(ret != Operation_Fail);
@@ -112,7 +123,7 @@ t_FuncRet HMI_Refresh_Curve_Component(uint16_t* value_0,
     CurveComponent_2.Curve_Component_ID       =   CH2_CURVE_ID;
     CurveComponent_2.Curve_Component_Channel  =   CH2_CHANNEL_NUM;
     CurveComponent_2.Curve_Component_Val      =   temp_value_2;
-    ret = HMI_Control_Set_NumComponent_Value((HMI_Control_Num_Component*)&CurveComponent_2);
+    ret = HMI_Control_Set_CurveComponent_Value((HMI_Control_Curve_Component*)&CurveComponent_2);
     
     #ifdef USE_FULL_ASSERT
         assert_param(ret != Operation_Fail);
@@ -121,7 +132,7 @@ t_FuncRet HMI_Refresh_Curve_Component(uint16_t* value_0,
     CurveComponent_3.Curve_Component_ID       =   CH3_CURVE_ID;
     CurveComponent_3.Curve_Component_Channel  =   CH3_CHANNEL_NUM;
     CurveComponent_3.Curve_Component_Val      =   temp_value_3;
-    ret = HMI_Control_Set_NumComponent_Value((HMI_Control_Num_Component*)&CurveComponent_3);
+    ret = HMI_Control_Set_CurveComponent_Value((HMI_Control_Curve_Component*)&CurveComponent_3);
     
     #ifdef USE_FULL_ASSERT
         assert_param(ret != Operation_Fail);
@@ -174,7 +185,7 @@ t_FuncRet HMI_Refresh_Num_Component(uint16_t* value_0,
     /* Channel 0 time domain feature display operation */
     
     NumberComponent_0.Num_Component_ID  =   CH_NUMCP_0;
-    NumberComponent_0.Num_Component_Val =   *value_0;
+    NumberComponent_0.Num_Component_Val =   (int32_t)*value_0;
     ret = HMI_Control_Set_NumComponent_Value((HMI_Control_Num_Component*)&NumberComponent_0);
     
     #ifdef USE_FULL_ASSERT
@@ -182,7 +193,7 @@ t_FuncRet HMI_Refresh_Num_Component(uint16_t* value_0,
 	#endif
 
     NumberComponent_1.Num_Component_ID  =   CH_NUMCP_1;
-    NumberComponent_1.Num_Component_Val =   *value_1;
+    NumberComponent_1.Num_Component_Val =   (int32_t)*value_1;
     ret = HMI_Control_Set_NumComponent_Value((HMI_Control_Num_Component*)&NumberComponent_1);
     
     #ifdef USE_FULL_ASSERT
@@ -190,7 +201,7 @@ t_FuncRet HMI_Refresh_Num_Component(uint16_t* value_0,
 	#endif
 
     NumberComponent_2.Num_Component_ID  =   CH_NUMCP_2;
-    NumberComponent_2.Num_Component_Val =   *value_2;
+    NumberComponent_2.Num_Component_Val =   (int32_t)*value_2;
     ret = HMI_Control_Set_NumComponent_Value((HMI_Control_Num_Component*)&NumberComponent_2);
     
     #ifdef USE_FULL_ASSERT
@@ -200,7 +211,7 @@ t_FuncRet HMI_Refresh_Num_Component(uint16_t* value_0,
     /* Channel 1 time domain feature display operation */
     
     NumberComponent_3.Num_Component_ID  =   CH_NUMCP_3;
-    NumberComponent_3.Num_Component_Val =   *value_3;
+    NumberComponent_3.Num_Component_Val =   (int32_t)*value_3;
     ret = HMI_Control_Set_NumComponent_Value((HMI_Control_Num_Component*)&NumberComponent_3);
     
     #ifdef USE_FULL_ASSERT
@@ -208,7 +219,7 @@ t_FuncRet HMI_Refresh_Num_Component(uint16_t* value_0,
 	#endif
 
     NumberComponent_4.Num_Component_ID  =   CH_NUMCP_4;
-    NumberComponent_4.Num_Component_Val =   *value_4;
+    NumberComponent_4.Num_Component_Val =   (int32_t)*value_4;
     ret = HMI_Control_Set_NumComponent_Value((HMI_Control_Num_Component*)&NumberComponent_4);
     
     #ifdef USE_FULL_ASSERT
@@ -216,7 +227,7 @@ t_FuncRet HMI_Refresh_Num_Component(uint16_t* value_0,
 	#endif
 
     NumberComponent_5.Num_Component_ID  =   CH_NUMCP_5;
-    NumberComponent_5.Num_Component_Val =   *value_5;
+    NumberComponent_5.Num_Component_Val =   (int32_t)*value_5;
     ret = HMI_Control_Set_NumComponent_Value((HMI_Control_Num_Component*)&NumberComponent_5);
     
     #ifdef USE_FULL_ASSERT
@@ -226,7 +237,7 @@ t_FuncRet HMI_Refresh_Num_Component(uint16_t* value_0,
     /* Channel 2 time domain feature display operation */
 
     NumberComponent_6.Num_Component_ID  =   CH_NUMCP_6;
-    NumberComponent_6.Num_Component_Val =   *value_6;
+    NumberComponent_6.Num_Component_Val =   (int32_t)*value_6;
     ret = HMI_Control_Set_NumComponent_Value((HMI_Control_Num_Component*)&NumberComponent_6);
     
     #ifdef USE_FULL_ASSERT
@@ -234,7 +245,7 @@ t_FuncRet HMI_Refresh_Num_Component(uint16_t* value_0,
 	#endif
 
     NumberComponent_7.Num_Component_ID  =   CH_NUMCP_7;
-    NumberComponent_7.Num_Component_Val =   *value_7;
+    NumberComponent_7.Num_Component_Val =   (int32_t)*value_7;
     ret = HMI_Control_Set_NumComponent_Value((HMI_Control_Num_Component*)&NumberComponent_7);
     
     #ifdef USE_FULL_ASSERT
@@ -242,7 +253,7 @@ t_FuncRet HMI_Refresh_Num_Component(uint16_t* value_0,
 	#endif
 
     NumberComponent_8.Num_Component_ID  =   CH_NUMCP_8;
-    NumberComponent_8.Num_Component_Val =   *value_8;
+    NumberComponent_8.Num_Component_Val =   (int32_t)*value_8;
     ret = HMI_Control_Set_NumComponent_Value((HMI_Control_Num_Component*)&NumberComponent_8);
     
     #ifdef USE_FULL_ASSERT
@@ -251,7 +262,7 @@ t_FuncRet HMI_Refresh_Num_Component(uint16_t* value_0,
 
     /* Channel 3 time domain feature display operation */
     NumberComponent_9.Num_Component_ID  =   CH_NUMCP_9;
-    NumberComponent_9.Num_Component_Val =   *value_9;
+    NumberComponent_9.Num_Component_Val =   (int32_t)*value_9;
     ret = HMI_Control_Set_NumComponent_Value((HMI_Control_Num_Component*)&NumberComponent_9);
     
     #ifdef USE_FULL_ASSERT
@@ -259,7 +270,7 @@ t_FuncRet HMI_Refresh_Num_Component(uint16_t* value_0,
 	#endif
 
     NumberComponent_10.Num_Component_ID  =   CH_NUMCP_10;
-    NumberComponent_10.Num_Component_Val =   *value_10;
+    NumberComponent_10.Num_Component_Val =   (int32_t)*value_10;
     ret = HMI_Control_Set_NumComponent_Value((HMI_Control_Num_Component*)&NumberComponent_10);
     
     #ifdef USE_FULL_ASSERT
@@ -267,7 +278,7 @@ t_FuncRet HMI_Refresh_Num_Component(uint16_t* value_0,
 	#endif
 
     NumberComponent_11.Num_Component_ID  =   CH_NUMCP_11;
-    NumberComponent_11.Num_Component_Val =   *value_11;
+    NumberComponent_11.Num_Component_Val =   (int32_t)*value_11;
     ret = HMI_Control_Set_NumComponent_Value((HMI_Control_Num_Component*)&NumberComponent_11);
     
     #ifdef USE_FULL_ASSERT

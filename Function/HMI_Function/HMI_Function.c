@@ -84,17 +84,28 @@ t_FuncRet HMI_Refresh_Curve_Component(uint16_t* value_0,
         The waveform displays data ranging from 0 to 255, while the voltage data ranges from 0 to 3300
         Therefore, data range transformation is required
     */
-    int32_t temp_value_0 = DATA_RANGE_CONV(*value_0);
-    int32_t temp_value_1 = DATA_RANGE_CONV(*value_1);
-    int32_t temp_value_2 = DATA_RANGE_CONV(*value_2);
-    int32_t temp_value_3 = DATA_RANGE_CONV(*value_3);
+    int32_t temp_value_0 = (int32_t)((*value_0));
+    int32_t temp_value_1 = (int32_t)((*value_1));
+    int32_t temp_value_2 = (int32_t)((*value_2));
+    int32_t temp_value_3 = (int32_t)((*value_3));
+    
+    float32_t   f_temp_value_0  = DATA_RANGE_CONV((float32_t)temp_value_0);
+    float32_t   f_temp_value_1  = DATA_RANGE_CONV((float32_t)temp_value_1);
+    float32_t   f_temp_value_2  = DATA_RANGE_CONV((float32_t)temp_value_2);
+    float32_t   f_temp_value_3  = DATA_RANGE_CONV((float32_t)temp_value_3);
+    
+    
+    temp_value_0 = (int32_t)f_temp_value_0;
+    temp_value_1 = (int32_t)f_temp_value_1;
+    temp_value_2 = (int32_t)f_temp_value_2;
+    temp_value_3 = (int32_t)f_temp_value_3;
     
     /* Complete component structure member assignment and data sending operations */
     
     CurveComponent_0.Curve_Component_ID       =   CH0_CURVE_ID;
     CurveComponent_0.Curve_Component_Channel  =   CH0_CHANNEL_NUM;
     CurveComponent_0.Curve_Component_Val      =   temp_value_0;
-    ret = HMI_Control_Set_NumComponent_Value((HMI_Control_Num_Component*)&CurveComponent_0);
+    ret = HMI_Control_Set_CurveComponent_Value((HMI_Control_Curve_Component*)&CurveComponent_0);
     
     #ifdef USE_FULL_ASSERT
         assert_param(ret != Operation_Fail);
@@ -103,7 +114,7 @@ t_FuncRet HMI_Refresh_Curve_Component(uint16_t* value_0,
     CurveComponent_1.Curve_Component_ID       =   CH1_CURVE_ID;
     CurveComponent_1.Curve_Component_Channel  =   CH1_CHANNEL_NUM;
     CurveComponent_1.Curve_Component_Val      =   temp_value_1;
-    ret = HMI_Control_Set_NumComponent_Value((HMI_Control_Num_Component*)&CurveComponent_1);
+    ret = HMI_Control_Set_CurveComponent_Value((HMI_Control_Curve_Component*)&CurveComponent_1);
     
     #ifdef USE_FULL_ASSERT
         assert_param(ret != Operation_Fail);
@@ -112,7 +123,7 @@ t_FuncRet HMI_Refresh_Curve_Component(uint16_t* value_0,
     CurveComponent_2.Curve_Component_ID       =   CH2_CURVE_ID;
     CurveComponent_2.Curve_Component_Channel  =   CH2_CHANNEL_NUM;
     CurveComponent_2.Curve_Component_Val      =   temp_value_2;
-    ret = HMI_Control_Set_NumComponent_Value((HMI_Control_Num_Component*)&CurveComponent_2);
+    ret = HMI_Control_Set_CurveComponent_Value((HMI_Control_Curve_Component*)&CurveComponent_2);
     
     #ifdef USE_FULL_ASSERT
         assert_param(ret != Operation_Fail);
@@ -121,7 +132,7 @@ t_FuncRet HMI_Refresh_Curve_Component(uint16_t* value_0,
     CurveComponent_3.Curve_Component_ID       =   CH3_CURVE_ID;
     CurveComponent_3.Curve_Component_Channel  =   CH3_CHANNEL_NUM;
     CurveComponent_3.Curve_Component_Val      =   temp_value_3;
-    ret = HMI_Control_Set_NumComponent_Value((HMI_Control_Num_Component*)&CurveComponent_3);
+    ret = HMI_Control_Set_CurveComponent_Value((HMI_Control_Curve_Component*)&CurveComponent_3);
     
     #ifdef USE_FULL_ASSERT
         assert_param(ret != Operation_Fail);

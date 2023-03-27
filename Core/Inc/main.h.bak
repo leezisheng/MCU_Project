@@ -57,6 +57,12 @@ extern "C" {
 */
 #define CODE_TEST
 
+/* 
+    If USB_TRANSMIT_TEST is defined, then start the USB function test:
+    That is, USB sends the received characters
+  */
+//#define USB_TRANSMIT_TEST
+
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
@@ -85,6 +91,8 @@ void ADC_KalmanFilter_Value_Test(void);
 void USART_Gyroscope_Original_Test(void);
 /* Serial port gyroscope Original movement data output test */
 void USART_Gyroscope_MeanFilter_Test(void);
+/* HMI serial port screen test function */
+void HMI_Control_Test(void);
 
 #endif
 

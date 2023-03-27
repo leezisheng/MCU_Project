@@ -2,7 +2,7 @@
   ******************************************************************************
   * File Name          : USART_Printf.c
   *
-  * Description        : This file contains basic operations on the USART2¡¢USART6¡¢
+  * Description        : This file contains basic operations on the USART2ï¿½ï¿½USART6ï¿½ï¿½
   *					     including initialization, reading data, returning data, and so on
   *
   *                      USART6  ------> Used to control the serving motor (Baud Rate 115200)
@@ -90,6 +90,8 @@ volatile static t_FuncRet Gyroscope_Ret = Operation_Success;
 /* ++++++++++++Serial port 2 interrupt callback function variable++++++++++++ */
 /* Serial port 2 Receives data */
 static uint8_t USART2_Rx_Data = 0;
+/* Serial port 2 sends buffer array */
+static uint8_t Tx_2_Send_Buf[TX_2_BUF_LEN];
 
 /* Static function definition-------------------------------------------------*/
 
@@ -177,7 +179,7 @@ t_FuncRet USART6_Printf_Polling(const char* Data, ...)
 
     while (*Data != 0)  // Determine if it is the end
     {                                         
-        if (*Data == 0x5c)  // Determine if it is "/"
+        if (*Data == 0x5c)  // Determine if it is "\"
         {                                     
             switch ( *++Data ) // Determine if it is "/"
             {
@@ -441,7 +443,7 @@ void HAL_USART6_RxCpltCallback(void)
 	
 	/* After receiving two frames, start data parsing */
 	/* 
-		Communication protocol format£º
+		Communication protocol formatï¿½ï¿½
 		| frame header | frame header | ID number | Data length | Command | command parameter 1 ... command parameter N | checksum
 	*/
 	if(isGotFrameHeader)
@@ -672,10 +674,6 @@ t_FuncRet USART2_Start_IT(void)
 t_FuncRet USART2_Printf_IT(const char* Data, ...)
 {
 	t_FuncRet ret = (t_FuncRet)Operation_Success;
-	
-	const char *s;
-	int d;   
-    char buf[16];
 
 	/* 
 	typedef struct __va_list { void *__ap; } va_list; 
@@ -694,100 +692,25 @@ t_FuncRet USART2_Printf_IT(const char* Data, ...)
 	Va_start is defined as &v + _INTSIZEOF(v), where &v is the starting address of the last fixed argument.
 	*/
     va_start(ap, Data);
-	
-	uint8_t temp_r = 0x0d;
-	uint8_t temp_n = 0x0a;
-
-    while (*Data != 0)  // Determine if it is the end
-    {                                         
-        if (*Data == 0x5c)  // Determine if it is "/"
-        {                                     
-            switch ( *++Data ) // Determine if it is "/"
-            {
-                case 'r': // Check whether it is a carriage return character                                    
-                if(HAL_UART_Transmit_IT(&huart6, (uint8_t *)&temp_r, (uint16_t)1)!=HAL_OK)
-				{
-					ret = (t_FuncRet)Operation_Fail;
-					return (t_FuncRet)ret ;
-				}
-                Data ++;
-                break;
-
-                case 'n':   // Check whether it is a carriage return character                              
-                if(HAL_UART_Transmit_IT(&huart6, (uint8_t *)&temp_n, (uint16_t)1)!=HAL_OK)
-				{
-					ret = (t_FuncRet)Operation_Fail;
-					return (t_FuncRet)ret ;
-				}
-                Data ++;
-                break;
-
-                default:
-                Data ++;
-                break;
-            }            
-        }
-
-        else if ( * Data == '%')  // Determines whether it is a format symbol
-        {                                     
-            switch ( *++Data )
-            {               
-                case 's':  // Check whether it is a character type   
-                
-                /* 
-				#define va_arg(ap, type) __va_arg(ap, type)
-				
-				Va_arg (va_list, type) is used to obtain the value of the specified parameter type and 
-				make va_list point to the starting address of a parameter, equivalent to a stack operation
-				
-				This macro does two things:
-				(1) Use the type name entered by the user to cast the parameter address to obtain the value required by the user
-				(2) Calculate the actual size of this parameter, and move the pointer to the end of this parameter, that is, 
-				the first address of the next parameter, for subsequent processing.
-				
-				*/				
-                s = va_arg(ap, const char *);
-				
-                for ( ; *s; s++) 
-                {
-					if(HAL_UART_Transmit_IT(&huart6, (uint8_t *)s, (uint16_t)1)!=HAL_OK)
-					{
-						ret = (t_FuncRet)Operation_Fail;
-						return (t_FuncRet)ret ;
-					}
-                }
-                Data++;
-                break;
-
-                case 'd':  // Checks whether it is a decimal symbol         
-                    
-                d = va_arg(ap, int);
-                itoa(d, buf, 10);
-                for (s = buf; *s; s++) 
-                {
-                    if(HAL_UART_Transmit_IT(&huart6, (uint8_t *)s, (uint16_t)1)!=HAL_OK)
-					{
-						ret = (t_FuncRet)Operation_Fail;
-						return (t_FuncRet)ret ;
-					}
-                }
-                     Data++;
-                     break;
-                default:
-                     Data++;
-                     break;
-            }        
-        }
-        else 
-        {
-			if(HAL_UART_Transmit_IT(&huart6, (uint8_t *)Data++, (uint16_t)1)!=HAL_OK)
-			{
-				ret = (t_FuncRet)Operation_Fail;
-				return (t_FuncRet)ret ;
-			}
-		}
-    }
+    
+    /* Clears the send buffer */
+    memset(Tx_2_Send_Buf, 0x0, TX_2_BUF_LEN);
+    
+    /* Fill the send buffer */
+    vsnprintf((char*)Tx_2_Send_Buf, TX_2_BUF_LEN, (const char *)Data, ap);
+    
+    
 	/* Clears the argument list. The collimated argument pointer arg_ptr is invalid. */
 	va_end (ap);
+    
+    int len = strlen((const char*)Tx_2_Send_Buf);
+    
+    /* Send data to the serial port */
+    if(HAL_UART_Transmit_IT(&huart2, (uint8_t*)&Tx_2_Send_Buf, len)!=HAL_OK)
+    {
+        ret = (t_FuncRet)Operation_Fail;
+    }
+    
+    
 	return (t_FuncRet)ret ;
 }

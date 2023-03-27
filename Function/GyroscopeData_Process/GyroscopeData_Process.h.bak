@@ -37,6 +37,4 @@ t_FuncRet Get_MotionData_MeanFilter_Value(float* p_angle_x ,
 }
 #endif
 #endif /*__GYROSCOPEDATA_PROCESS_H*/
- 
- 
-  
+   

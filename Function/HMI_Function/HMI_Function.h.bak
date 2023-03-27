@@ -31,7 +31,7 @@
 */
 #define V_FULL_SCALE        3300
 #define C_FULL_SCALE        255
-#define DATA_RANGE_CONV(x)  (int32_t)(((x)/(V_FULL_SCALE))*(C_FULL_SCALE))
+#define DATA_RANGE_CONV(x)  ((float32_t)(((x)/(V_FULL_SCALE))*(C_FULL_SCALE)))
 
 
 /* Extern Variable------------------------------------------------------------*/

@@ -45,6 +45,7 @@ t_FuncRet HMI_Control_Set_NumComponent_Value(HMI_Control_Num_Component* p_HMI_Co
     int32_t Val = p_HMI_Control_Num_Component->Num_Component_Val;
 
     ret = HMI_Write_Command("n%d.val=%d\xff\xff\xff",ID,Val);
+    HAL_Delay(1);
     
     #ifdef USE_FULL_ASSERT
 		assert_param(ret != Operation_Fail);
@@ -68,6 +69,7 @@ t_FuncRet HMI_Control_Set_CurveComponent_Value(HMI_Control_Curve_Component* p_HM
     int32_t Channel = p_HMI_Control_Curve_Component->Curve_Component_Channel;
 
     ret = HMI_Write_Command("add %d,%d,%d\xff\xff\xff",ID,Channel,Val);
+    HAL_Delay(1);
 
     #ifdef USE_FULL_ASSERT
 		assert_param(ret != Operation_Fail);
