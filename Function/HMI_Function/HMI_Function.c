@@ -31,21 +31,21 @@
 #define     CH3_CHANNEL_NUM     0
 
 /* Macro definition for waveform digital feature display components */
-#define     CH_NUMCP_0         (ComponentID)Num_ID_10
-#define     CH_NUMCP_1         (ComponentID)Num_ID_11
-#define     CH_NUMCP_2         (ComponentID)Num_ID_12
+#define     CH_NUMCP_0         (ComponentID)Num_ID_0
+#define     CH_NUMCP_1         (ComponentID)Num_ID_1
+#define     CH_NUMCP_2         (ComponentID)Num_ID_2
 
-#define     CH_NUMCP_3         (ComponentID)Num_ID_17
-#define     CH_NUMCP_4         (ComponentID)Num_ID_19
-#define     CH_NUMCP_5         (ComponentID)Num_ID_21
+#define     CH_NUMCP_3         (ComponentID)Num_ID_3
+#define     CH_NUMCP_4         (ComponentID)Num_ID_4
+#define     CH_NUMCP_5         (ComponentID)Num_ID_5
 
-#define     CH_NUMCP_6         (ComponentID)Num_ID_23
-#define     CH_NUMCP_7         (ComponentID)Num_ID_25
-#define     CH_NUMCP_8         (ComponentID)Num_ID_27
+#define     CH_NUMCP_6         (ComponentID)Num_ID_6
+#define     CH_NUMCP_7         (ComponentID)Num_ID_7
+#define     CH_NUMCP_8         (ComponentID)Num_ID_8
 
-#define     CH_NUMCP_9         (ComponentID)Num_ID_29
-#define     CH_NUMCP_10        (ComponentID)Num_ID_31
-#define     CH_NUMCP_11        (ComponentID)Num_ID_33
+#define     CH_NUMCP_9         (ComponentID)Num_ID_9
+#define     CH_NUMCP_10        (ComponentID)Num_ID_10
+#define     CH_NUMCP_11        (ComponentID)Num_ID_11
 
 
 /* Global variable------------------------------------------------------------*/

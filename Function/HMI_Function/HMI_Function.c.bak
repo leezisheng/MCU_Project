@@ -31,11 +31,11 @@
 #define     CH3_CHANNEL_NUM     0
 
 /* Macro definition for waveform digital feature display components */
-#define     CH_NUMCP_0         (ComponentID)Num_ID_10
-#define     CH_NUMCP_1         (ComponentID)Num_ID_11
-#define     CH_NUMCP_2         (ComponentID)Num_ID_12
+#define     CH_NUMCP_0         (ComponentID)Num_ID_0
+#define     CH_NUMCP_1         (ComponentID)Num_ID_1
+#define     CH_NUMCP_2         (ComponentID)Num_ID_2
 
-#define     CH_NUMCP_3         (ComponentID)Num_ID_17
+#define     CH_NUMCP_3         (ComponentID)Num_ID_3
 #define     CH_NUMCP_4         (ComponentID)Num_ID_19
 #define     CH_NUMCP_5         (ComponentID)Num_ID_21
 
@@ -89,10 +89,10 @@ t_FuncRet HMI_Refresh_Curve_Component(uint16_t* value_0,
     int32_t temp_value_2 = (int32_t)((*value_2));
     int32_t temp_value_3 = (int32_t)((*value_3));
     
-    float32_t   f_temp_value_0  = DATA_RANGE_CONV(temp_value_0);
-    float32_t   f_temp_value_1  = DATA_RANGE_CONV(temp_value_1);
-    float32_t   f_temp_value_2  = DATA_RANGE_CONV(temp_value_2);
-    float32_t   f_temp_value_3  = DATA_RANGE_CONV(temp_value_3);
+    float32_t   f_temp_value_0  = DATA_RANGE_CONV((float32_t)temp_value_0);
+    float32_t   f_temp_value_1  = DATA_RANGE_CONV((float32_t)temp_value_1);
+    float32_t   f_temp_value_2  = DATA_RANGE_CONV((float32_t)temp_value_2);
+    float32_t   f_temp_value_3  = DATA_RANGE_CONV((float32_t)temp_value_3);
     
     
     temp_value_0 = (int32_t)f_temp_value_0;
