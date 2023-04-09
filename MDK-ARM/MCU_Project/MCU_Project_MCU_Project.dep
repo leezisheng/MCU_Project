@@ -57,7 +57,7 @@ I (../Hardware/USART_Printf/USART_Printf.h)(0x64203901)
 I (../Hardware/USARTServo_Control/ServoMotor_Control.h)(0x634CE472)
 I (../Hardware/USART_Gyroscope/USART_Gyroscope.h)(0x63A01E7C)
 I (../Function/ADC_Function/ADC_Function.h)(0x63A0ADAB)
-I (../Function/DigtalSignal_Process/DigtalSignal_Process.h)(0x641ED94A)
+I (../Function/DigtalSignal_Process/DigtalSignal_Process.h)(0x64326DD3)
 I (../Function/GyroscopeData_Process/GyroscopeData_Process.h)(0x641FFFC9)
 I (../Function/SendData_Function/SendData_Function.h)(0x63C060AA)
 I (../Middlewares/ST/ARM/DSP/Inc/arm_math.h)(0x634D01FC)
@@ -1556,9 +1556,9 @@ I (D:\Lee\MDK5\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (../Common/Runtime_Calculate.h)(0x63976DFF)
 I (../Common/numtype_conversion.h)(0x63A3968F)
 I (../Hardware/ADC_Operation/ADC_Operation.h)(0x632F05F7)
-I (../Function/DigtalSignal_Process/DigtalSignal_Process.h)(0x641ED94A)
-F (..\Function\DigtalSignal_Process\DigtalSignal_Process.c)(0x63A01D63)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Common -I ../Hardware/ADC_Operation -I ../Hardware/USART_Printf -I ../Hardware/USARTServo_Control -I ../Hardware/USART_Gyroscope -I ../Function/ADC_Function -I ../Function/DigtalSignal_Process -I ../Function/GyroscopeData_Process -I ../Middlewares/ST/ARM/DSP/Inc -I ../Drivers/CMSIS/DSP/Include -I ../Function/SendData_Function -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ..\Hardware\HMI_Control -I ..\Function\HMI_Function --gnu-I.\RTE\_MCU_Project-ID:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\Lee\MDK5\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE -DARM_MATH_CM4 -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__CC_ARM-o mcu_project\digtalsignal_process.o --omf_browse mcu_project\digtalsignal_process.crf --depend mcu_project\digtalsignal_process.d)
-I (..\Function\DigtalSignal_Process\DigtalSignal_Process.h)(0x641ED94A)
+I (../Function/DigtalSignal_Process/DigtalSignal_Process.h)(0x64326DD3)
+F (..\Function\DigtalSignal_Process\DigtalSignal_Process.c)(0x64327202)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Common -I ../Hardware/ADC_Operation -I ../Hardware/USART_Printf -I ../Hardware/USARTServo_Control -I ../Hardware/USART_Gyroscope -I ../Function/ADC_Function -I ../Function/DigtalSignal_Process -I ../Function/GyroscopeData_Process -I ../Middlewares/ST/ARM/DSP/Inc -I ../Drivers/CMSIS/DSP/Include -I ../Function/SendData_Function -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ..\Hardware\HMI_Control -I ..\Function\HMI_Function --gnu-I.\RTE\_MCU_Project-ID:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\Lee\MDK5\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE -DARM_MATH_CM4 -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__CC_ARM-o mcu_project\digtalsignal_process.o --omf_browse mcu_project\digtalsignal_process.crf --depend mcu_project\digtalsignal_process.d)
+I (..\Function\DigtalSignal_Process\DigtalSignal_Process.h)(0x64326DD3)
 I (../Core/Inc/main.h)(0x64204C09)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x6305D3C5)
 I (../Core/Inc/stm32f4xx_hal_conf.h)(0x642030B0)
@@ -1642,7 +1642,7 @@ I (../Common/numtype.h)(0x63A02138)
 I (D:\Lee\MDK5\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (../Common/Runtime_Calculate.h)(0x63976DFF)
 I (../Common/numtype_conversion.h)(0x63A3968F)
-I (../Function/DigtalSignal_Process/DigtalSignal_Process.h)(0x641ED94A)
+I (../Function/DigtalSignal_Process/DigtalSignal_Process.h)(0x64326DD3)
 I (../Hardware/USART_Gyroscope/USART_Gyroscope.h)(0x63A01E7C)
 F (..\Function\SendData_Function\SendData_Function.c)(0x63C060B0)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Common -I ../Hardware/ADC_Operation -I ../Hardware/USART_Printf -I ../Hardware/USARTServo_Control -I ../Hardware/USART_Gyroscope -I ../Function/ADC_Function -I ../Function/DigtalSignal_Process -I ../Function/GyroscopeData_Process -I ../Middlewares/ST/ARM/DSP/Inc -I ../Drivers/CMSIS/DSP/Include -I ../Function/SendData_Function -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ..\Hardware\HMI_Control -I ..\Function\HMI_Function --gnu-I.\RTE\_MCU_Project-ID:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\Lee\MDK5\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE -DARM_MATH_CM4 -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__CC_ARM-o mcu_project\senddata_function.o --omf_browse mcu_project\senddata_function.crf --depend mcu_project\senddata_function.d)
 I (..\Function\SendData_Function\SendData_Function.h)(0x63C060AA)
@@ -1739,7 +1739,7 @@ I (../Common/Runtime_Calculate.h)(0x63976DFF)
 I (../Common/numtype_conversion.h)(0x63A3968F)
 I (..\Function\HMI_Function\HMI_Function.h)(0x642112A9)
 I (..\Hardware\HMI_Control\HMI_Control.h)(0x641FC0A8)
-I (../Function/DigtalSignal_Process/DigtalSignal_Process.h)(0x641ED94A)
+I (../Function/DigtalSignal_Process/DigtalSignal_Process.h)(0x64326DD3)
 F (..\Doc\readme.txt)(0x63A9C9CC)()
 F (../Core/Src/system_stm32f4xx.c)(0x62B2C6D3)(--c99 -c --cpu Cortex-M4.fp.sp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ../Common -I ../Hardware/ADC_Operation -I ../Hardware/USART_Printf -I ../Hardware/USARTServo_Control -I ../Hardware/USART_Gyroscope -I ../Function/ADC_Function -I ../Function/DigtalSignal_Process -I ../Function/GyroscopeData_Process -I ../Middlewares/ST/ARM/DSP/Inc -I ../Drivers/CMSIS/DSP/Include -I ../Function/SendData_Function -I ../USB_DEVICE/App -I ../USB_DEVICE/Target -I ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I ..\Hardware\HMI_Control -I ..\Function\HMI_Function --gnu-I.\RTE\_MCU_Project-ID:\Lee\MDK5\ARM\CMSIS\5.8.0\CMSIS\Core\Include-ID:\Lee\MDK5\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE -DARM_MATH_CM4 -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__CC_ARM-o mcu_project\system_stm32f4xx.o --omf_browse mcu_project\system_stm32f4xx.crf --depend mcu_project\system_stm32f4xx.d)
 I (../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h)(0x6305D38E)

@@ -242,6 +242,37 @@ void Get_DataBuff_Max(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Res
 	#endif
 }
 
+/** 
+* @description: Computes the maximum value of the data array. This function returns the maximum value and its position in the array
+* @param  {uint16_t*}  p_SrcBuff  : A pointer to the array to be processed
+* @param  {uint32_t}   Buff_Size  : Size of Data Buffer
+* @param  {uint16_t*}  p_Result   : the maximum value of the data array
+* @param  {uint32_t*}  p_Index    : The maximum element is indexed in the array
+* @return {void}                         
+* @author: leeqingshui 
+*/
+void Get_DataBuff_Max_U16(uint16_t* p_SrcBuff, uint32_t Buff_Size, uint16_t* p_Result, uint32_t* p_Index)
+{
+    // Assume that the first element in the array is the maximum value
+    uint16_t  temp_max = *p_SrcBuff;
+    uint32_t  temp_index = 0;
+    
+    // Go through the group, getting each element, ready to compare
+    for(uint32_t i = 1; i < Buff_Size; i++)
+    {
+        // If something larger than max occurs during the comparison, let max record the larger value
+        if((*(p_SrcBuff + i)) > temp_max)
+        {
+                temp_max = *(p_SrcBuff + i);
+                temp_index = i;
+        }
+    }
+    
+    // The loop ends and the result is retrieved
+    *p_Result = temp_max;
+    *p_Index  = temp_index;
+}
+
 /* !! 
 	This function causes Hardfault for an unknown reason and does not perform properly !!
 	Notice here that if you use sizeof on an array to find its length, it will cause Hardfault
@@ -296,6 +327,26 @@ void Get_DataBuff_Mean(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Re
 }
 
 /** 
+* @description: Get the array average
+* @param  {uint16_t*}  p_SrcBuff  : A pointer to the array to be processed
+* @param  {float32_t*} p_Result   : Average of array
+* @param  {uint16_t*}  Buff_Size  : Size of Data Buffer
+* @return {void}                         
+* @author: leeqingshui 
+*/
+void Get_DataBuff_Mean_U16(uint16_t* p_SrcBuff, uint32_t Buff_Size, uint16_t* p_Result)
+{
+    uint32_t sum = 0;
+    
+    for(uint32_t i = 0;i<Buff_Size;i++)
+    {
+        sum = sum + *(p_SrcBuff+i);
+    }
+    
+    *p_Result = (uint16_t)sum/Buff_Size;
+}
+
+/** 
 * @description: Computes the minimum value of the data array. This function returns the minimum value and its position in the array
 * @param  {float32_t*} p_SrcBuff  : A pointer to the array to be processed
 * @param  {uint32_t}   Buff_Size  : Size of Data Buffer
@@ -330,6 +381,37 @@ void Get_DataBuff_Min(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Res
 		*p_Index  = temp_index;
 		
 	#endif
+}
+
+/** 
+* @description: Computes the minimum value of the data array. This function returns the minimum value and its position in the array
+* @param  {uint16_t*}  p_SrcBuff  : A pointer to the array to be processed
+* @param  {uint32_t}   Buff_Size  : Size of Data Buffer
+* @param  {uint16_t*}  p_Result   : the minimum value of the data array
+* @param  {uint32_t*}  p_Index    : The minimum element is indexed in the array
+* @return {void}                         
+* @author: leeqingshui 
+*/
+void Get_DataBuff_Min_U16(uint16_t* p_SrcBuff, uint32_t Buff_Size, uint16_t* p_Result, uint32_t* p_Index)
+{
+    // Assume that the first element in the array is the maximum value
+    uint16_t  temp_min = *p_SrcBuff;
+    uint32_t  temp_index = 0;
+    
+    // Go through the group, getting each element, ready to compare
+    for(uint32_t i = 1; i < Buff_Size; i++)
+    {
+        // If something larger than max occurs during the comparison, let max record the larger value
+        if((*(p_SrcBuff + i)) < temp_min)
+        {
+                temp_min = *(p_SrcBuff + i);
+                temp_index = i;
+        }
+    }
+    
+    // The loop ends and the result is retrieved
+    *p_Result = temp_min;
+    *p_Index  = temp_index;
 }
 
 /** 

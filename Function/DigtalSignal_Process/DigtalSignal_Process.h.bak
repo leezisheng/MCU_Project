@@ -21,7 +21,7 @@
 #define MEAN_FILTER_NUM	3
 
 /* Whether to use functions from the ARM-DSP library or use inefficient digital processing libraries */
-#define _ARM_DSP_USED			1U
+#define _ARM_DSP_USED			0U
 
 #if(_ARM_DSP_USED == 1)
 	/* Basic DSP functions macro definitions */
@@ -157,6 +157,7 @@ void Get_DataBuff_Scale(float32_t* p_SrcBuff, float32_t ratio,float32_t* p_DstpB
 */
 /* Computes the maximum value of the data array. This function returns the maximum value and its position in the array. */
 void Get_DataBuff_Max(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Result, uint32_t* p_Index);
+void Get_DataBuff_Max_U16(uint16_t* p_SrcBuff, uint32_t Buff_Size, uint16_t* p_Result, uint32_t* p_Index);
 /* Get the array average */
 void Get_DataBuff_Mean(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Result);
 /* Computes the minimum value of the data array. This function returns the minimum value and its position in the array. */

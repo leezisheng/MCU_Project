@@ -157,10 +157,13 @@ void Get_DataBuff_Scale(float32_t* p_SrcBuff, float32_t ratio,float32_t* p_DstpB
 */
 /* Computes the maximum value of the data array. This function returns the maximum value and its position in the array. */
 void Get_DataBuff_Max(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Result, uint32_t* p_Index);
+void Get_DataBuff_Max_U16(uint16_t* p_SrcBuff, uint32_t Buff_Size, uint16_t* p_Result, uint32_t* p_Index);
 /* Get the array average */
 void Get_DataBuff_Mean(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Result);
+void Get_DataBuff_Mean_U16(uint16_t* p_SrcBuff, uint32_t Buff_Size, uint16_t* p_Result);
 /* Computes the minimum value of the data array. This function returns the minimum value and its position in the array. */
 void Get_DataBuff_Min(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Result, uint32_t* p_Index);
+void Get_DataBuff_Min_U16(uint16_t* p_SrcBuff, uint32_t Buff_Size, uint16_t* p_Result, uint32_t* p_Index);
 /* Gets the sum of squares in the array */
 void Get_DataBuff_Power(float32_t* p_SrcBuff, uint32_t Buff_Size, float32_t* p_Result);
 /* Gets the Root Mean Sqaure of the array */
